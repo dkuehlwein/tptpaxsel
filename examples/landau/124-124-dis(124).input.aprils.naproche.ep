@@ -1,0 +1,12 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,((?[X1]:vd166=X1|?[X2]:?[X3]:vd166=vplus(X2,X3))|?[X4]:?[X5]:X4=vplus(vd166,X5)),file('/home/rekzah/workspace/naproche/examples/landau/124-124-dis(124).input.aprils.naproche', 'dis(124)')).
+fof(41, negated_conjecture,~(((?[X1]:vd166=X1|?[X2]:?[X3]:vd166=vplus(X2,X3))|?[X4]:?[X5]:X4=vplus(vd166,X5))),inference(assume_negation,[status(cth)],[1])).
+fof(42, negated_conjecture,((![X1]:~(vd166=X1)&![X2]:![X3]:~(vd166=vplus(X2,X3)))&![X4]:![X5]:~(X4=vplus(vd166,X5))),inference(fof_nnf,[status(thm)],[41])).
+fof(43, negated_conjecture,((![X6]:~(vd166=X6)&![X7]:![X8]:~(vd166=vplus(X7,X8)))&![X9]:![X10]:~(X9=vplus(vd166,X10))),inference(variable_rename,[status(thm)],[42])).
+fof(44, negated_conjecture,![X6]:![X7]:![X8]:![X9]:![X10]:(~(X9=vplus(vd166,X10))&(~(vd166=vplus(X7,X8))&~(vd166=X6))),inference(shift_quantors,[status(thm)],[43])).
+cnf(45,negated_conjecture,(vd166!=X1),inference(split_conjunct,[status(thm)],[44])).
+cnf(207,negated_conjecture,($false),inference(er,[status(thm)],[45,theory(equality)])).
+cnf(208,negated_conjecture,($false),207,['proof']).
+# SZS output end CNFRefutation

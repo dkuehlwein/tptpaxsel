@@ -1,0 +1,13 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,~(vd104=vplus(vd103,vd104)),file('/home/rekzah/workspace/naproche/examples/landau/73-scope(73)-holds(scope(73), 105, 0).input.aprils.naproche', 'holds(scope(73), 105, 0)')).
+fof(2, axiom,![X1]:![X2]:~(X2=vplus(X1,X2)),file('/home/rekzah/workspace/naproche/examples/landau/73-scope(73)-holds(scope(73), 105, 0).input.aprils.naproche', 'ass(cond(proof(74), 0), 0)')).
+fof(17, negated_conjecture,~(~(vd104=vplus(vd103,vd104))),inference(assume_negation,[status(cth)],[1])).
+fof(18, negated_conjecture,vd104=vplus(vd103,vd104),inference(fof_simplification,[status(thm)],[17,theory(equality)])).
+cnf(19,negated_conjecture,(vd104=vplus(vd103,vd104)),inference(split_conjunct,[status(thm)],[18])).
+fof(20, plain,![X3]:![X4]:~(X4=vplus(X3,X4)),inference(variable_rename,[status(thm)],[2])).
+cnf(21,plain,(X1!=vplus(X2,X1)),inference(split_conjunct,[status(thm)],[20])).
+cnf(67,negated_conjecture,($false),inference(sr,[status(thm)],[19,21,theory(equality)])).
+cnf(68,negated_conjecture,($false),67,['proof']).
+# SZS output end CNFRefutation

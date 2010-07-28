@@ -1,0 +1,173 @@
+
+fof(antisymmetry_r2_hidden,axiom,(! [A,B] :( r2_hidden(A,B)=> ~ r2_hidden(B,A) ) ),unknown,[relevance(0.854660)]).
+fof(t1_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(t2_tarski,axiom,(! [A,B] :( ! [C] :( r2_hidden(C,A)<=> r2_hidden(C,B) )=> A = B ) ),unknown,[relevance(0.923895)]).
+fof(d1_tarski,axiom,(! [A,B] :( B = k1_tarski(A)<=> ! [C] :( r2_hidden(C,B)<=> C = A ) ) ),unknown,[relevance(0.972498)]).
+fof(d2_tarski,axiom,(! [A,B,C] :( C = k2_tarski(A,B)<=> ! [D] :( r2_hidden(D,C)<=> ( D = A| D = B ) ) ) ),unknown,[relevance(0.977574)]).
+fof(t3_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(t4_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(t5_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(t6_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(d3_tarski,axiom,(! [A,B] :( r1_tarski(A,B)<=> ! [C] :( r2_hidden(C,A)=> r2_hidden(C,B) ) ) ),unknown,[relevance(0.914540)]).
+fof(d4_tarski,axiom,(! [A,B] :( B = k3_tarski(A)<=> ! [C] :( r2_hidden(C,B)<=> ? [D] :( r2_hidden(C,D)& r2_hidden(D,A) ) ) ) ),unknown,[relevance(0.908012)]).
+fof(t7_tarski,axiom,(! [A,B] :~ ( r2_hidden(A,B)& ! [C] :~ ( r2_hidden(C,B)& ! [D] :~ ( r2_hidden(D,B)& r2_hidden(D,C) ) ) ) ),unknown,[relevance(0.854660)]).
+fof(d5_tarski,axiom,(! [A,B] : k4_tarski(A,B) = k2_tarski(k2_tarski(A,B),k1_tarski(A)) ),unknown,[relevance(0.960679)]).
+fof(t8_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(d6_tarski,axiom,(! [A,B] :( r2_tarski(A,B)<=> ? [C] :( ! [D] :~ ( r2_hidden(D,A)& ! [E] :~ ( r2_hidden(E,B)& r2_hidden(k4_tarski(D,E),C) ) )& ! [D] :~ ( r2_hidden(D,B)& ! [E] :~ ( r2_hidden(E,A)& r2_hidden(k4_tarski(E,D),C) ) )& ! [D,E,F,G] :( ( r2_hidden(k4_tarski(D,E),C)& r2_hidden(k4_tarski(F,G),C) )=> ( D = F<=> E = G ) ) ) ) ),unknown,[relevance(0.892049)]).
+fof(t9_tarski,axiom,(! [A] :? [B] :( r2_hidden(A,B)& ! [C,D] :( ( r2_hidden(C,B)& r1_tarski(D,C) )=> r2_hidden(D,B) )& ! [C] :~ ( r2_hidden(C,B)& ! [D] :~ ( r2_hidden(D,B)& ! [E] :( r1_tarski(E,C)=> r2_hidden(E,D) ) ) )& ! [C] :~ ( r1_tarski(C,B)& ~ r2_tarski(C,B)& ~ r2_hidden(C,B) ) ) ),unknown,[relevance(0.901917)]).
+fof(s1_tarski,axiom,( ! [A,B,C] :( ( p1_s1_tarski(A,B)& p1_s1_tarski(A,C) )=> B = C )=> ? [A] :! [B] :( r2_hidden(B,A)<=> ? [C] :( r2_hidden(C,f1_s1_tarski)& p1_s1_tarski(C,B) ) ) ),unknown,[relevance(0.881400)]).
+fof(reflexivity_r1_tarski,axiom,(! [A,B] : r1_tarski(A,A) ),unknown,[relevance(0.925927)]).
+fof(dt_k1_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(dt_k2_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(commutativity_k2_tarski,axiom,(! [A,B] : k2_tarski(A,B) = k2_tarski(B,A) ),unknown,[relevance(0.965028)]).
+fof(dt_k3_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(dt_k4_tarski,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(fc1_xboole_0,axiom,(v1_xboole_0(k1_xboole_0) ),unknown,[relevance(0.956056)]).
+fof(rc1_xboole_0,axiom,(? [A] : v1_xboole_0(A) ),unknown,[relevance(0.898896)]).
+fof(fc2_xboole_0,axiom,(! [A] : ~ v1_xboole_0(k1_tarski(A)) ),unknown,[relevance(0.947607)]).
+fof(fc3_xboole_0,axiom,(! [A,B] : ~ v1_xboole_0(k2_tarski(A,B)) ),unknown,[relevance(0.943351)]).
+fof(rc2_xboole_0,axiom,(? [A] : ~ v1_xboole_0(A) ),unknown,[relevance(0.898896)]).
+fof(fc4_xboole_0,axiom,(! [A,B] :( ~ v1_xboole_0(A)=> ~ v1_xboole_0(k2_xboole_0(A,B)) ) ),unknown,[relevance(0.949840)]).
+fof(fc5_xboole_0,axiom,(! [A,B] :( ~ v1_xboole_0(A)=> ~ v1_xboole_0(k2_xboole_0(B,A)) ) ),unknown,[relevance(0.949840)]).
+fof(d1_xboole_0,axiom,(! [A] :( A = k1_xboole_0<=> ! [B] : ~ r2_hidden(B,A) ) ),unknown,[relevance(0.971616)]).
+fof(d2_xboole_0,axiom,(! [A,B,C] :( C = k2_xboole_0(A,B)<=> ! [D] :( r2_hidden(D,C)<=> ( r2_hidden(D,A)| r2_hidden(D,B) ) ) ) ),unknown,[relevance(0.942552)]).
+fof(d3_xboole_0,axiom,(! [A,B,C] :( C = k3_xboole_0(A,B)<=> ! [D] :( r2_hidden(D,C)<=> ( r2_hidden(D,A)& r2_hidden(D,B) ) ) ) ),unknown,[relevance(0.942887)]).
+fof(d4_xboole_0,axiom,(! [A,B,C] :( C = k4_xboole_0(A,B)<=> ! [D] :( r2_hidden(D,C)<=> ( r2_hidden(D,A)& ~ r2_hidden(D,B) ) ) ) ),unknown,[relevance(0.941647)]).
+fof(d5_xboole_0,axiom,(! [A] :( v1_xboole_0(A)<=> A = k1_xboole_0 ) ),unknown,[relevance(0.975404)]).
+fof(d6_xboole_0,axiom,(! [A,B] : k5_xboole_0(A,B) = k2_xboole_0(k4_xboole_0(A,B),k4_xboole_0(B,A)) ),unknown,[relevance(0.995647)]).
+fof(d7_xboole_0,axiom,(! [A,B] :( r1_xboole_0(A,B)<=> k3_xboole_0(A,B) = k1_xboole_0 ) ),unknown,[relevance(0.988768)]).
+fof(d8_xboole_0,axiom,(! [A,B] :( r2_xboole_0(A,B)<=> ( r1_tarski(A,B)& A != B ) ) ),unknown,[relevance(0.929928)]).
+fof(d9_xboole_0,axiom,(! [A,B] :( r3_xboole_0(A,B)<=> ( r1_tarski(A,B)| r1_tarski(B,A) ) ) ),unknown,[relevance(0.861259)]).
+fof(d10_xboole_0,axiom,(! [A,B] :( A = B<=> ( r1_tarski(A,B)& r1_tarski(B,A) ) ) ),unknown,[relevance(0.961710)]).
+fof(t1_xboole_0,axiom,(! [A,B,C] :( r2_hidden(A,k5_xboole_0(B,C))<=> ~ ( r2_hidden(A,B)<=> r2_hidden(A,C) ) ) ),unknown,[relevance(0.914904)]).
+fof(t2_xboole_0,axiom,(! [A,B,C] :( ! [D] :( ~ r2_hidden(D,A)<=> ( r2_hidden(D,B)<=> r2_hidden(D,C) ) )=> A = k5_xboole_0(B,C) ) ),unknown,[relevance(0.940677)]).
+fof(t3_xboole_0,axiom,(! [A,B] :( ~ ( ~ r1_xboole_0(A,B)& ! [C] :~ ( r2_hidden(C,A)& r2_hidden(C,B) ) )& ~ ( ? [C] :( r2_hidden(C,A)& r2_hidden(C,B) )& r1_xboole_0(A,B) ) ) ),unknown,[relevance(0.918787)]).
+fof(t4_xboole_0,axiom,(! [A,B] :( ~ ( ~ r1_xboole_0(A,B)& ! [C] : ~ r2_hidden(C,k3_xboole_0(A,B)) )& ~ ( ? [C] : r2_hidden(C,k3_xboole_0(A,B))& r1_xboole_0(A,B) ) ) ),unknown,[relevance(0.972404)]).
+fof(t5_xboole_0,axiom,(! [A,B,C] :~ ( r1_xboole_0(A,B)& r2_hidden(C,k2_xboole_0(A,B))& ~ ( r2_hidden(C,A)& ~ r2_hidden(C,B) )& ~ ( r2_hidden(C,B)& ~ r2_hidden(C,A) ) ) ),unknown,[relevance(0.919998)]).
+fof(t6_xboole_0,axiom,(! [A,B] :~ ( r2_xboole_0(A,B)& ! [C] :~ ( r2_hidden(C,B)& ~ r2_hidden(C,A) ) ) ),unknown,[relevance(0.866903)]).
+fof(s1_xboole_0,axiom,(? [A] :! [B] :( r2_hidden(B,A)<=> ( r2_hidden(B,f1_s1_xboole_0)& p1_s1_xboole_0(B) ) ) ),unknown,[relevance(0.799937)]).
+fof(s2_xboole_0,axiom,( ( ! [A] :( r2_hidden(A,f1_s2_xboole_0)<=> p1_s2_xboole_0(A) )& ! [A] :( r2_hidden(A,f2_s2_xboole_0)<=> p1_s2_xboole_0(A) ) )=> f1_s2_xboole_0 = f2_s2_xboole_0 ),unknown,[relevance(0.884112)]).
+fof(s3_xboole_0,axiom,(! [A,B] :( ( ! [C] :( r2_hidden(C,A)<=> p1_s3_xboole_0(C) )& ! [C] :( r2_hidden(C,B)<=> p1_s3_xboole_0(C) ) )=> A = B ) ),unknown,[relevance(0.893318)]).
+fof(symmetry_r1_xboole_0,axiom,(! [A,B] :( r1_xboole_0(A,B)=> r1_xboole_0(B,A) ) ),unknown,[relevance(0.943582)]).
+fof(irreflexivity_r2_xboole_0,axiom,(! [A,B] : ~ r2_xboole_0(A,A) ),unknown,[relevance(0.670380)]).
+fof(antisymmetry_r2_xboole_0,axiom,(! [A,B] :( r2_xboole_0(A,B)=> ~ r2_xboole_0(B,A) ) ),unknown,[relevance(0.670380)]).
+fof(symmetry_r3_xboole_0,axiom,(! [A,B] :( r3_xboole_0(A,B)=> r3_xboole_0(B,A) ) ),unknown,[relevance(0.533096)]).
+fof(reflexivity_r3_xboole_0,axiom,(! [A,B] : r3_xboole_0(A,A) ),unknown,[relevance(0.533096)]).
+fof(dt_k1_xboole_0,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(dt_k2_xboole_0,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(commutativity_k2_xboole_0,axiom,(! [A,B] : k2_xboole_0(A,B) = k2_xboole_0(B,A) ),unknown,[relevance(0.993278)]).
+fof(idempotence_k2_xboole_0,axiom,(! [A,B] : k2_xboole_0(A,A) = A ),unknown,[relevance(0.994233)]).
+fof(dt_k3_xboole_0,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(commutativity_k3_xboole_0,axiom,(! [A,B] : k3_xboole_0(A,B) = k3_xboole_0(B,A) ),unknown,[relevance(0.993199)]).
+fof(idempotence_k3_xboole_0,axiom,(! [A,B] : k3_xboole_0(A,A) = A ),unknown,[relevance(0.994401)]).
+fof(dt_k4_xboole_0,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(dt_k5_xboole_0,axiom,($true ),unknown,[relevance(0.000000)]).
+fof(commutativity_k5_xboole_0,axiom,(! [A,B] : k5_xboole_0(A,B) = k5_xboole_0(B,A) ),unknown,[relevance(0.995727)]).
+fof(t1_boole,axiom,(! [A] : k2_xboole_0(A,k1_xboole_0) = A ),unknown,[relevance(0.991647)]).
+fof(t2_boole,axiom,(! [A] : k3_xboole_0(A,k1_xboole_0) = k1_xboole_0 ),unknown,[relevance(0.989286)]).
+fof(t3_boole,axiom,(! [A] : k4_xboole_0(A,k1_xboole_0) = A ),unknown,[relevance(0.988675)]).
+fof(t4_boole,axiom,(! [A] : k4_xboole_0(k1_xboole_0,A) = k1_xboole_0 ),unknown,[relevance(0.986554)]).
+fof(t5_boole,axiom,(! [A] : k5_xboole_0(A,k1_xboole_0) = A ),unknown,[relevance(0.995278)]).
+fof(t6_boole,axiom,(! [A] :( v1_xboole_0(A)=> A = k1_xboole_0 ) ),unknown,[relevance(0.975404)]).
+fof(t7_boole,axiom,(! [A,B] :~ ( r2_hidden(A,B)& v1_xboole_0(B) ) ),unknown,[relevance(0.926348)]).
+fof(t8_boole,axiom,(! [A,B] :~ ( v1_xboole_0(A)& A != B& v1_xboole_0(B) ) ),unknown,[relevance(0.948948)]).
+fof(t1_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_tarski(B,C) )=> r1_tarski(A,C) ) ),unknown,[relevance(0.925927)]).
+fof(t2_xboole_1,axiom,(! [A] : r1_tarski(k1_xboole_0,A) ),unknown,[relevance(0.967665)]).
+fof(t3_xboole_1,axiom,(! [A] :( r1_tarski(A,k1_xboole_0)=> A = k1_xboole_0 ) ),unknown,[relevance(0.981256)]).
+fof(t4_xboole_1,axiom,(! [A,B,C] : k2_xboole_0(k2_xboole_0(A,B),C) = k2_xboole_0(A,k2_xboole_0(B,C)) ),unknown,[relevance(0.991880)]).
+fof(t5_xboole_1,axiom,(! [A,B,C] : k2_xboole_0(k2_xboole_0(A,B),C) = k2_xboole_0(k2_xboole_0(A,C),k2_xboole_0(B,C)) ),unknown,[relevance(0.991443)]).
+fof(t6_xboole_1,axiom,(! [A,B] : k2_xboole_0(A,k2_xboole_0(A,B)) = k2_xboole_0(A,B) ),unknown,[relevance(0.992470)]).
+fof(t7_xboole_1,axiom,(! [A,B] : r1_tarski(A,k2_xboole_0(A,B)) ),unknown,[relevance(0.973751)]).
+fof(t8_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_tarski(C,B) )=> r1_tarski(k2_xboole_0(A,C),B) ) ),unknown,[relevance(0.953664)]).
+fof(t9_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> r1_tarski(k2_xboole_0(A,C),k2_xboole_0(B,C)) ) ),unknown,[relevance(0.973751)]).
+fof(t10_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> r1_tarski(A,k2_xboole_0(C,B)) ) ),unknown,[relevance(0.961257)]).
+fof(t11_xboole_1,axiom,(! [A,B,C] :( r1_tarski(k2_xboole_0(A,B),C)=> r1_tarski(A,C) ) ),unknown,[relevance(0.961257)]).
+fof(t12_xboole_1,axiom,(! [A,B] :( r1_tarski(A,B)=> k2_xboole_0(A,B) = B ) ),unknown,[relevance(0.985046)]).
+fof(t13_xboole_1,axiom,(! [A,B,C,D] :( ( r1_tarski(A,B)& r1_tarski(C,D) )=> r1_tarski(k2_xboole_0(A,C),k2_xboole_0(B,D)) ) ),unknown,[relevance(0.966693)]).
+fof(t14_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_tarski(C,B)& ! [D] :( ( r1_tarski(A,D)& r1_tarski(C,D) )=> r1_tarski(B,D) ) )=> B = k2_xboole_0(A,C) ) ),unknown,[relevance(0.957522)]).
+fof(t15_xboole_1,axiom,(! [A,B] :( k2_xboole_0(A,B) = k1_xboole_0=> A = k1_xboole_0 ) ),unknown,[relevance(0.990171)]).
+fof(t16_xboole_1,axiom,(! [A,B,C] : k3_xboole_0(k3_xboole_0(A,B),C) = k3_xboole_0(A,k3_xboole_0(B,C)) ),unknown,[relevance(0.991494)]).
+fof(t17_xboole_1,axiom,(! [A,B] : r1_tarski(k3_xboole_0(A,B),A) ),unknown,[relevance(0.973009)]).
+fof(t18_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,k3_xboole_0(B,C))=> r1_tarski(A,B) ) ),unknown,[relevance(0.960717)]).
+fof(t19_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_tarski(A,C) )=> r1_tarski(A,k3_xboole_0(B,C)) ) ),unknown,[relevance(0.953243)]).
+fof(t20_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_tarski(A,C)& ! [D] :( ( r1_tarski(D,B)& r1_tarski(D,C) )=> r1_tarski(D,A) ) )=> A = k3_xboole_0(B,C) ) ),unknown,[relevance(0.957339)]).
+fof(t21_xboole_1,axiom,(! [A,B] : k3_xboole_0(A,k2_xboole_0(A,B)) = A ),unknown,[relevance(0.994238)]).
+fof(t22_xboole_1,axiom,(! [A,B] : k2_xboole_0(A,k3_xboole_0(A,B)) = A ),unknown,[relevance(0.994238)]).
+fof(t23_xboole_1,axiom,(! [A,B,C] : k3_xboole_0(A,k2_xboole_0(B,C)) = k2_xboole_0(k3_xboole_0(A,B),k3_xboole_0(A,C)) ),unknown,[relevance(0.992650)]).
+fof(t24_xboole_1,axiom,(! [A,B,C] : k2_xboole_0(A,k3_xboole_0(B,C)) = k3_xboole_0(k2_xboole_0(A,B),k2_xboole_0(A,C)) ),unknown,[relevance(0.992746)]).
+fof(t25_xboole_1,axiom,(! [A,B,C] : k2_xboole_0(k2_xboole_0(k3_xboole_0(A,B),k3_xboole_0(B,C)),k3_xboole_0(C,A)) = k3_xboole_0(k3_xboole_0(k2_xboole_0(A,B),k2_xboole_0(B,C)),k2_xboole_0(C,A)) ),unknown,[relevance(0.991814)]).
+fof(t26_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> r1_tarski(k3_xboole_0(A,C),k3_xboole_0(B,C)) ) ),unknown,[relevance(0.973009)]).
+fof(t27_xboole_1,axiom,(! [A,B,C,D] :( ( r1_tarski(A,B)& r1_tarski(C,D) )=> r1_tarski(k3_xboole_0(A,C),k3_xboole_0(B,D)) ) ),unknown,[relevance(0.966066)]).
+fof(t28_xboole_1,axiom,(! [A,B] :( r1_tarski(A,B)=> k3_xboole_0(A,B) = A ) ),unknown,[relevance(0.984907)]).
+fof(t29_xboole_1,axiom,(! [A,B,C] : r1_tarski(k3_xboole_0(A,B),k2_xboole_0(A,C)) ),unknown,[relevance(0.983079)]).
+fof(t30_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> k2_xboole_0(A,k3_xboole_0(C,B)) = k3_xboole_0(k2_xboole_0(A,C),B) ) ),unknown,[relevance(0.990480)]).
+fof(t31_xboole_1,axiom,(! [A,B,C] : r1_tarski(k2_xboole_0(k3_xboole_0(A,B),k3_xboole_0(A,C)),k2_xboole_0(B,C)) ),unknown,[relevance(0.987759)]).
+fof(l32_xboole_1,axiom,(! [A,B] :( k4_xboole_0(A,B) = k1_xboole_0<=> r1_tarski(A,B) ) ),unknown,[relevance(0.984335)]).
+fof(t32_xboole_1,axiom,(! [A,B] :( k4_xboole_0(A,B) = k4_xboole_0(B,A)=> A = B ) ),unknown,[relevance(0.989216)]).
+fof(t33_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> r1_tarski(k4_xboole_0(A,C),k4_xboole_0(B,C)) ) ),unknown,[relevance(0.968241)]).
+fof(t34_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> r1_tarski(k4_xboole_0(C,B),k4_xboole_0(C,A)) ) ),unknown,[relevance(0.968241)]).
+fof(l36_xboole_1,axiom,(! [A,B,C] : k4_xboole_0(A,k3_xboole_0(B,C)) = k2_xboole_0(k4_xboole_0(A,B),k4_xboole_0(A,C)) ),unknown,[relevance(0.989361)]).
+fof(t35_xboole_1,axiom,(! [A,B,C,D] :( ( r1_tarski(A,B)& r1_tarski(C,D) )=> r1_tarski(k4_xboole_0(A,D),k4_xboole_0(B,C)) ) ),unknown,[relevance(0.962332)]).
+fof(t36_xboole_1,axiom,(! [A,B] : r1_tarski(k4_xboole_0(A,B),A) ),unknown,[relevance(0.968241)]).
+fof(t37_xboole_1,axiom,(! [A,B] :( k4_xboole_0(A,B) = k1_xboole_0<=> r1_tarski(A,B) ) ),unknown,[relevance(0.984335)]).
+fof(t38_xboole_1,axiom,(! [A,B] :( r1_tarski(A,k4_xboole_0(B,A))=> A = k1_xboole_0 ) ),unknown,[relevance(0.984335)]).
+fof(t39_xboole_1,axiom,(! [A,B] : k2_xboole_0(A,k4_xboole_0(B,A)) = k2_xboole_0(A,B) ),unknown,[relevance(0.992171)]).
+fof(t40_xboole_1,axiom,(! [A,B] : k4_xboole_0(k2_xboole_0(A,B),B) = k4_xboole_0(A,B) ),unknown,[relevance(0.989483)]).
+fof(t41_xboole_1,axiom,(! [A,B,C] : k4_xboole_0(k4_xboole_0(A,B),C) = k4_xboole_0(A,k2_xboole_0(B,C)) ),unknown,[relevance(0.987638)]).
+fof(t42_xboole_1,axiom,(! [A,B,C] : k4_xboole_0(k2_xboole_0(A,B),C) = k2_xboole_0(k4_xboole_0(A,C),k4_xboole_0(B,C)) ),unknown,[relevance(0.989131)]).
+fof(t43_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,k2_xboole_0(B,C))=> r1_tarski(k4_xboole_0(A,B),C) ) ),unknown,[relevance(0.972196)]).
+fof(t44_xboole_1,axiom,(! [A,B,C] :( r1_tarski(k4_xboole_0(A,B),C)=> r1_tarski(A,k2_xboole_0(B,C)) ) ),unknown,[relevance(0.972196)]).
+fof(t45_xboole_1,axiom,(! [A,B] :( r1_tarski(A,B)=> B = k2_xboole_0(A,k4_xboole_0(B,A)) ) ),unknown,[relevance(0.986669)]).
+fof(t46_xboole_1,axiom,(! [A,B] : k4_xboole_0(A,k2_xboole_0(A,B)) = k1_xboole_0 ),unknown,[relevance(0.991336)]).
+fof(t47_xboole_1,axiom,(! [A,B] : k4_xboole_0(A,k3_xboole_0(A,B)) = k4_xboole_0(A,B) ),unknown,[relevance(0.989511)]).
+fof(t48_xboole_1,axiom,(! [A,B] : k4_xboole_0(A,k4_xboole_0(A,B)) = k3_xboole_0(A,B) ),unknown,[relevance(0.989511)]).
+fof(t49_xboole_1,axiom,(! [A,B,C] : k3_xboole_0(A,k4_xboole_0(B,C)) = k4_xboole_0(k3_xboole_0(A,B),C) ),unknown,[relevance(0.990533)]).
+fof(t50_xboole_1,axiom,(! [A,B,C] : k3_xboole_0(A,k4_xboole_0(B,C)) = k4_xboole_0(k3_xboole_0(A,B),k3_xboole_0(A,C)) ),unknown,[relevance(0.990828)]).
+fof(t51_xboole_1,axiom,(! [A,B] : k2_xboole_0(k3_xboole_0(A,B),k4_xboole_0(A,B)) = A ),unknown,[relevance(0.992706)]).
+fof(t52_xboole_1,axiom,(! [A,B,C] : k4_xboole_0(A,k4_xboole_0(B,C)) = k2_xboole_0(k4_xboole_0(A,B),k3_xboole_0(A,C)) ),unknown,[relevance(0.989361)]).
+fof(t53_xboole_1,axiom,(! [A,B,C] : k4_xboole_0(A,k2_xboole_0(B,C)) = k3_xboole_0(k4_xboole_0(A,B),k4_xboole_0(A,C)) ),unknown,[relevance(0.989361)]).
+fof(t54_xboole_1,axiom,(! [A,B,C] : k4_xboole_0(A,k3_xboole_0(B,C)) = k2_xboole_0(k4_xboole_0(A,B),k4_xboole_0(A,C)) ),unknown,[relevance(0.989361)]).
+fof(t55_xboole_1,axiom,(! [A,B] : k4_xboole_0(k2_xboole_0(A,B),k3_xboole_0(A,B)) = k2_xboole_0(k4_xboole_0(A,B),k4_xboole_0(B,A)) ),unknown,[relevance(0.990208)]).
+fof(l58_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r2_xboole_0(B,C) )=> r2_xboole_0(A,C) ) ),unknown,[relevance(0.801621)]).
+fof(t56_xboole_1,axiom,(! [A,B,C] :( ( r2_xboole_0(A,B)& r2_xboole_0(B,C) )=> r2_xboole_0(A,C) ) ),unknown,[relevance(0.670380)]).
+fof(t57_xboole_1,axiom,(! [A,B] :~ ( r2_xboole_0(A,B)& r2_xboole_0(B,A) ) ),unknown,[relevance(0.670380)]).
+fof(t58_xboole_1,axiom,(! [A,B,C] :( ( r2_xboole_0(A,B)& r1_tarski(B,C) )=> r2_xboole_0(A,C) ) ),unknown,[relevance(0.801621)]).
+fof(t59_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r2_xboole_0(B,C) )=> r2_xboole_0(A,C) ) ),unknown,[relevance(0.801621)]).
+fof(t60_xboole_1,axiom,(! [A,B] :~ ( r1_tarski(A,B)& r2_xboole_0(B,A) ) ),unknown,[relevance(0.853537)]).
+fof(t61_xboole_1,axiom,(! [A] :( A != k1_xboole_0=> r2_xboole_0(k1_xboole_0,A) ) ),unknown,[relevance(0.959624)]).
+fof(t62_xboole_1,axiom,(! [A] : ~ r2_xboole_0(A,k1_xboole_0) ),unknown,[relevance(0.889265)]).
+fof(t63_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_xboole_0(B,C) )=> r1_xboole_0(A,C) ) ),unknown,[relevance(0.954934)]).
+fof(t64_xboole_1,axiom,(! [A,B,C,D] :( ( r1_tarski(A,B)& r1_tarski(C,D)& r1_xboole_0(B,D) )=> r1_xboole_0(A,C) ) ),unknown,[relevance(0.954152)]).
+fof(t65_xboole_1,axiom,(! [A] : r1_xboole_0(A,k1_xboole_0) ),unknown,[relevance(0.973491)]).
+fof(t66_xboole_1,axiom,(! [A] :( ~ ( ~ r1_xboole_0(A,A)& A = k1_xboole_0 )& ~ ( A != k1_xboole_0& r1_xboole_0(A,A) ) ) ),unknown,[relevance(0.983586)]).
+fof(t67_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_tarski(A,C)& r1_xboole_0(B,C) )=> A = k1_xboole_0 ) ),unknown,[relevance(0.974401)]).
+fof(t68_xboole_1,axiom,(! [A,B,C] :( ~ v1_xboole_0(C)=> ~ ( r1_tarski(C,A)& r1_tarski(C,B)& r1_xboole_0(A,B) ) ) ),unknown,[relevance(0.956014)]).
+fof(t69_xboole_1,axiom,(! [A,B] :( ~ v1_xboole_0(B)=> ~ ( r1_tarski(B,A)& r1_xboole_0(B,A) ) ) ),unknown,[relevance(0.958444)]).
+fof(t70_xboole_1,axiom,(! [A,B,C] :( ~ ( ~ r1_xboole_0(A,k2_xboole_0(B,C))& r1_xboole_0(A,B)& r1_xboole_0(A,C) )& ~ ( ~ ( r1_xboole_0(A,B)& r1_xboole_0(A,C) )& r1_xboole_0(A,k2_xboole_0(B,C)) ) ) ),unknown,[relevance(0.964541)]).
+fof(t71_xboole_1,axiom,(! [A,B,C] :( ( k2_xboole_0(A,B) = k2_xboole_0(C,B)& r1_xboole_0(A,B)& r1_xboole_0(C,B) )=> A = C ) ),unknown,[relevance(0.987752)]).
+fof(t72_xboole_1,axiom,(! [A,B,C,D] :( ( k2_xboole_0(A,B) = k2_xboole_0(C,D)& r1_xboole_0(C,A)& r1_xboole_0(D,B) )=> C = B ) ),unknown,[relevance(0.987752)]).
+fof(t73_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,k2_xboole_0(B,C))& r1_xboole_0(A,C) )=> r1_tarski(A,B) ) ),unknown,[relevance(0.967313)]).
+fof(t74_xboole_1,axiom,(! [A,B,C] :~ ( ~ r1_xboole_0(A,k3_xboole_0(B,C))& r1_xboole_0(A,B) ) ),unknown,[relevance(0.969723)]).
+fof(t75_xboole_1,axiom,(! [A,B] :~ ( ~ r1_xboole_0(A,B)& r1_xboole_0(k3_xboole_0(A,B),B) ) ),unknown,[relevance(0.969723)]).
+fof(t76_xboole_1,axiom,(! [A,B,C] :( r1_xboole_0(A,B)=> r1_xboole_0(k3_xboole_0(C,A),k3_xboole_0(C,B)) ) ),unknown,[relevance(0.978636)]).
+fof(t77_xboole_1,axiom,(! [A,B,C] :~ ( ~ r1_xboole_0(A,B)& r1_tarski(A,C)& r1_xboole_0(A,k3_xboole_0(B,C)) ) ),unknown,[relevance(0.970581)]).
+fof(t78_xboole_1,axiom,(! [A,B,C] :( r1_xboole_0(A,B)=> k3_xboole_0(A,k2_xboole_0(B,C)) = k3_xboole_0(A,C) ) ),unknown,[relevance(0.991023)]).
+fof(t79_xboole_1,axiom,(! [A,B] : r1_xboole_0(k4_xboole_0(A,B),B) ),unknown,[relevance(0.973458)]).
+fof(t80_xboole_1,axiom,(! [A,B,C] :( r1_xboole_0(A,B)=> r1_xboole_0(A,k4_xboole_0(B,C)) ) ),unknown,[relevance(0.966293)]).
+fof(t81_xboole_1,axiom,(! [A,B,C] :( r1_xboole_0(A,k4_xboole_0(B,C))=> r1_xboole_0(B,k4_xboole_0(A,C)) ) ),unknown,[relevance(0.973458)]).
+fof(t82_xboole_1,axiom,(! [A,B] : r1_xboole_0(k4_xboole_0(A,B),k4_xboole_0(B,A)) ),unknown,[relevance(0.977683)]).
+fof(t83_xboole_1,axiom,(! [A,B] :( r1_xboole_0(A,B)<=> k4_xboole_0(A,B) = A ) ),unknown,[relevance(0.984201)]).
+fof(t84_xboole_1,axiom,(! [A,B,C] :~ ( ~ r1_xboole_0(A,B)& r1_xboole_0(A,C)& r1_xboole_0(A,k4_xboole_0(B,C)) ) ),unknown,[relevance(0.961633)]).
+fof(t85_xboole_1,axiom,(! [A,B,C] :( r1_tarski(A,B)=> r1_xboole_0(A,k4_xboole_0(C,B)) ) ),unknown,[relevance(0.970943)]).
+fof(t86_xboole_1,axiom,(! [A,B,C] :( ( r1_tarski(A,B)& r1_xboole_0(A,C) )=> r1_tarski(A,k4_xboole_0(B,C)) ) ),unknown,[relevance(0.964533)]).
+fof(t87_xboole_1,axiom,(! [A,B,C] :( r1_xboole_0(A,B)=> k2_xboole_0(k4_xboole_0(C,A),B) = k4_xboole_0(k2_xboole_0(C,B),A) ) ),unknown,[relevance(0.989172)]).
+fof(t88_xboole_1,axiom,(! [A,B] :( r1_xboole_0(A,B)=> k4_xboole_0(k2_xboole_0(A,B),B) = A ) ),unknown,[relevance(0.988357)]).
+fof(t89_xboole_1,axiom,(! [A,B] : r1_xboole_0(k3_xboole_0(A,B),k4_xboole_0(A,B)) ),unknown,[relevance(0.983386)]).
+fof(t90_xboole_1,axiom,(! [A,B] : r1_xboole_0(k4_xboole_0(A,k3_xboole_0(A,B)),B) ),unknown,[relevance(0.983386)]).
+fof(t91_xboole_1,axiom,(! [A,B,C] : k5_xboole_0(k5_xboole_0(A,B),C) = k5_xboole_0(A,k5_xboole_0(B,C)) ),unknown,[relevance(0.993110)]).
+fof(t92_xboole_1,axiom,(! [A] : k5_xboole_0(A,A) = k1_xboole_0 ),unknown,[relevance(0.995278)]).
+fof(t93_xboole_1,axiom,(! [A,B] : k2_xboole_0(A,B) = k2_xboole_0(k5_xboole_0(A,B),k3_xboole_0(A,B)) ),unknown,[relevance(0.998199)]).
+fof(l97_xboole_1,axiom,(! [A,B] : r1_xboole_0(k3_xboole_0(A,B),k5_xboole_0(A,B)) ),unknown,[relevance(0.993874)]).
+fof(l98_xboole_1,axiom,(! [A,B] : k5_xboole_0(A,B) = k4_xboole_0(k2_xboole_0(A,B),k3_xboole_0(A,B)) ),unknown,[relevance(0.997715)]).
+fof(t94_xboole_1,axiom,(! [A,B] : k2_xboole_0(A,B) = k5_xboole_0(k5_xboole_0(A,B),k3_xboole_0(A,B)) ),unknown,[relevance(1.000000)]).
+fof(t95_xboole_1,conjecture,(! [A,B] : k3_xboole_0(A,B) = k5_xboole_0(k5_xboole_0(A,B),k2_xboole_0(A,B)) ),unknown,[relevance(1.000000)]).

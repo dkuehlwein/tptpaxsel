@@ -1,0 +1,19 @@
+fof('holds(101, 153, 2)', conjecture, vplus(vplus(vd141,vd151),vd149) = vplus(vd141,vplus(vd151,vd149))).
+fof('holds(101, 153, 1)', axiom, vplus(vd142,vd149) = vplus(vplus(vd141,vd151),vd149)).
+fof('holds(101, 153, 0)', axiom, vd141 = vplus(vd142,vd149)).
+fof('holds(100, 152, 0)', axiom, vd142 = vplus(vd141,vd151)).
+fof('holds(100, 150, 0)', axiom, vd141 = vplus(vd142,vd149)).
+fof('neg(inconsistent_cases(conjunct2(99)))', axiom, ~(?[Vd147]:((vd142 = vplus(vd141,Vd147))&(vd141 = vd142)))).
+fof('neg(inconsistent_cases(99))', axiom, ~(?[Vd144]:((vd141 = vplus(vd142,Vd144))&(vd141 = vd142)))).
+fof('ass(cond(81, 0), 0)', axiom, ![Vd116,Vd117]:((~ (Vd116 = Vd117))=>(![Vd120]:(~ (vplus(Vd120,Vd116) = vplus(Vd120,Vd117)))))).
+fof('ass(cond(73, 0), 0)', axiom, ![Vd103,Vd104]:(~ (Vd104 = vplus(Vd103,Vd104)))).
+fof('ass(cond(61, 0), 0)', axiom, ![Vd87,Vd88]:(vplus(Vd88,Vd87) = vplus(Vd87,Vd88))).
+fof('ass(cond(33, 0), 0)', axiom, ![Vd49,Vd50,Vd51]:(vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)))).
+fof('ass(cond(52, 0), 0)', axiom, ![Vd75,Vd76]:(vplus(vsucc(Vd75),Vd76) = vsucc(vplus(Vd75,Vd76)))).
+fof('ass(cond(43, 0), 0)', axiom, ![Vd64]:(vplus(v1,Vd64) = vsucc(Vd64))).
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))', axiom, ![Vd44,Vd45]:((vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45)))&(vplus(Vd44,v1) = vsucc(Vd44)))).
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))', axiom, ![Vd1]:(~ (vsucc(Vd1) = v1))).
+fof('ass(cond(6, 0), 0)', axiom, ![Vd7,Vd8]:((~ (Vd7 = Vd8))=>(~ (vsucc(Vd7) = vsucc(Vd8))))).
+fof('ass(cond(20, 0), 0)', axiom, ![Vd26]:((~ (Vd26 = v1))=>(Vd26 = vsucc(vskolem28(Vd26))))).
+fof('ass(cond(12, 0), 0)', axiom, ![Vd17]:(~ (vsucc(Vd17) = Vd17))).
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))', axiom, ![Vd3,Vd4]:((vsucc(Vd3) = vsucc(Vd4))=>(Vd3 = Vd4))).

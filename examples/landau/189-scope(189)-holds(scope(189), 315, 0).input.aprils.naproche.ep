@@ -1,0 +1,18 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,rgreater(vplus(vd313,vd314),vd313),file('/home/rekzah/workspace/naproche/examples/landau/189-scope(189)-holds(scope(189), 315, 0).input.aprils.naproche', 'holds(scope(189), 315, 0)')).
+fof(3, axiom,![X3]:![X4]:(rgreater(X4,X3)<=>?[X5]:X4=vplus(X3,X5)),file('/home/rekzah/workspace/naproche/examples/landau/189-scope(189)-holds(scope(189), 315, 0).input.aprils.naproche', 'def(cond(conseq(axiom(3)), 11), 1)')).
+fof(34, negated_conjecture,~(rgreater(vplus(vd313,vd314),vd313)),inference(assume_negation,[status(cth)],[1])).
+fof(35, negated_conjecture,~(rgreater(vplus(vd313,vd314),vd313)),inference(fof_simplification,[status(thm)],[34,theory(equality)])).
+cnf(39,negated_conjecture,(~rgreater(vplus(vd313,vd314),vd313)),inference(split_conjunct,[status(thm)],[35])).
+fof(42, plain,![X3]:![X4]:((~(rgreater(X4,X3))|?[X5]:X4=vplus(X3,X5))&(![X5]:~(X4=vplus(X3,X5))|rgreater(X4,X3))),inference(fof_nnf,[status(thm)],[3])).
+fof(43, plain,![X6]:![X7]:((~(rgreater(X7,X6))|?[X8]:X7=vplus(X6,X8))&(![X9]:~(X7=vplus(X6,X9))|rgreater(X7,X6))),inference(variable_rename,[status(thm)],[42])).
+fof(44, plain,![X6]:![X7]:((~(rgreater(X7,X6))|X7=vplus(X6,esk1_2(X6,X7)))&(![X9]:~(X7=vplus(X6,X9))|rgreater(X7,X6))),inference(skolemize,[status(esa)],[43])).
+fof(45, plain,![X6]:![X7]:![X9]:((~(X7=vplus(X6,X9))|rgreater(X7,X6))&(~(rgreater(X7,X6))|X7=vplus(X6,esk1_2(X6,X7)))),inference(shift_quantors,[status(thm)],[44])).
+cnf(47,plain,(rgreater(X1,X2)|X1!=vplus(X2,X3)),inference(split_conjunct,[status(thm)],[45])).
+cnf(159,plain,(rgreater(vplus(X1,X2),X1)),inference(er,[status(thm)],[47,theory(equality)])).
+cnf(287,negated_conjecture,($false),inference(rw,[status(thm)],[39,159,theory(equality)])).
+cnf(288,negated_conjecture,($false),inference(cn,[status(thm)],[287,theory(equality)])).
+cnf(289,negated_conjecture,($false),288,['proof']).
+# SZS output end CNFRefutation

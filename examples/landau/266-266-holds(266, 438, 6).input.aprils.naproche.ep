@@ -1,0 +1,46 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vplus(vmul(vd434,vd436),vplus(vd434,vsucc(vd436)))=vplus(vplus(vmul(vd434,vd436),vd434),vsucc(vd436)),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'holds(266, 438, 6)')).
+fof(3, axiom,vplus(vmul(vd434,vd436),vplus(vsucc(vd434),vd436))=vplus(vmul(vd434,vd436),vsucc(vplus(vd434,vd436))),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'holds(266, 438, 4)')).
+fof(4, axiom,vplus(vmul(vd434,vd436),vplus(vd436,vsucc(vd434)))=vplus(vmul(vd434,vd436),vplus(vsucc(vd434),vd436)),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'holds(266, 438, 3)')).
+fof(7, axiom,vmul(vsucc(vd434),vd436)=vplus(vmul(vd434,vd436),vd436),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'holds(265, 437, 0)')).
+fof(8, axiom,vmul(vsucc(vd434),vsucc(vd436))=vplus(vmul(vsucc(vd434),vd436),vsucc(vd434)),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'holds(266, 438, 0)')).
+fof(14, axiom,![X5]:![X6]:(vplus(X5,vsucc(X6))=vsucc(vplus(X5,X6))&vplus(X5,v1)=vsucc(X5)),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))')).
+fof(18, axiom,![X12]:vplus(v1,X12)=vsucc(X12),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'ass(cond(43, 0), 0)')).
+fof(19, axiom,![X13]:![X14]:![X15]:vplus(vplus(X13,X14),X15)=vplus(X13,vplus(X14,X15)),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'ass(cond(33, 0), 0)')).
+fof(21, axiom,![X17]:![X18]:vplus(X18,X17)=vplus(X17,X18),file('/home/rekzah/workspace/naproche/examples/landau/266-266-holds(266, 438, 6).input.aprils.naproche', 'ass(cond(61, 0), 0)')).
+fof(58, negated_conjecture,~(vplus(vmul(vd434,vd436),vplus(vd434,vsucc(vd436)))=vplus(vplus(vmul(vd434,vd436),vd434),vsucc(vd436))),inference(assume_negation,[status(cth)],[1])).
+fof(59, negated_conjecture,~(vplus(vmul(vd434,vd436),vplus(vd434,vsucc(vd436)))=vplus(vplus(vmul(vd434,vd436),vd434),vsucc(vd436))),inference(fof_simplification,[status(thm)],[58,theory(equality)])).
+cnf(63,negated_conjecture,(vplus(vmul(vd434,vd436),vplus(vd434,vsucc(vd436)))!=vplus(vplus(vmul(vd434,vd436),vd434),vsucc(vd436))),inference(split_conjunct,[status(thm)],[59])).
+cnf(65,plain,(vplus(vmul(vd434,vd436),vplus(vsucc(vd434),vd436))=vplus(vmul(vd434,vd436),vsucc(vplus(vd434,vd436)))),inference(split_conjunct,[status(thm)],[3])).
+cnf(66,plain,(vplus(vmul(vd434,vd436),vplus(vd436,vsucc(vd434)))=vplus(vmul(vd434,vd436),vplus(vsucc(vd434),vd436))),inference(split_conjunct,[status(thm)],[4])).
+cnf(69,plain,(vmul(vsucc(vd434),vd436)=vplus(vmul(vd434,vd436),vd436)),inference(split_conjunct,[status(thm)],[7])).
+cnf(70,plain,(vmul(vsucc(vd434),vsucc(vd436))=vplus(vmul(vsucc(vd434),vd436),vsucc(vd434))),inference(split_conjunct,[status(thm)],[8])).
+fof(79, plain,![X7]:![X8]:(vplus(X7,vsucc(X8))=vsucc(vplus(X7,X8))&vplus(X7,v1)=vsucc(X7)),inference(variable_rename,[status(thm)],[14])).
+cnf(80,plain,(vplus(X1,v1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[79])).
+fof(90, plain,![X13]:vplus(v1,X13)=vsucc(X13),inference(variable_rename,[status(thm)],[18])).
+cnf(91,plain,(vplus(v1,X1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[90])).
+fof(92, plain,![X16]:![X17]:![X18]:vplus(vplus(X16,X17),X18)=vplus(X16,vplus(X17,X18)),inference(variable_rename,[status(thm)],[19])).
+cnf(93,plain,(vplus(vplus(X1,X2),X3)=vplus(X1,vplus(X2,X3))),inference(split_conjunct,[status(thm)],[92])).
+fof(96, plain,![X19]:![X20]:vplus(X20,X19)=vplus(X19,X20),inference(variable_rename,[status(thm)],[21])).
+cnf(97,plain,(vplus(X1,X2)=vplus(X2,X1)),inference(split_conjunct,[status(thm)],[96])).
+cnf(218,plain,(vplus(v1,X1)=vplus(X1,v1)),inference(rw,[status(thm)],[91,80,theory(equality)]),['unfolding']).
+cnf(225,plain,(vplus(vmul(vd434,vd436),vd436)=vmul(vplus(vd434,v1),vd436)),inference(rw,[status(thm)],[69,80,theory(equality)]),['unfolding']).
+cnf(226,plain,(vplus(vmul(vplus(vd434,v1),vd436),vplus(vd434,v1))=vmul(vplus(vd434,v1),vplus(vd436,v1))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[70,80,theory(equality)]),80,theory(equality)]),80,theory(equality)]),80,theory(equality)]),['unfolding']).
+cnf(229,plain,(vplus(vmul(vd434,vd436),vplus(vplus(vd434,v1),vd436))=vplus(vmul(vd434,vd436),vplus(vplus(vd434,vd436),v1))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[65,80,theory(equality)]),80,theory(equality)]),['unfolding']).
+cnf(230,plain,(vplus(vmul(vd434,vd436),vplus(vplus(vd434,v1),vd436))=vplus(vmul(vd434,vd436),vplus(vd436,vplus(vd434,v1)))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[66,80,theory(equality)]),80,theory(equality)]),['unfolding']).
+cnf(237,negated_conjecture,(vplus(vplus(vmul(vd434,vd436),vd434),vplus(vd436,v1))!=vplus(vmul(vd434,vd436),vplus(vd434,vplus(vd436,v1)))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[63,80,theory(equality)]),80,theory(equality)]),['unfolding']).
+cnf(257,plain,(vplus(vd436,vmul(vd434,vd436))=vmul(vplus(vd434,v1),vd436)),inference(rw,[status(thm)],[225,97,theory(equality)])).
+cnf(258,plain,(vplus(vd436,vmul(vd434,vd436))=vmul(vplus(v1,vd434),vd436)),inference(rw,[status(thm)],[257,218,theory(equality)])).
+cnf(348,plain,(vplus(vd436,vplus(v1,vplus(vd434,vmul(vd434,vd436))))=vmul(vplus(vd434,v1),vplus(vd436,v1))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[226,218,theory(equality)]),258,theory(equality)]),218,theory(equality)]),93,theory(equality)]),97,theory(equality)]),93,theory(equality)])).
+cnf(349,plain,(vplus(vd436,vplus(v1,vplus(vd434,vmul(vd434,vd436))))=vmul(vplus(v1,vd434),vplus(v1,vd436))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[348,218,theory(equality)]),97,theory(equality)])).
+cnf(368,plain,(vplus(v1,vplus(vd434,vplus(vd436,vmul(vd434,vd436))))=vplus(vmul(vd434,vd436),vplus(vd436,vplus(vd434,v1)))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[230,218,theory(equality)]),93,theory(equality)]),97,theory(equality)]),93,theory(equality)]),93,theory(equality)])).
+cnf(369,plain,(vplus(v1,vplus(vd434,vplus(vd436,vmul(vd434,vd436))))=vmul(vplus(v1,vd434),vplus(v1,vd436))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[368,218,theory(equality)]),97,theory(equality)]),93,theory(equality)]),93,theory(equality)]),349,theory(equality)])).
+cnf(381,plain,(vmul(vplus(v1,vd434),vplus(v1,vd436))=vplus(vmul(vd434,vd436),vplus(vplus(vd434,vd436),v1))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[229,218,theory(equality)]),93,theory(equality)]),97,theory(equality)]),93,theory(equality)]),93,theory(equality)]),369,theory(equality)])).
+cnf(382,plain,(vmul(vplus(v1,vd434),vplus(v1,vd436))=vplus(vd434,vplus(v1,vplus(vd436,vmul(vd434,vd436))))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[381,93,theory(equality)]),97,theory(equality)]),97,theory(equality)]),93,theory(equality)]),93,theory(equality)])).
+cnf(688,negated_conjecture,(vmul(vplus(v1,vd434),vplus(v1,vd436))!=vplus(vmul(vd434,vd436),vplus(vd434,vplus(vd436,v1)))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[237,97,theory(equality)]),97,theory(equality)]),93,theory(equality)]),97,theory(equality)]),93,theory(equality)]),382,theory(equality)])).
+cnf(689,negated_conjecture,($false),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[688,97,theory(equality)]),97,theory(equality)]),93,theory(equality)]),93,theory(equality)]),382,theory(equality)])).
+cnf(690,negated_conjecture,($false),inference(cn,[status(thm)],[689,theory(equality)])).
+cnf(691,negated_conjecture,($false),690,['proof']).
+# SZS output end CNFRefutation

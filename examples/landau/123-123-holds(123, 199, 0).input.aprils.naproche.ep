@@ -1,0 +1,51 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,rM(vsucc(vd180)),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'holds(123, 199, 0)')).
+fof(3, axiom,(vd166=vd180=>rM(vsucc(vd180))),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'ass(cond(conseq(110), 0), 0)')).
+fof(4, axiom,![X1]:(vd180=vplus(vd166,X1)=>rM(vsucc(vd180))),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'ass(cond(conseq(110), 2), 0)')).
+fof(6, axiom,![X2]:(vd166=vplus(vd180,X2)=>(~(X2=v1)=>rM(vsucc(vd180)))),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'ass(cond(conseq(110), 1), 0)')).
+fof(7, axiom,![X2]:(vd166=vplus(vd180,X2)=>(X2=v1=>rM(vsucc(vd180)))),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'ass(cond(conseq(110), 1), 6)')).
+fof(10, axiom,((?[X1]:vd180=vplus(vd166,X1)|?[X2]:vd166=vplus(vd180,X2))|vd166=vd180),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'dis(case_distinction(conseq(110)))')).
+fof(18, axiom,![X8]:![X9]:(vplus(X8,vsucc(X9))=vsucc(vplus(X8,X9))&vplus(X8,v1)=vsucc(X8)),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))')).
+fof(26, axiom,![X16]:vplus(v1,X16)=vsucc(X16),file('/home/rekzah/workspace/naproche/examples/landau/123-123-holds(123, 199, 0).input.aprils.naproche', 'ass(cond(43, 0), 0)')).
+fof(41, negated_conjecture,~(rM(vsucc(vd180))),inference(assume_negation,[status(cth)],[1])).
+fof(42, negated_conjecture,~(rM(vsucc(vd180))),inference(fof_simplification,[status(thm)],[41,theory(equality)])).
+cnf(43,negated_conjecture,(~rM(vsucc(vd180))),inference(split_conjunct,[status(thm)],[42])).
+fof(45, plain,(~(vd166=vd180)|rM(vsucc(vd180))),inference(fof_nnf,[status(thm)],[3])).
+cnf(46,plain,(rM(vsucc(vd180))|vd166!=vd180),inference(split_conjunct,[status(thm)],[45])).
+fof(47, plain,![X1]:(~(vd180=vplus(vd166,X1))|rM(vsucc(vd180))),inference(fof_nnf,[status(thm)],[4])).
+fof(48, plain,![X2]:(~(vd180=vplus(vd166,X2))|rM(vsucc(vd180))),inference(variable_rename,[status(thm)],[47])).
+cnf(49,plain,(rM(vsucc(vd180))|vd180!=vplus(vd166,X1)),inference(split_conjunct,[status(thm)],[48])).
+fof(53, plain,![X2]:(~(vd166=vplus(vd180,X2))|(X2=v1|rM(vsucc(vd180)))),inference(fof_nnf,[status(thm)],[6])).
+fof(54, plain,![X3]:(~(vd166=vplus(vd180,X3))|(X3=v1|rM(vsucc(vd180)))),inference(variable_rename,[status(thm)],[53])).
+cnf(55,plain,(rM(vsucc(vd180))|X1=v1|vd166!=vplus(vd180,X1)),inference(split_conjunct,[status(thm)],[54])).
+fof(56, plain,![X2]:(~(vd166=vplus(vd180,X2))|(~(X2=v1)|rM(vsucc(vd180)))),inference(fof_nnf,[status(thm)],[7])).
+fof(57, plain,![X3]:(~(vd166=vplus(vd180,X3))|(~(X3=v1)|rM(vsucc(vd180)))),inference(variable_rename,[status(thm)],[56])).
+cnf(58,plain,(rM(vsucc(vd180))|X1!=v1|vd166!=vplus(vd180,X1)),inference(split_conjunct,[status(thm)],[57])).
+fof(62, plain,((?[X3]:vd180=vplus(vd166,X3)|?[X4]:vd166=vplus(vd180,X4))|vd166=vd180),inference(variable_rename,[status(thm)],[10])).
+fof(63, plain,((vd180=vplus(vd166,esk1_0)|vd166=vplus(vd180,esk2_0))|vd166=vd180),inference(skolemize,[status(esa)],[62])).
+cnf(64,plain,(vd166=vd180|vd166=vplus(vd180,esk2_0)|vd180=vplus(vd166,esk1_0)),inference(split_conjunct,[status(thm)],[63])).
+fof(90, plain,![X10]:![X11]:(vplus(X10,vsucc(X11))=vsucc(vplus(X10,X11))&vplus(X10,v1)=vsucc(X10)),inference(variable_rename,[status(thm)],[18])).
+cnf(91,plain,(vplus(X1,v1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[90])).
+fof(112, plain,![X17]:vplus(v1,X17)=vsucc(X17),inference(variable_rename,[status(thm)],[26])).
+cnf(113,plain,(vplus(v1,X1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[112])).
+cnf(164,plain,(vplus(v1,X1)=vplus(X1,v1)),inference(rw,[status(thm)],[113,91,theory(equality)]),['unfolding']).
+cnf(170,plain,(rM(vplus(vd180,v1))|vd166!=vd180),inference(rw,[status(thm)],[46,91,theory(equality)]),['unfolding']).
+cnf(172,plain,(rM(vplus(vd180,v1))|vplus(vd166,X1)!=vd180),inference(rw,[status(thm)],[49,91,theory(equality)]),['unfolding']).
+cnf(176,plain,(v1=X1|rM(vplus(vd180,v1))|vplus(vd180,X1)!=vd166),inference(rw,[status(thm)],[55,91,theory(equality)]),['unfolding']).
+cnf(180,plain,(rM(vplus(vd180,v1))|v1!=X1|vplus(vd180,X1)!=vd166),inference(rw,[status(thm)],[58,91,theory(equality)]),['unfolding']).
+cnf(184,negated_conjecture,(~rM(vplus(vd180,v1))),inference(rw,[status(thm)],[43,91,theory(equality)]),['unfolding']).
+cnf(186,plain,(vd180!=vd166),inference(sr,[status(thm)],[170,184,theory(equality)])).
+cnf(189,negated_conjecture,(~rM(vplus(v1,vd180))),inference(rw,[status(thm)],[184,164,theory(equality)])).
+cnf(206,plain,(rM(vplus(v1,vd180))|vplus(vd166,X1)!=vd180),inference(rw,[status(thm)],[172,164,theory(equality)])).
+cnf(239,plain,(v1=X1|rM(vplus(v1,vd180))|vplus(vd180,X1)!=vd166),inference(rw,[status(thm)],[176,164,theory(equality)])).
+cnf(242,plain,(rM(vplus(v1,vd180))|v1!=X1|vplus(vd180,X1)!=vd166),inference(rw,[status(thm)],[180,164,theory(equality)])).
+cnf(243,plain,(rM(vplus(v1,vd180))|vplus(vd180,X1)!=vd166),inference(csr,[status(thm)],[242,239])).
+cnf(253,plain,(vplus(vd180,esk2_0)=vd166|vplus(vd166,esk1_0)=vd180),inference(sr,[status(thm)],[64,186,theory(equality)])).
+cnf(258,plain,(rM(vplus(v1,vd180))|vplus(vd166,esk1_0)=vd180),inference(spm,[status(thm)],[243,253,theory(equality)])).
+cnf(336,plain,(vplus(vd166,esk1_0)=vd180),inference(sr,[status(thm)],[258,189,theory(equality)])).
+cnf(343,plain,(rM(vplus(v1,vd180))),inference(spm,[status(thm)],[206,336,theory(equality)])).
+cnf(349,plain,($false),inference(sr,[status(thm)],[343,189,theory(equality)])).
+cnf(350,plain,($false),349,['proof']).
+# SZS output end CNFRefutation

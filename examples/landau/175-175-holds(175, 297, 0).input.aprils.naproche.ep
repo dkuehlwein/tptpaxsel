@@ -1,0 +1,19 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,rless(vd285,vd288),file('/home/rekzah/workspace/naproche/examples/landau/175-175-holds(175, 297, 0).input.aprils.naproche', 'holds(175, 297, 0)')).
+fof(4, axiom,vd288=vplus(vd285,vd295),file('/home/rekzah/workspace/naproche/examples/landau/175-175-holds(175, 297, 0).input.aprils.naproche', 'holds(174, 296, 0)')).
+fof(7, axiom,![X3]:![X4]:(rless(X4,X3)<=>?[X5]:X3=vplus(X4,X5)),file('/home/rekzah/workspace/naproche/examples/landau/175-175-holds(175, 297, 0).input.aprils.naproche', 'def(cond(conseq(axiom(3)), 12), 1)')).
+fof(36, negated_conjecture,~(rless(vd285,vd288)),inference(assume_negation,[status(cth)],[1])).
+fof(37, negated_conjecture,~(rless(vd285,vd288)),inference(fof_simplification,[status(thm)],[36,theory(equality)])).
+cnf(41,negated_conjecture,(~rless(vd285,vd288)),inference(split_conjunct,[status(thm)],[37])).
+cnf(45,plain,(vd288=vplus(vd285,vd295)),inference(split_conjunct,[status(thm)],[4])).
+fof(49, plain,![X3]:![X4]:((~(rless(X4,X3))|?[X5]:X3=vplus(X4,X5))&(![X5]:~(X3=vplus(X4,X5))|rless(X4,X3))),inference(fof_nnf,[status(thm)],[7])).
+fof(50, plain,![X6]:![X7]:((~(rless(X7,X6))|?[X8]:X6=vplus(X7,X8))&(![X9]:~(X6=vplus(X7,X9))|rless(X7,X6))),inference(variable_rename,[status(thm)],[49])).
+fof(51, plain,![X6]:![X7]:((~(rless(X7,X6))|X6=vplus(X7,esk1_2(X6,X7)))&(![X9]:~(X6=vplus(X7,X9))|rless(X7,X6))),inference(skolemize,[status(esa)],[50])).
+fof(52, plain,![X6]:![X7]:![X9]:((~(X6=vplus(X7,X9))|rless(X7,X6))&(~(rless(X7,X6))|X6=vplus(X7,esk1_2(X6,X7)))),inference(shift_quantors,[status(thm)],[51])).
+cnf(54,plain,(rless(X1,X2)|X2!=vplus(X1,X3)),inference(split_conjunct,[status(thm)],[52])).
+cnf(161,plain,(rless(vd285,X1)|vd288!=X1),inference(spm,[status(thm)],[54,45,theory(equality)])).
+cnf(299,negated_conjecture,($false),inference(spm,[status(thm)],[41,161,theory(equality)])).
+cnf(300,negated_conjecture,($false),299,['proof']).
+# SZS output end CNFRefutation

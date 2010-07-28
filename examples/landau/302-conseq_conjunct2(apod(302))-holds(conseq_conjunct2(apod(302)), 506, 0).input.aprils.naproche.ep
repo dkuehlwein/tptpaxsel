@@ -1,0 +1,13 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vmul(vd501,vd500)=vmul(vplus(vd502,vd504),vd500),file('/home/rekzah/workspace/naproche/examples/landau/302-conseq_conjunct2(apod(302))-holds(conseq_conjunct2(apod(302)), 506, 0).input.aprils.naproche', 'holds(conseq_conjunct2(apod(302)), 506, 0)')).
+fof(2, axiom,vd501=vplus(vd502,vd504),file('/home/rekzah/workspace/naproche/examples/landau/302-conseq_conjunct2(apod(302))-holds(conseq_conjunct2(apod(302)), 506, 0).input.aprils.naproche', 'holds(conseq_conjunct1(apod(302)), 505, 0)')).
+fof(54, negated_conjecture,~(vmul(vd501,vd500)=vmul(vplus(vd502,vd504),vd500)),inference(assume_negation,[status(cth)],[1])).
+fof(55, negated_conjecture,~(vmul(vd501,vd500)=vmul(vplus(vd502,vd504),vd500)),inference(fof_simplification,[status(thm)],[54,theory(equality)])).
+cnf(59,negated_conjecture,(vmul(vd501,vd500)!=vmul(vplus(vd502,vd504),vd500)),inference(split_conjunct,[status(thm)],[55])).
+cnf(60,plain,(vd501=vplus(vd502,vd504)),inference(split_conjunct,[status(thm)],[2])).
+cnf(286,negated_conjecture,($false),inference(rw,[status(thm)],[59,60,theory(equality)])).
+cnf(287,negated_conjecture,($false),inference(cn,[status(thm)],[286,theory(equality)])).
+cnf(288,negated_conjecture,($false),287,['proof']).
+# SZS output end CNFRefutation

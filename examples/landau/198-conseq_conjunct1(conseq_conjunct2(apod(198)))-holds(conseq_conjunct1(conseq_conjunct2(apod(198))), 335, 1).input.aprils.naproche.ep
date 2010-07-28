@@ -1,0 +1,17 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vplus(vplus(vd331,vd333),vd329)=vplus(vplus(vd333,vd331),vd329),file('/home/rekzah/workspace/naproche/examples/landau/198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 1).input.aprils.naproche', 'holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 1)')).
+fof(3, axiom,vd330=vplus(vd331,vd333),file('/home/rekzah/workspace/naproche/examples/landau/198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 1).input.aprils.naproche', 'holds(conseq_conjunct1(apod(198)), 334, 0)')).
+fof(5, axiom,![X4]:![X5]:vplus(X5,X4)=vplus(X4,X5),file('/home/rekzah/workspace/naproche/examples/landau/198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 1).input.aprils.naproche', 'ass(cond(61, 0), 0)')).
+fof(37, negated_conjecture,~(vplus(vplus(vd331,vd333),vd329)=vplus(vplus(vd333,vd331),vd329)),inference(assume_negation,[status(cth)],[1])).
+fof(38, negated_conjecture,~(vplus(vplus(vd331,vd333),vd329)=vplus(vplus(vd333,vd331),vd329)),inference(fof_simplification,[status(thm)],[37,theory(equality)])).
+cnf(42,negated_conjecture,(vplus(vplus(vd331,vd333),vd329)!=vplus(vplus(vd333,vd331),vd329)),inference(split_conjunct,[status(thm)],[38])).
+cnf(44,plain,(vd330=vplus(vd331,vd333)),inference(split_conjunct,[status(thm)],[3])).
+fof(47, plain,![X6]:![X7]:vplus(X7,X6)=vplus(X6,X7),inference(variable_rename,[status(thm)],[5])).
+cnf(48,plain,(vplus(X1,X2)=vplus(X2,X1)),inference(split_conjunct,[status(thm)],[47])).
+cnf(237,negated_conjecture,(vplus(vd329,vd330)!=vplus(vplus(vd331,vd333),vd329)),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[42,48,theory(equality)]),44,theory(equality)]),48,theory(equality)])).
+cnf(238,negated_conjecture,($false),inference(rw,[status(thm)],[inference(rw,[status(thm)],[237,44,theory(equality)]),48,theory(equality)])).
+cnf(239,negated_conjecture,($false),inference(cn,[status(thm)],[238,theory(equality)])).
+cnf(240,negated_conjecture,($false),239,['proof']).
+# SZS output end CNFRefutation

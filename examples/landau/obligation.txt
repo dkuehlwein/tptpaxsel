@@ -1,0 +1,228 @@
+9-9-holds(9, 15, 0).input.aprils
+6-apod(6)-holds(apod(6), 10, 0).input.aprils
+14-14-holds(14, 19, 0).input.aprils
+16-16-holds(16, 22, 0).input.aprils
+17-17-replace(holds(scope(17), 25, 0)).input.aprils
+17-17-qu(ind(17), imp(17)).input.aprils
+12-scope(12)-holds(scope(12), 18, 0).input.aprils
+22-apod(22)-qe(apod(22)).input.aprils
+24-apod(24)-holds(apod(24), 37, 0).input.aprils
+25-25-qe(25).input.aprils
+26-26-replace(imp(cond(26, 0))).input.aprils
+26-26-qu(ind(26), imp(26)).input.aprils
+20-apod(20)-qe(apod(20)).input.aprils
+36-36-holds(36, 55, 0).input.aprils
+36-36-holds(36, 55, 1).input.aprils
+36-36-holds(36, 55, 2).input.aprils
+38-38-holds(38, 58, 0).input.aprils
+38-38-holds(38, 58, 1).input.aprils
+38-38-holds(38, 58, 2).input.aprils
+38-38-holds(38, 58, 3).input.aprils
+39-39-holds(39, 59, 0).input.aprils
+40-40-replace(holds(scope(40), 62, 0)).input.aprils
+40-40-qu(ind(40), imp(40)).input.aprils
+33-scope(33)-holds(scope(33), 52, 0).input.aprils
+45-45-holds(45, 66, 0).input.aprils
+47-47-holds(47, 69, 0).input.aprils
+48-48-holds(48, 70, 0).input.aprils
+49-49-replace(holds(scope(49), 73, 0)).input.aprils
+49-49-qu(ind(49), imp(49)).input.aprils
+43-scope(43)-holds(scope(43), 65, 0).input.aprils
+55-55-holds(55, 79, 0).input.aprils
+55-55-holds(55, 79, 1).input.aprils
+57-57-holds(57, 82, 0).input.aprils
+57-57-holds(57, 82, 1).input.aprils
+57-57-holds(57, 82, 2).input.aprils
+58-58-replace(holds(scope(58), 85, 0)).input.aprils
+58-58-qu(ind(58), imp(58)).input.aprils
+52-scope(52)-holds(scope(52), 77, 0).input.aprils
+64-64-holds(64, 91, 0).input.aprils
+65-65-holds(65, 92, 0).input.aprils
+66-66-holds(66, 93, 0).input.aprils
+68-68-holds(68, 96, 0).input.aprils
+68-68-holds(68, 96, 1).input.aprils
+69-conseq_conjunct1(69)-holds(conseq_conjunct1(69), 97, 0).input.aprils
+69-conseq_conjunct2(69)-holds(conseq_conjunct2(69), 98, 0).input.aprils
+70-70-replace(holds(scope(70), 101, 0)).input.aprils
+70-70-qu(ind(70), imp(70)).input.aprils
+61-scope(61)-holds(scope(61), 89, 0).input.aprils
+76-conseq_conjunct1(76)-holds(conseq_conjunct1(76), 107, 0).input.aprils
+76-conseq_conjunct2(76)-holds(conseq_conjunct2(76), 108, 0).input.aprils
+77-conseq_conjunct1(apod(77))-holds(conseq_conjunct1(apod(77)), 111, 0).input.aprils
+77-conseq_conjunct2(apod(77))-holds(conseq_conjunct2(apod(77)), 112, 0).input.aprils
+78-78-replace(holds(scope(78), 115, 0)).input.aprils
+78-78-qu(ind(78), imp(78)).input.aprils
+73-scope(73)-holds(scope(73), 105, 0).input.aprils
+84-conseq_conjunct1(84)-holds(conseq_conjunct1(84), 125, 0).input.aprils
+84-conseq_conjunct2(84)-holds(conseq_conjunct2(84), 126, 0).input.aprils
+85-conseq_conjunct1(apod(85))-holds(conseq_conjunct1(apod(85)), 129, 0).input.aprils
+85-conseq_conjunct2(apod(85))-holds(conseq_conjunct2(apod(85)), 130, 0).input.aprils
+86-86-replace(holds(scope(86), 133, 0)).input.aprils
+86-86-qu(ind(86), imp(86)).input.aprils
+81-scope(apod(81))-holds(scope(apod(81)), 121, 0).input.aprils
+99-inconsistent_cases(99)-neg(inconsistent_cases(99)).input.aprils
+99-inconsistent_cases(conjunct2(99))-neg(inconsistent_cases(conjunct2(99))).input.aprils
+101-101-holds(101, 153, 0).input.aprils
+101-101-holds(101, 153, 1).input.aprils
+101-101-holds(101, 153, 2).input.aprils
+101-101-holds(101, 153, 3).input.aprils
+102-102-cont(102, 0).input.aprils
+103-inconsistent_cases(103)-neg(inconsistent_cases(103)).input.aprils
+104-cond(scope(104), 0)-dis(ex(cond(scope(104), 0), 0)).input.aprils
+104-cond(scope(104), 0)-dis(ex(cond(scope(104), 0), 1)).input.aprils
+104-cond(scope(104), 0)-dis(ex(cond(scope(104), 0), 2)).input.aprils
+108-108-dis(108).input.aprils
+109-109-holds(109, 179, 0).input.aprils
+114-114-holds(114, 183, 0).input.aprils
+114-114-holds(114, 183, 1).input.aprils
+115-115-holds(115, 184, 0).input.aprils
+118-conseq_conjunct1(apod(118))-holds(conseq_conjunct1(apod(118)), 188, 0).input.aprils
+118-conseq_conjunct1(apod(118))-holds(conseq_conjunct1(apod(118)), 188, 1).input.aprils
+118-conseq_conjunct2(apod(118))-holds(conseq_conjunct2(apod(118)), 189, 0).input.aprils
+119-conseq_conjunct1(apod(119))-qe(conseq_conjunct1(apod(119))).input.aprils
+119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 0).input.aprils
+119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils
+119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 2).input.aprils
+119-conseq_conjunct2(conseq_conjunct2(apod(119)))-holds(conseq_conjunct2(conseq_conjunct2(apod(119))), 194, 0).input.aprils
+122-conseq_conjunct1(122)-holds(conseq_conjunct1(122), 197, 0).input.aprils
+122-conseq_conjunct1(122)-holds(conseq_conjunct1(122), 197, 1).input.aprils
+122-conseq_conjunct2(122)-holds(conseq_conjunct2(122), 198, 0).input.aprils
+110-case_distinction(conseq(110))-dis(case_distinction(conseq(110))).input.aprils
+123-123-holds(123, 199, 0).input.aprils
+124-124-dis(124).input.aprils
+89-cond(conseq(89), 0)-dis(ex(cond(conseq(89), 0), 0)).input.aprils
+89-cond(conseq(89), 0)-dis(ex(cond(conseq(89), 0), 1)).input.aprils
+89-cond(conseq(89), 0)-dis(ex(cond(conseq(89), 0), 2)).input.aprils
+89-conseq(89)-dis(updis(updis(conseq(89)))).input.aprils
+131-cond(conseq(131), 0)-dis(ex(cond(conseq(131), 0), 0)).input.aprils
+131-cond(conseq(131), 0)-dis(ex(cond(conseq(131), 0), 1)).input.aprils
+131-cond(conseq(131), 0)-dis(ex(cond(conseq(131), 0), 2)).input.aprils
+131-conseq(131)-dis(updis(updis(conseq(131)))).input.aprils
+142-left_cond(scope(142))-eq(cond(scope(142), 0)).input.aprils
+143-left_cond(143)-eq(cond(conditional(143), 0)).input.aprils
+144-apod(scope(144))-holds(apod(scope(144)), 242, 0).input.aprils
+140-apod(140)-holds(apod(140), 226, 0).input.aprils
+149-left_cond(149)-eq(cond(conditional(149), 0)).input.aprils
+150-left_cond(150)-eq(cond(conditional(150), 0)).input.aprils
+151-apod(151)-holds(apod(151), 260, 0).input.aprils
+147-apod(147)-holds(apod(147), 246, 0).input.aprils
+158-apod(158)-holds(apod(158), 274, 0).input.aprils
+163-apod(163)-holds(apod(163), 278, 0).input.aprils
+171-171-qe(171).input.aprils
+172-172-qe(172).input.aprils
+173-173-holds(173, 294, 0).input.aprils
+173-173-holds(173, 294, 1).input.aprils
+174-174-qe(174).input.aprils
+175-175-holds(175, 297, 0).input.aprils
+168-apod(168)-holds(apod(168), 284, 0).input.aprils
+179-apod(179)-holds(apod(179), 305, 0).input.aprils
+184-apod(184)-holds(apod(184), 311, 0).input.aprils
+191-scope(191)-holds(scope(191), 319, 0).input.aprils
+189-scope(189)-holds(scope(189), 315, 0).input.aprils
+198-conseq_conjunct1(apod(198))-qe(conseq_conjunct1(apod(198))).input.aprils
+198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 0).input.aprils
+198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 1).input.aprils
+198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 2).input.aprils
+198-conseq_conjunct1(conseq_conjunct2(apod(198)))-holds(conseq_conjunct1(conseq_conjunct2(apod(198))), 335, 3).input.aprils
+198-conseq_conjunct2(conseq_conjunct2(apod(198)))-holds(conseq_conjunct2(conseq_conjunct2(apod(198))), 336, 0).input.aprils
+199-apod(199)-holds(apod(199), 340, 0).input.aprils
+200-conseq_conjunct1(apod(200))-holds(conseq_conjunct1(apod(200)), 344, 0).input.aprils
+200-conseq_conjunct1(conseq_conjunct2(apod(200)))-holds(conseq_conjunct1(conseq_conjunct2(apod(200))), 345, 0).input.aprils
+200-conseq_conjunct2(conseq_conjunct2(apod(200)))-holds(conseq_conjunct2(conseq_conjunct2(apod(200))), 346, 0).input.aprils
+195-apod(195)-holds(apod(195), 324, 0).input.aprils
+195-apod(conjunct2(195))-holds(apod(conjunct2(195)), 326, 0).input.aprils
+195-apod(conjunct2(conjunct2(195)))-holds(apod(conjunct2(conjunct2(195))), 328, 0).input.aprils
+204-apod(204)-holds(apod(204), 351, 0).input.aprils
+204-apod(conjunct2(204))-holds(apod(conjunct2(204)), 353, 0).input.aprils
+204-apod(conjunct2(conjunct2(204)))-holds(apod(conjunct2(conjunct2(204))), 355, 0).input.aprils
+212-212-holds(212, 369, 0).input.aprils
+213-213-holds(213, 370, 0).input.aprils
+213-213-holds(213, 370, 1).input.aprils
+213-213-holds(213, 370, 2).input.aprils
+214-214-holds(214, 371, 0).input.aprils
+209-apod(209)-holds(apod(209), 362, 0).input.aprils
+218-apod(218)-holds(apod(218), 380, 0).input.aprils
+223-apod(223)-holds(apod(223), 387, 0).input.aprils
+231-231-dis(231).input.aprils
+228-scope(228)-holds(scope(228), 390, 0).input.aprils
+237-237-qe(237).input.aprils
+238-conseq_conjunct1(238)-holds(conseq_conjunct1(238), 404, 0).input.aprils
+238-conseq_conjunct2(238)-holds(conseq_conjunct2(238), 405, 0).input.aprils
+234-apod(234)-holds(apod(234), 398, 0).input.aprils
+244-244-holds(244, 414, 0).input.aprils
+245-245-holds(245, 415, 0).input.aprils
+246-246-cont(246, 0).input.aprils
+241-apod(241)-holds(apod(241), 409, 0).input.aprils
+255-255-holds(255, 423, 0).input.aprils
+257-257-holds(257, 426, 0).input.aprils
+257-257-holds(257, 426, 1).input.aprils
+257-257-holds(257, 426, 2).input.aprils
+258-258-replace(holds(scope(258), 429, 0)).input.aprils
+258-258-qu(ind(258), imp(258)).input.aprils
+253-scope(253)-holds(scope(253), 422, 0).input.aprils
+264-264-holds(264, 435, 0).input.aprils
+264-264-holds(264, 435, 1).input.aprils
+264-264-holds(264, 435, 2).input.aprils
+266-266-holds(266, 438, 0).input.aprils
+266-266-holds(266, 438, 1).input.aprils
+266-266-holds(266, 438, 2).input.aprils
+266-266-holds(266, 438, 3).input.aprils
+266-266-holds(266, 438, 4).input.aprils
+266-266-holds(266, 438, 5).input.aprils
+266-266-holds(266, 438, 6).input.aprils
+266-266-holds(266, 438, 7).input.aprils
+267-267-replace(holds(scope(267), 441, 0)).input.aprils
+267-267-qu(ind(267), imp(267)).input.aprils
+261-scope(261)-holds(scope(261), 433, 0).input.aprils
+273-273-holds(273, 447, 0).input.aprils
+274-conseq_conjunct1(274)-holds(conseq_conjunct1(274), 448, 0).input.aprils
+274-conseq_conjunct2(274)-holds(conseq_conjunct2(274), 449, 0).input.aprils
+276-276-holds(276, 452, 0).input.aprils
+276-276-holds(276, 452, 1).input.aprils
+277-conseq_conjunct1(277)-holds(conseq_conjunct1(277), 453, 0).input.aprils
+277-conseq_conjunct2(277)-holds(conseq_conjunct2(277), 454, 0).input.aprils
+278-278-replace(holds(scope(278), 457, 0)).input.aprils
+278-278-qu(ind(278), imp(278)).input.aprils
+270-scope(270)-holds(scope(270), 445, 0).input.aprils
+284-284-holds(284, 465, 0).input.aprils
+284-284-holds(284, 465, 1).input.aprils
+284-284-holds(284, 465, 2).input.aprils
+286-286-holds(286, 468, 0).input.aprils
+286-286-holds(286, 468, 1).input.aprils
+286-286-holds(286, 468, 2).input.aprils
+286-286-holds(286, 468, 3).input.aprils
+286-286-holds(286, 468, 4).input.aprils
+287-287-replace(holds(scope(287), 471, 0)).input.aprils
+287-287-qu(ind(287), imp(287)).input.aprils
+281-scope(281)-holds(scope(281), 462, 0).input.aprils
+293-293-holds(293, 479, 0).input.aprils
+293-293-holds(293, 479, 1).input.aprils
+295-295-holds(295, 482, 0).input.aprils
+295-295-holds(295, 482, 1).input.aprils
+295-295-holds(295, 482, 2).input.aprils
+295-295-holds(295, 482, 3).input.aprils
+296-296-replace(holds(scope(296), 485, 0)).input.aprils
+296-296-qu(ind(296), imp(296)).input.aprils
+290-scope(290)-holds(scope(290), 476, 0).input.aprils
+302-conseq_conjunct1(apod(302))-qe(conseq_conjunct1(apod(302))).input.aprils
+302-conseq_conjunct2(apod(302))-holds(conseq_conjunct2(apod(302)), 506, 0).input.aprils
+302-conseq_conjunct2(apod(302))-holds(conseq_conjunct2(apod(302)), 506, 1).input.aprils
+302-conseq_conjunct2(apod(302))-holds(conseq_conjunct2(apod(302)), 506, 2).input.aprils
+303-apod(303)-holds(apod(303), 510, 0).input.aprils
+304-conseq_conjunct1(apod(304))-holds(conseq_conjunct1(apod(304)), 514, 0).input.aprils
+304-conseq_conjunct1(conseq_conjunct2(apod(304)))-holds(conseq_conjunct1(conseq_conjunct2(apod(304))), 515, 0).input.aprils
+304-conseq_conjunct2(conseq_conjunct2(apod(304)))-holds(conseq_conjunct2(conseq_conjunct2(apod(304))), 516, 0).input.aprils
+299-apod(scope(299))-holds(apod(scope(299)), 491, 0).input.aprils
+299-apod(conjunct2(scope(299)))-holds(apod(conjunct2(scope(299))), 495, 0).input.aprils
+299-apod(conjunct2(conjunct2(scope(299))))-holds(apod(conjunct2(conjunct2(scope(299)))), 499, 0).input.aprils
+307-apod(307)-holds(apod(307), 521, 0).input.aprils
+307-apod(conjunct2(307))-holds(apod(conjunct2(307)), 526, 0).input.aprils
+307-apod(conjunct2(conjunct2(307)))-holds(apod(conjunct2(conjunct2(307))), 531, 0).input.aprils
+315-conjunct1(315)-holds(conjunct1(315), 545, 0).input.aprils
+315-conjunct2(315)-holds(conjunct2(315), 546, 0).input.aprils
+315-conjunct2(315)-holds(conjunct2(315), 546, 1).input.aprils
+315-conjunct2(315)-holds(conjunct2(315), 546, 2).input.aprils
+315-conseq_conjunct2(315)-holds(conseq_conjunct2(315), 547, 0).input.aprils
+312-apod(312)-holds(apod(312), 538, 0).input.aprils
+318-apod(scope(318))-holds(apod(scope(318)), 557, 0).input.aprils
+323-apod(323)-holds(apod(323), 564, 0).input.aprils

@@ -1,0 +1,37 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vplus(vd180,vplus(v1,vd191))=vplus(vplus(vd180,v1),vd191),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1)')).
+fof(3, axiom,vsucc(vd191)=vplus(v1,vd191),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'holds(conseq_conjunct1(apod(119)), 192, 1)')).
+fof(8, axiom,vd185=vsucc(vd191),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'holds(conseq_conjunct1(apod(119)), 192, 0)')).
+fof(9, axiom,vd166=vplus(vd180,vd185),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'holds(117, 186, 0)')).
+fof(11, axiom,![X3]:vplus(v1,X3)=vsucc(X3),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'ass(cond(43, 0), 0)')).
+fof(13, axiom,![X4]:![X5]:![X6]:vplus(vplus(X4,X5),X6)=vplus(X4,vplus(X5,X6)),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'ass(cond(33, 0), 0)')).
+fof(16, axiom,![X7]:![X8]:(vplus(X7,vsucc(X8))=vsucc(vplus(X7,X8))&vplus(X7,v1)=vsucc(X7)),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))')).
+fof(17, axiom,![X9]:![X10]:vplus(X10,X9)=vplus(X9,X10),file('/home/rekzah/workspace/naproche/examples/landau/119-conseq_conjunct1(conseq_conjunct2(apod(119)))-holds(conseq_conjunct1(conseq_conjunct2(apod(119))), 193, 1).input.aprils.naproche', 'ass(cond(61, 0), 0)')).
+fof(36, negated_conjecture,~(vplus(vd180,vplus(v1,vd191))=vplus(vplus(vd180,v1),vd191)),inference(assume_negation,[status(cth)],[1])).
+fof(37, negated_conjecture,~(vplus(vd180,vplus(v1,vd191))=vplus(vplus(vd180,v1),vd191)),inference(fof_simplification,[status(thm)],[36,theory(equality)])).
+cnf(38,negated_conjecture,(vplus(vd180,vplus(v1,vd191))!=vplus(vplus(vd180,v1),vd191)),inference(split_conjunct,[status(thm)],[37])).
+cnf(40,plain,(vsucc(vd191)=vplus(v1,vd191)),inference(split_conjunct,[status(thm)],[3])).
+cnf(49,plain,(vd185=vsucc(vd191)),inference(split_conjunct,[status(thm)],[8])).
+cnf(50,plain,(vd166=vplus(vd180,vd185)),inference(split_conjunct,[status(thm)],[9])).
+fof(61, plain,![X4]:vplus(v1,X4)=vsucc(X4),inference(variable_rename,[status(thm)],[11])).
+cnf(62,plain,(vplus(v1,X1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[61])).
+fof(64, plain,![X7]:![X8]:![X9]:vplus(vplus(X7,X8),X9)=vplus(X7,vplus(X8,X9)),inference(variable_rename,[status(thm)],[13])).
+cnf(65,plain,(vplus(vplus(X1,X2),X3)=vplus(X1,vplus(X2,X3))),inference(split_conjunct,[status(thm)],[64])).
+fof(70, plain,![X9]:![X10]:(vplus(X9,vsucc(X10))=vsucc(vplus(X9,X10))&vplus(X9,v1)=vsucc(X9)),inference(variable_rename,[status(thm)],[16])).
+cnf(71,plain,(vplus(X1,v1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[70])).
+fof(73, plain,![X11]:![X12]:vplus(X12,X11)=vplus(X11,X12),inference(variable_rename,[status(thm)],[17])).
+cnf(74,plain,(vplus(X1,X2)=vplus(X2,X1)),inference(split_conjunct,[status(thm)],[73])).
+cnf(131,plain,(vplus(vd191,v1)=vd185),inference(rw,[status(thm)],[49,71,theory(equality)]),['unfolding']).
+cnf(132,plain,(vplus(v1,X1)=vplus(X1,v1)),inference(rw,[status(thm)],[62,71,theory(equality)]),['unfolding']).
+cnf(133,plain,(vplus(v1,vd191)=vplus(vd191,v1)),inference(rw,[status(thm)],[40,71,theory(equality)]),['unfolding']).
+cnf(151,plain,(vd185=vplus(v1,vd191)),inference(rw,[status(thm)],[133,131,theory(equality)])).
+cnf(221,plain,(vplus(vd185,X1)=vplus(v1,vplus(vd191,X1))),inference(spm,[status(thm)],[65,151,theory(equality)])).
+cnf(245,negated_conjecture,(vplus(v1,vplus(vd180,vd191))!=vplus(vd180,vplus(v1,vd191))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[38,132,theory(equality)]),65,theory(equality)])).
+cnf(246,negated_conjecture,(vplus(v1,vplus(vd180,vd191))!=vd166),inference(rw,[status(thm)],[inference(rw,[status(thm)],[245,151,theory(equality)]),50,theory(equality)])).
+cnf(348,plain,(vplus(v1,vplus(X1,vd191))=vplus(vd185,X1)),inference(spm,[status(thm)],[221,74,theory(equality)])).
+cnf(388,negated_conjecture,($false),inference(rw,[status(thm)],[inference(rw,[status(thm)],[inference(rw,[status(thm)],[246,348,theory(equality)]),74,theory(equality)]),50,theory(equality)])).
+cnf(389,negated_conjecture,($false),inference(cn,[status(thm)],[388,theory(equality)])).
+cnf(390,negated_conjecture,($false),389,['proof']).
+# SZS output end CNFRefutation

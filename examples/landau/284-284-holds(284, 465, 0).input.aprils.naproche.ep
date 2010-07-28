@@ -1,0 +1,13 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vmul(vd463,vplus(vd464,v1))=vmul(vd463,vsucc(vd464)),file('/home/rekzah/workspace/naproche/examples/landau/284-284-holds(284, 465, 0).input.aprils.naproche', 'holds(284, 465, 0)')).
+fof(12, axiom,![X16]:![X17]:(vplus(X16,vsucc(X17))=vsucc(vplus(X16,X17))&vplus(X16,v1)=vsucc(X16)),file('/home/rekzah/workspace/naproche/examples/landau/284-284-holds(284, 465, 0).input.aprils.naproche', 'qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))')).
+fof(50, negated_conjecture,~(vmul(vd463,vplus(vd464,v1))=vmul(vd463,vsucc(vd464))),inference(assume_negation,[status(cth)],[1])).
+fof(51, negated_conjecture,~(vmul(vd463,vplus(vd464,v1))=vmul(vd463,vsucc(vd464))),inference(fof_simplification,[status(thm)],[50,theory(equality)])).
+cnf(55,negated_conjecture,(vmul(vd463,vplus(vd464,v1))!=vmul(vd463,vsucc(vd464))),inference(split_conjunct,[status(thm)],[51])).
+fof(80, plain,![X18]:![X19]:(vplus(X18,vsucc(X19))=vsucc(vplus(X18,X19))&vplus(X18,v1)=vsucc(X18)),inference(variable_rename,[status(thm)],[12])).
+cnf(81,plain,(vplus(X1,v1)=vsucc(X1)),inference(split_conjunct,[status(thm)],[80])).
+cnf(214,negated_conjecture,($false),inference(rw,[status(thm)],[55,81,theory(equality)]),['unfolding']).
+cnf(215,negated_conjecture,($false),214,['proof']).
+# SZS output end CNFRefutation

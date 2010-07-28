@@ -1,0 +1,8 @@
+fof('qu(ind(26), imp(26))', conjecture, ![Vd40]:(((~ (Vd40 = v1))=>(?[Vd42]:(Vd40 = vsucc(Vd42))))=>((~ (vsucc(Vd40) = v1))=>(?[Vd42]:(vsucc(Vd40) = vsucc(Vd42)))))).
+fof('ass(cond(proof(21), 1), 0)', axiom, ![Vd33]:((~ (vsucc(Vd33) = v1))=>(vsucc(Vd33) = vsucc(vskolem38(Vd33))))).
+fof('ass(cond(proof(21), 1), 1)', axiom, ![Vd33]:((~ (vsucc(Vd33) = v1))=>(![Vd35]:((Vd35 = Vd33)=>(vsucc(Vd33) = vsucc(Vd35)))))).
+fof('ass(cond(22, 0), 0)', axiom, (~ (v1 = v1))=>(v1 = vsucc(vskolem31))).
+fof('ass(cond(12, 0), 0)', axiom, ![Vd17]:(~ (vsucc(Vd17) = Vd17))).
+fof('ass(cond(6, 0), 0)', axiom, ![Vd7,Vd8]:((~ (Vd7 = Vd8))=>(~ (vsucc(Vd7) = vsucc(Vd8))))).
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))', axiom, ![Vd3,Vd4]:((vsucc(Vd3) = vsucc(Vd4))=>(Vd3 = Vd4))).
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))', axiom, ![Vd1]:(~ (vsucc(Vd1) = v1))).
