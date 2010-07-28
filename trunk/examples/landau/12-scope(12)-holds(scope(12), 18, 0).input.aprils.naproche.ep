@@ -1,0 +1,13 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,~(vsucc(vd17)=vd17),file('/home/rekzah/workspace/naproche/examples/landau/12-scope(12)-holds(scope(12), 18, 0).input.aprils.naproche', 'holds(scope(12), 18, 0)')).
+fof(4, axiom,![X2]:~(vsucc(X2)=X2),file('/home/rekzah/workspace/naproche/examples/landau/12-scope(12)-holds(scope(12), 18, 0).input.aprils.naproche', 'qu(cond(17, 0), holds(scope(17), 25, 0))')).
+fof(8, negated_conjecture,~(~(vsucc(vd17)=vd17)),inference(assume_negation,[status(cth)],[1])).
+fof(9, negated_conjecture,vsucc(vd17)=vd17,inference(fof_simplification,[status(thm)],[8,theory(equality)])).
+cnf(10,negated_conjecture,(vsucc(vd17)=vd17),inference(split_conjunct,[status(thm)],[9])).
+fof(14, plain,![X3]:~(vsucc(X3)=X3),inference(variable_rename,[status(thm)],[4])).
+cnf(15,plain,(vsucc(X1)!=X1),inference(split_conjunct,[status(thm)],[14])).
+cnf(25,negated_conjecture,($false),inference(sr,[status(thm)],[10,15,theory(equality)])).
+cnf(26,negated_conjecture,($false),25,['proof']).
+# SZS output end CNFRefutation

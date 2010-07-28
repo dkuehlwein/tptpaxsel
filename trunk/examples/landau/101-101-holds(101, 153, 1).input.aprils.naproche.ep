@@ -1,0 +1,16 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vplus(vd142,vd149)=vplus(vplus(vd141,vd151),vd149),file('/home/rekzah/workspace/naproche/examples/landau/101-101-holds(101, 153, 1).input.aprils.naproche', 'holds(101, 153, 1)')).
+fof(2, axiom,vd141=vplus(vd142,vd149),file('/home/rekzah/workspace/naproche/examples/landau/101-101-holds(101, 153, 1).input.aprils.naproche', 'holds(101, 153, 0)')).
+fof(4, axiom,vd142=vplus(vd141,vd151),file('/home/rekzah/workspace/naproche/examples/landau/101-101-holds(101, 153, 1).input.aprils.naproche', 'holds(100, 152, 0)')).
+fof(19, negated_conjecture,~(vplus(vd142,vd149)=vplus(vplus(vd141,vd151),vd149)),inference(assume_negation,[status(cth)],[1])).
+fof(20, negated_conjecture,~(vplus(vd142,vd149)=vplus(vplus(vd141,vd151),vd149)),inference(fof_simplification,[status(thm)],[19,theory(equality)])).
+cnf(21,negated_conjecture,(vplus(vd142,vd149)!=vplus(vplus(vd141,vd151),vd149)),inference(split_conjunct,[status(thm)],[20])).
+cnf(22,plain,(vd141=vplus(vd142,vd149)),inference(split_conjunct,[status(thm)],[2])).
+cnf(24,plain,(vd142=vplus(vd141,vd151)),inference(split_conjunct,[status(thm)],[4])).
+cnf(104,negated_conjecture,(vd141!=vplus(vd142,vd149)),inference(rw,[status(thm)],[inference(rw,[status(thm)],[21,24,theory(equality)]),22,theory(equality)])).
+cnf(105,negated_conjecture,($false),inference(rw,[status(thm)],[104,22,theory(equality)])).
+cnf(106,negated_conjecture,($false),inference(cn,[status(thm)],[105,theory(equality)])).
+cnf(107,negated_conjecture,($false),106,['proof']).
+# SZS output end CNFRefutation

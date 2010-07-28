@@ -1,0 +1,15 @@
+fof('holds(conseq_conjunct2(apod(77)), 112, 0)',conjecture,(vsucc(vd109) != vplus(vd106,vsucc(vd109)) ),unknown,[relevance(1.0)]). 
+fof('holds(conseq_conjunct1(apod(77)), 111, 0)',axiom,(vsucc(vd109) != vsucc(vplus(vd106,vd109)) ),unknown,[relevance(0.6666)]). 
+fof('holds(prot(77), 110, 0)',axiom,(vd109 != vplus(vd106,vd109) ),unknown,[relevance(0.5000)]). 
+fof('holds(conseq_conjunct1(76), 107, 0)',axiom,(v1 != vsucc(vd106) ),unknown,[relevance(0.4000)]). 
+fof('ass(cond(52, 0), 0)',axiom,(! [Vd75,Vd76] : vplus(vsucc(Vd75),Vd76) = vsucc(vplus(Vd75,Vd76)) ),unknown,[relevance(0.3333)]). 
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))',axiom,(! [Vd44,Vd45] :( vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45))& vplus(Vd44,v1) = vsucc(Vd44) ) ),unknown,[relevance(0.2857)]). 
+fof('ass(cond(6, 0), 0)',axiom,(! [Vd7,Vd8] :( Vd7 != Vd8=> vsucc(Vd7) != vsucc(Vd8) ) ),unknown,[relevance(0.2500)]). 
+fof('ass(cond(12, 0), 0)',axiom,(! [Vd17] : vsucc(Vd17) != Vd17 ),unknown,[relevance(0.2222)]). 
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.2000)]). 
+fof('holds(conseq_conjunct2(76), 108, 0)',axiom,(v1 != vplus(vd106,v1) ),unknown,[relevance(0.1818)]). 
+fof('ass(cond(43, 0), 0)',axiom,(! [Vd64] : vplus(v1,Vd64) = vsucc(Vd64) ),unknown,[relevance(0.1666)]). 
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.1538)]). 
+fof('ass(cond(61, 0), 0)',axiom,(! [Vd87,Vd88] : vplus(Vd88,Vd87) = vplus(Vd87,Vd88) ),unknown,[relevance(0.1428)]). 
+fof('ass(cond(33, 0), 0)',axiom,(! [Vd49,Vd50,Vd51] : vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)) ),unknown,[relevance(0.1333)]). 
+fof('ass(cond(20, 0), 0)',axiom,(! [Vd26] :( Vd26 != v1=> Vd26 = vsucc(vskolem28(Vd26)) ) ),unknown,[relevance(0.1250)]). 

@@ -1,0 +1,14 @@
+fof('holds(68, 96, 0)', conjecture, vsucc(vplus(vd94,vd90)) = vsucc(vplus(vd90,vd94))).
+fof('holds(67, 95, 0)', axiom, vplus(vd94,vd90) = vplus(vd90,vd94)).
+fof('holds(66, 93, 0)', axiom, vplus(v1,vd90) = vplus(vd90,v1)).
+fof('holds(65, 92, 0)', axiom, vplus(v1,vd90) = vsucc(vd90)).
+fof('holds(64, 91, 0)', axiom, vplus(vd90,v1) = vsucc(vd90)).
+fof('ass(cond(43, 0), 0)', axiom, ![Vd64]:(vplus(v1,Vd64) = vsucc(Vd64))).
+fof('ass(cond(52, 0), 0)', axiom, ![Vd75,Vd76]:(vplus(vsucc(Vd75),Vd76) = vsucc(vplus(Vd75,Vd76)))).
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))', axiom, ![Vd44,Vd45]:((vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45)))&(vplus(Vd44,v1) = vsucc(Vd44)))).
+fof('ass(cond(33, 0), 0)', axiom, ![Vd49,Vd50,Vd51]:(vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)))).
+fof('ass(cond(20, 0), 0)', axiom, ![Vd26]:((~ (Vd26 = v1))=>(Vd26 = vsucc(vskolem28(Vd26))))).
+fof('ass(cond(12, 0), 0)', axiom, ![Vd17]:(~ (vsucc(Vd17) = Vd17))).
+fof('ass(cond(6, 0), 0)', axiom, ![Vd7,Vd8]:((~ (Vd7 = Vd8))=>(~ (vsucc(Vd7) = vsucc(Vd8))))).
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))', axiom, ![Vd3,Vd4]:((vsucc(Vd3) = vsucc(Vd4))=>(Vd3 = Vd4))).
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))', axiom, ![Vd1]:(~ (vsucc(Vd1) = v1))).

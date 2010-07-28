@@ -1,0 +1,34 @@
+fof('qe(174)', conjecture, ?[Vd295]:(vd288 = vplus(vd285,Vd295))).
+fof('holds(173, 294, 1)', axiom, vplus(vplus(vd285,vd290),vd292) = vplus(vd285,vplus(vd290,vd292))).
+fof('holds(173, 294, 0)', axiom, vd288 = vplus(vplus(vd285,vd290),vd292)).
+fof('ass(cond(61, 0), 0)', axiom, ![Vd87,Vd88]:(vplus(Vd88,Vd87) = vplus(Vd87,Vd88))).
+fof('ass(cond(33, 0), 0)', axiom, ![Vd49,Vd50,Vd51]:(vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)))).
+fof('holds(172, 293, 0)', axiom, vd288 = vplus(vd286,vd292)).
+fof('holds(171, 291, 0)', axiom, vd286 = vplus(vd285,vd290)).
+fof('and(holds(conjunct2(170), 289, 0), holds(conjunct1(170), 287, 0))', axiom, (rless(vd286,vd288))&(rless(vd285,vd286))).
+fof('def(cond(conseq(axiom(3)), 12), 1)', axiom, ![Vd213,Vd214]:((rless(Vd214,Vd213))<=>(?[Vd216]:(Vd213 = vplus(Vd214,Vd216))))).
+fof('ass(cond(52, 0), 0)', axiom, ![Vd75,Vd76]:(vplus(vsucc(Vd75),Vd76) = vsucc(vplus(Vd75,Vd76)))).
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))', axiom, ![Vd44,Vd45]:((vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45)))&(vplus(Vd44,v1) = vsucc(Vd44)))).
+fof('ass(cond(163, 0), 0)', axiom, ![Vd275,Vd276]:((rleq(Vd275,Vd276))=>(rgeq(Vd276,Vd275)))).
+fof('def(cond(conseq(axiom(3)), 11), 1)', axiom, ![Vd208,Vd209]:((rgreater(Vd209,Vd208))<=>(?[Vd211]:(Vd209 = vplus(Vd208,Vd211))))).
+fof('ass(cond(43, 0), 0)', axiom, ![Vd64]:(vplus(v1,Vd64) = vsucc(Vd64))).
+fof('ass(cond(20, 0), 0)', axiom, ![Vd26]:((~ (Vd26 = v1))=>(Vd26 = vsucc(vskolem28(Vd26))))).
+fof('ass(cond(12, 0), 0)', axiom, ![Vd17]:(~ (vsucc(Vd17) = Vd17))).
+fof('ass(cond(158, 0), 0)', axiom, ![Vd271,Vd272]:((rgeq(Vd271,Vd272))=>(rleq(Vd272,Vd271)))).
+fof('def(cond(conseq(axiom(3)), 17), 1)', axiom, ![Vd266,Vd267]:((rleq(Vd267,Vd266))<=>((rless(Vd267,Vd266))|(Vd267 = Vd266)))).
+fof('def(cond(conseq(axiom(3)), 16), 1)', axiom, ![Vd261,Vd262]:((rgeq(Vd262,Vd261))<=>((rgreater(Vd262,Vd261))|(Vd262 = Vd261)))).
+fof('ass(cond(147, 0), 0)', axiom, ![Vd243,Vd244]:((rless(Vd243,Vd244))=>(rgreater(Vd244,Vd243)))).
+fof('ass(cond(goal(88), 0), 0)', axiom, ![Vd134,Vd135]:(((Vd134 = Vd135)|(?[Vd137]:(Vd134 = vplus(Vd135,Vd137))))|(?[Vd139]:(Vd135 = vplus(Vd134,Vd139))))).
+fof('ass(cond(goal(88), 0), 1)', axiom, ![Vd134,Vd135]:((~(?[Vd137]:(Vd134 = vplus(Vd135,Vd137))))|(~(?[Vd139]:(Vd135 = vplus(Vd134,Vd139)))))).
+fof('ass(cond(goal(88), 0), 2)', axiom, ![Vd134,Vd135]:((~(Vd134 = Vd135))|(~(?[Vd139]:(Vd135 = vplus(Vd134,Vd139)))))).
+fof('ass(cond(goal(88), 0), 3)', axiom, ![Vd134,Vd135]:((~(Vd134 = Vd135))|(~(?[Vd137]:(Vd134 = vplus(Vd135,Vd137)))))).
+fof('ass(cond(6, 0), 0)', axiom, ![Vd7,Vd8]:((~ (Vd7 = Vd8))=>(~ (vsucc(Vd7) = vsucc(Vd8))))).
+fof('ass(cond(81, 0), 0)', axiom, ![Vd116,Vd117]:((~ (Vd116 = Vd117))=>(![Vd120]:(~ (vplus(Vd120,Vd116) = vplus(Vd120,Vd117)))))).
+fof('ass(cond(140, 0), 0)', axiom, ![Vd223,Vd224]:((rgreater(Vd223,Vd224))=>(rless(Vd224,Vd223)))).
+fof('ass(cond(73, 0), 0)', axiom, ![Vd103,Vd104]:(~ (Vd104 = vplus(Vd103,Vd104)))).
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))', axiom, ![Vd3,Vd4]:((vsucc(Vd3) = vsucc(Vd4))=>(Vd3 = Vd4))).
+fof('ass(cond(goal(130), 0), 0)', axiom, ![Vd218,Vd219]:(((Vd218 = Vd219)|(rgreater(Vd218,Vd219)))|(rless(Vd218,Vd219)))).
+fof('ass(cond(goal(130), 0), 1)', axiom, ![Vd218,Vd219]:((~(rgreater(Vd218,Vd219)))|(~(rless(Vd218,Vd219))))).
+fof('ass(cond(goal(130), 0), 2)', axiom, ![Vd218,Vd219]:((~(Vd218 = Vd219))|(~(rless(Vd218,Vd219))))).
+fof('ass(cond(goal(130), 0), 3)', axiom, ![Vd218,Vd219]:((~(Vd218 = Vd219))|(~(rgreater(Vd218,Vd219))))).
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))', axiom, ![Vd1]:(~ (vsucc(Vd1) = v1))).

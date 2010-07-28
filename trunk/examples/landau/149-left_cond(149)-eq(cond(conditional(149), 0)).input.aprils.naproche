@@ -1,0 +1,24 @@
+fof('eq(cond(conditional(149), 0))',conjecture,( rless(vd247,vd248)<=> ? [Vd250] : vd248 = vplus(vd247,Vd250) ),unknown,[relevance(1.0)]). 
+fof('ass(cond(goal(130), 0), 2)',axiom,(! [Vd218,Vd219] :( Vd218 != Vd219| ~ rless(Vd218,Vd219) ) ),unknown,[relevance(0.6666)]). 
+fof('def(cond(conseq(axiom(3)), 12), 1)',axiom,(! [Vd213,Vd214] :( rless(Vd214,Vd213)<=> ? [Vd216] : Vd213 = vplus(Vd214,Vd216) ) ),unknown,[relevance(0.5000)]). 
+fof('ass(cond(goal(130), 0), 0)',axiom,(! [Vd218,Vd219] :( Vd218 = Vd219| rgreater(Vd218,Vd219)| rless(Vd218,Vd219) ) ),unknown,[relevance(0.4000)]). 
+fof('def(cond(conseq(axiom(3)), 11), 1)',axiom,(! [Vd208,Vd209] :( rgreater(Vd209,Vd208)<=> ? [Vd211] : Vd209 = vplus(Vd208,Vd211) ) ),unknown,[relevance(0.3333)]). 
+fof('ass(cond(goal(130), 0), 3)',axiom,(! [Vd218,Vd219] :( Vd218 != Vd219| ~ rgreater(Vd218,Vd219) ) ),unknown,[relevance(0.2857)]). 
+fof('ass(cond(33, 0), 0)',axiom,(! [Vd49,Vd50,Vd51] : vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)) ),unknown,[relevance(0.2500)]). 
+fof('ass(cond(140, 0), 0)',axiom,(! [Vd223,Vd224] :( rgreater(Vd223,Vd224)=> rless(Vd224,Vd223) ) ),unknown,[relevance(0.2222)]). 
+fof('ass(cond(goal(130), 0), 1)',axiom,(! [Vd218,Vd219] :( ~ rgreater(Vd218,Vd219)| ~ rless(Vd218,Vd219) ) ),unknown,[relevance(0.2000)]). 
+fof('ass(cond(61, 0), 0)',axiom,(! [Vd87,Vd88] : vplus(Vd88,Vd87) = vplus(Vd87,Vd88) ),unknown,[relevance(0.1818)]). 
+fof('ass(cond(goal(88), 0), 1)',axiom,(! [Vd134,Vd135] :( ~ ? [Vd137] : Vd134 = vplus(Vd135,Vd137)| ~ ? [Vd139] : Vd135 = vplus(Vd134,Vd139) ) ),unknown,[relevance(0.1666)]). 
+fof('ass(cond(73, 0), 0)',axiom,(! [Vd103,Vd104] : Vd104 != vplus(Vd103,Vd104) ),unknown,[relevance(0.1538)]). 
+fof('ass(cond(81, 0), 0)',axiom,(! [Vd116,Vd117] :( Vd116 != Vd117=> ! [Vd120] : vplus(Vd120,Vd116) != vplus(Vd120,Vd117) ) ),unknown,[relevance(0.1428)]). 
+fof('ass(cond(goal(88), 0), 0)',axiom,(! [Vd134,Vd135] :( Vd134 = Vd135| ? [Vd137] : Vd134 = vplus(Vd135,Vd137)| ? [Vd139] : Vd135 = vplus(Vd134,Vd139) ) ),unknown,[relevance(0.1333)]). 
+fof('ass(cond(goal(88), 0), 2)',axiom,(! [Vd134,Vd135] :( Vd134 != Vd135| ~ ? [Vd139] : Vd135 = vplus(Vd134,Vd139) ) ),unknown,[relevance(0.1250)]). 
+fof('ass(cond(goal(88), 0), 3)',axiom,(! [Vd134,Vd135] :( Vd134 != Vd135| ~ ? [Vd137] : Vd134 = vplus(Vd135,Vd137) ) ),unknown,[relevance(0.1176)]). 
+fof('ass(cond(52, 0), 0)',axiom,(! [Vd75,Vd76] : vplus(vsucc(Vd75),Vd76) = vsucc(vplus(Vd75,Vd76)) ),unknown,[relevance(0.1111)]). 
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))',axiom,(! [Vd44,Vd45] :( vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45))& vplus(Vd44,v1) = vsucc(Vd44) ) ),unknown,[relevance(0.1052)]). 
+fof('ass(cond(43, 0), 0)',axiom,(! [Vd64] : vplus(v1,Vd64) = vsucc(Vd64) ),unknown,[relevance(0.1000)]). 
+fof('ass(cond(6, 0), 0)',axiom,(! [Vd7,Vd8] :( Vd7 != Vd8=> vsucc(Vd7) != vsucc(Vd8) ) ),unknown,[relevance(0.0952)]). 
+fof('ass(cond(12, 0), 0)',axiom,(! [Vd17] : vsucc(Vd17) != Vd17 ),unknown,[relevance(0.0909)]). 
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.0869)]). 
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.0833)]). 
+fof('ass(cond(20, 0), 0)',axiom,(! [Vd26] :( Vd26 != v1=> Vd26 = vsucc(vskolem28(Vd26)) ) ),unknown,[relevance(0.0800)]). 

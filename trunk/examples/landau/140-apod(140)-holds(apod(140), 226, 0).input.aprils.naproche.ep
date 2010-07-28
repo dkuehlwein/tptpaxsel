@@ -1,0 +1,18 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,rless(vd224,vd223),file('/home/rekzah/workspace/naproche/examples/landau/140-apod(140)-holds(apod(140), 226, 0).input.aprils.naproche', 'holds(apod(140), 226, 0)')).
+fof(2, axiom,rgreater(vd223,vd224),file('/home/rekzah/workspace/naproche/examples/landau/140-apod(140)-holds(apod(140), 226, 0).input.aprils.naproche', 'holds(prot(140), 225, 0)')).
+fof(3, axiom,![X1]:![X2]:(rgreater(X1,X2)=>rless(X2,X1)),file('/home/rekzah/workspace/naproche/examples/landau/140-apod(140)-holds(apod(140), 226, 0).input.aprils.naproche', 'ass(cond(144, 0), 0)')).
+fof(28, negated_conjecture,~(rless(vd224,vd223)),inference(assume_negation,[status(cth)],[1])).
+fof(29, negated_conjecture,~(rless(vd224,vd223)),inference(fof_simplification,[status(thm)],[28,theory(equality)])).
+cnf(33,negated_conjecture,(~rless(vd224,vd223)),inference(split_conjunct,[status(thm)],[29])).
+cnf(34,plain,(rgreater(vd223,vd224)),inference(split_conjunct,[status(thm)],[2])).
+fof(35, plain,![X1]:![X2]:(~(rgreater(X1,X2))|rless(X2,X1)),inference(fof_nnf,[status(thm)],[3])).
+fof(36, plain,![X3]:![X4]:(~(rgreater(X3,X4))|rless(X4,X3)),inference(variable_rename,[status(thm)],[35])).
+cnf(37,plain,(rless(X1,X2)|~rgreater(X2,X1)),inference(split_conjunct,[status(thm)],[36])).
+cnf(124,negated_conjecture,(~rgreater(vd223,vd224)),inference(spm,[status(thm)],[33,37,theory(equality)])).
+cnf(125,negated_conjecture,($false),inference(rw,[status(thm)],[124,34,theory(equality)])).
+cnf(126,negated_conjecture,($false),inference(cn,[status(thm)],[125,theory(equality)])).
+cnf(127,negated_conjecture,($false),126,['proof']).
+# SZS output end CNFRefutation

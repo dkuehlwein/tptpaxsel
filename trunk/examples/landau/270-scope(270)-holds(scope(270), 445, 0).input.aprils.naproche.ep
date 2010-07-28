@@ -1,0 +1,14 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,vmul(vd443,vd444)=vmul(vd444,vd443),file('/home/rekzah/workspace/naproche/examples/landau/270-scope(270)-holds(scope(270), 445, 0).input.aprils.naproche', 'holds(scope(270), 445, 0)')).
+fof(2, axiom,![X1]:![X2]:vmul(X2,X1)=vmul(X1,X2),file('/home/rekzah/workspace/naproche/examples/landau/270-scope(270)-holds(scope(270), 445, 0).input.aprils.naproche', 'ass(cond(proof(271), 0), 0)')).
+fof(57, negated_conjecture,~(vmul(vd443,vd444)=vmul(vd444,vd443)),inference(assume_negation,[status(cth)],[1])).
+fof(58, negated_conjecture,~(vmul(vd443,vd444)=vmul(vd444,vd443)),inference(fof_simplification,[status(thm)],[57,theory(equality)])).
+cnf(62,negated_conjecture,(vmul(vd443,vd444)!=vmul(vd444,vd443)),inference(split_conjunct,[status(thm)],[58])).
+fof(63, plain,![X3]:![X4]:vmul(X4,X3)=vmul(X3,X4),inference(variable_rename,[status(thm)],[2])).
+cnf(64,plain,(vmul(X1,X2)=vmul(X2,X1)),inference(split_conjunct,[status(thm)],[63])).
+cnf(255,negated_conjecture,($false),inference(rw,[status(thm)],[62,64,theory(equality)])).
+cnf(256,negated_conjecture,($false),inference(cn,[status(thm)],[255,theory(equality)])).
+cnf(257,negated_conjecture,($false),256,['proof']).
+# SZS output end CNFRefutation

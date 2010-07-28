@@ -1,0 +1,18 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,(~(?[X1]:vd159=vplus(vd160,X1))|~(?[X2]:vd160=vplus(vd159,X2))),file('/home/rekzah/workspace/naproche/examples/landau/104-cond(scope(104), 0)-dis(ex(cond(scope(104), 0), 2)).input.aprils.naproche', 'dis(ex(cond(scope(104), 0), 2))')).
+fof(4, axiom,![X3]:![X4]:~(?[X5]:?[X6]:(X4=vplus(X3,X6)&X3=vplus(X4,X5))),file('/home/rekzah/workspace/naproche/examples/landau/104-cond(scope(104), 0)-dis(ex(cond(scope(104), 0), 2)).input.aprils.naproche', 'ass(cond(proof(97), 0), 0)')).
+fof(20, negated_conjecture,~((~(?[X1]:vd159=vplus(vd160,X1))|~(?[X2]:vd160=vplus(vd159,X2)))),inference(assume_negation,[status(cth)],[1])).
+fof(21, negated_conjecture,(?[X1]:vd159=vplus(vd160,X1)&?[X2]:vd160=vplus(vd159,X2)),inference(fof_nnf,[status(thm)],[20])).
+fof(22, negated_conjecture,(?[X3]:vd159=vplus(vd160,X3)&?[X4]:vd160=vplus(vd159,X4)),inference(variable_rename,[status(thm)],[21])).
+fof(23, negated_conjecture,(vd159=vplus(vd160,esk1_0)&vd160=vplus(vd159,esk2_0)),inference(skolemize,[status(esa)],[22])).
+cnf(24,negated_conjecture,(vd160=vplus(vd159,esk2_0)),inference(split_conjunct,[status(thm)],[23])).
+cnf(25,negated_conjecture,(vd159=vplus(vd160,esk1_0)),inference(split_conjunct,[status(thm)],[23])).
+fof(34, plain,![X3]:![X4]:![X5]:![X6]:(~(X4=vplus(X3,X6))|~(X3=vplus(X4,X5))),inference(fof_nnf,[status(thm)],[4])).
+fof(35, plain,![X7]:![X8]:![X9]:![X10]:(~(X8=vplus(X7,X10))|~(X7=vplus(X8,X9))),inference(variable_rename,[status(thm)],[34])).
+cnf(36,plain,(X1!=vplus(X2,X3)|X2!=vplus(X1,X4)),inference(split_conjunct,[status(thm)],[35])).
+cnf(122,negated_conjecture,(vd160!=X1|vplus(X1,X2)!=vd159),inference(spm,[status(thm)],[36,24,theory(equality)])).
+cnf(176,negated_conjecture,($false),inference(spm,[status(thm)],[122,25,theory(equality)])).
+cnf(181,negated_conjecture,($false),176,['proof']).
+# SZS output end CNFRefutation

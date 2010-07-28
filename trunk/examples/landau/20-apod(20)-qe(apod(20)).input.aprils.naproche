@@ -1,0 +1,10 @@
+fof('qe(apod(20))',conjecture,(? [Vd28] : vd26 = vsucc(Vd28) ),unknown,[relevance(1.0)]). 
+fof('holds(prot(20), 27, 0)',axiom,(vd26 != v1 ),unknown,[relevance(0.6666)]). 
+fof('ass(cond(proof(21), 1), 1)',axiom,(! [Vd33] :( vsucc(Vd33) != v1=> ! [Vd35] :( Vd35 = Vd33=> vsucc(Vd33) = vsucc(Vd35) ) ) ),unknown,[relevance(0.5000)]). 
+fof('qu(cond(26, 0), imp(cond(26, 0)))',axiom,(! [Vd40] :( Vd40 != v1=> ? [Vd42] : Vd40 = vsucc(Vd42) ) ),unknown,[relevance(0.4000)]). 
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.3333)]). 
+fof('ass(cond(proof(21), 1), 0)',axiom,(! [Vd33] :( vsucc(Vd33) != v1=> vsucc(Vd33) = vsucc(vskolem38(Vd33)) ) ),unknown,[relevance(0.2857)]). 
+fof('ass(cond(12, 0), 0)',axiom,(! [Vd17] : vsucc(Vd17) != Vd17 ),unknown,[relevance(0.2500)]). 
+fof('ass(cond(6, 0), 0)',axiom,(! [Vd7,Vd8] :( Vd7 != Vd8=> vsucc(Vd7) != vsucc(Vd8) ) ),unknown,[relevance(0.2222)]). 
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.2000)]). 
+fof('ass(cond(22, 0), 0)',axiom,( v1 != v1=> v1 = vsucc(vskolem31) ),unknown,[relevance(0.1818)]). 

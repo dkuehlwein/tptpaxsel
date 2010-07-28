@@ -1,0 +1,23 @@
+# Problem is unsatisfiable (or provable), constructing proof object
+# SZS status Theorem
+# SZS output start CNFRefutation.
+fof(1, conjecture,rless(vmul(vd511,vd500),vmul(vd512,vd500)),file('/home/rekzah/workspace/naproche/examples/landau/304-conseq_conjunct2(conseq_conjunct2(apod(304)))-holds(conseq_conjunct2(conseq_conjunct2(apod(304))), 516, 0).input.aprils.naproche', 'holds(conseq_conjunct2(conseq_conjunct2(apod(304))), 516, 0)')).
+fof(2, axiom,rgreater(vmul(vd512,vd500),vmul(vd511,vd500)),file('/home/rekzah/workspace/naproche/examples/landau/304-conseq_conjunct2(conseq_conjunct2(apod(304)))-holds(conseq_conjunct2(conseq_conjunct2(apod(304))), 516, 0).input.aprils.naproche', 'holds(conseq_conjunct1(conseq_conjunct2(apod(304))), 515, 0)')).
+fof(10, axiom,![X8]:![X9]:vmul(X8,X9)=vmul(X9,X8),file('/home/rekzah/workspace/naproche/examples/landau/304-conseq_conjunct2(conseq_conjunct2(apod(304)))-holds(conseq_conjunct2(conseq_conjunct2(apod(304))), 516, 0).input.aprils.naproche', 'ass(cond(270, 0), 0)')).
+fof(22, axiom,![X34]:![X35]:(rgreater(X34,X35)=>rless(X35,X34)),file('/home/rekzah/workspace/naproche/examples/landau/304-conseq_conjunct2(conseq_conjunct2(apod(304)))-holds(conseq_conjunct2(conseq_conjunct2(apod(304))), 516, 0).input.aprils.naproche', 'ass(cond(140, 0), 0)')).
+fof(60, negated_conjecture,~(rless(vmul(vd511,vd500),vmul(vd512,vd500))),inference(assume_negation,[status(cth)],[1])).
+fof(61, negated_conjecture,~(rless(vmul(vd511,vd500),vmul(vd512,vd500))),inference(fof_simplification,[status(thm)],[60,theory(equality)])).
+cnf(65,negated_conjecture,(~rless(vmul(vd511,vd500),vmul(vd512,vd500))),inference(split_conjunct,[status(thm)],[61])).
+cnf(66,plain,(rgreater(vmul(vd512,vd500),vmul(vd511,vd500))),inference(split_conjunct,[status(thm)],[2])).
+fof(83, plain,![X10]:![X11]:vmul(X10,X11)=vmul(X11,X10),inference(variable_rename,[status(thm)],[10])).
+cnf(84,plain,(vmul(X1,X2)=vmul(X2,X1)),inference(split_conjunct,[status(thm)],[83])).
+fof(113, plain,![X34]:![X35]:(~(rgreater(X34,X35))|rless(X35,X34)),inference(fof_nnf,[status(thm)],[22])).
+fof(114, plain,![X36]:![X37]:(~(rgreater(X36,X37))|rless(X37,X36)),inference(variable_rename,[status(thm)],[113])).
+cnf(115,plain,(rless(X1,X2)|~rgreater(X2,X1)),inference(split_conjunct,[status(thm)],[114])).
+cnf(258,plain,(rgreater(vmul(vd500,vd512),vmul(vd500,vd511))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[66,84,theory(equality)]),84,theory(equality)])).
+cnf(266,negated_conjecture,(~rless(vmul(vd500,vd511),vmul(vd500,vd512))),inference(rw,[status(thm)],[inference(rw,[status(thm)],[65,84,theory(equality)]),84,theory(equality)])).
+cnf(267,negated_conjecture,(~rgreater(vmul(vd500,vd512),vmul(vd500,vd511))),inference(spm,[status(thm)],[266,115,theory(equality)])).
+cnf(268,negated_conjecture,($false),inference(rw,[status(thm)],[267,258,theory(equality)])).
+cnf(269,negated_conjecture,($false),inference(cn,[status(thm)],[268,theory(equality)])).
+cnf(270,negated_conjecture,($false),269,['proof']).
+# SZS output end CNFRefutation

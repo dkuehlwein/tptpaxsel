@@ -1,0 +1,16 @@
+
+fof('holds(scope(52), 77, 0)',conjecture,(vplus(vsucc(vd75),vd76) = vsucc(vplus(vd75,vd76)) ),unknown,[relevance(1.000000)]).
+fof('ass(cond(proof(53), 0), 0)',axiom,(! [Vd78,Vd84] : vplus(vsucc(Vd78),Vd84) = vsucc(vplus(Vd78,Vd84)) ),unknown,[relevance(0.988476)]).
+fof('ass(cond(proof(53), 0), 1)',axiom,(! [Vd78,Vd80] :( vplus(vsucc(Vd78),Vd80) = vsucc(vplus(Vd78,Vd80))=> vsucc(vsucc(vplus(Vd78,Vd80))) = vsucc(vplus(vsucc(Vd78),Vd80)) ) ),unknown,[relevance(0.988330)]).
+fof('ass(cond(proof(53), 0), 2)',axiom,(! [Vd78,Vd80] :( vplus(vsucc(Vd78),Vd80) = vsucc(vplus(Vd78,Vd80))=> vsucc(vplus(vsucc(Vd78),Vd80)) = vsucc(vsucc(vplus(Vd78,Vd80))) ) ),unknown,[relevance(0.988330)]).
+fof('ass(cond(proof(53), 0), 3)',axiom,(! [Vd78,Vd80] :( vplus(vsucc(Vd78),Vd80) = vsucc(vplus(Vd78,Vd80))=> vplus(vsucc(Vd78),vsucc(Vd80)) = vsucc(vplus(vsucc(Vd78),Vd80)) ) ),unknown,[relevance(0.988330)]).
+fof('ass(cond(proof(53), 0), 4)',axiom,(! [Vd78] : vsucc(vsucc(Vd78)) = vsucc(vplus(Vd78,v1)) ),unknown,[relevance(0.986296)]).
+fof('ass(cond(proof(53), 0), 5)',axiom,(! [Vd78] : vplus(vsucc(Vd78),v1) = vsucc(vsucc(Vd78)) ),unknown,[relevance(0.986296)]).
+fof('ass(cond(43, 0), 0)',axiom,(! [Vd64] : vplus(v1,Vd64) = vsucc(Vd64) ),unknown,[relevance(0.985190)]).
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))',axiom,(! [Vd44,Vd45] :( vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45))& vplus(Vd44,v1) = vsucc(Vd44) ) ),unknown,[relevance(0.987375)]).
+fof('ass(cond(33, 0), 0)',axiom,(! [Vd49,Vd50,Vd51] : vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)) ),unknown,[relevance(0.988702)]).
+fof('ass(cond(20, 0), 0)',axiom,(! [Vd26] :( Vd26 != v1=> Vd26 = vsucc(vskolem28(Vd26)) ) ),unknown,[relevance(0.961819)]).
+fof('ass(cond(12, 0), 0)',axiom,(! [Vd17] : vsucc(Vd17) != Vd17 ),unknown,[relevance(0.987412)]).
+fof('ass(cond(6, 0), 0)',axiom,(! [Vd7,Vd8] :( Vd7 != Vd8=> vsucc(Vd7) != vsucc(Vd8) ) ),unknown,[relevance(0.987412)]).
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.987412)]).
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.981601)]).

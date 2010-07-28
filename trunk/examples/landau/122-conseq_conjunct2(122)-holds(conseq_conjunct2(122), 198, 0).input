@@ -1,0 +1,39 @@
+fof('holds(conseq_conjunct2(122), 198, 0)', conjecture, rM(vsucc(vd180))).
+fof('holds(conseq_conjunct1(122), 197, 1)', axiom, vsucc(vplus(vd166,vd195)) = vplus(vd166,vsucc(vd195))).
+fof('holds(conseq_conjunct1(122), 197, 0)', axiom, vsucc(vd180) = vsucc(vplus(vd166,vd195))).
+fof('holds(121, 196, 0)', axiom, vd180 = vplus(vd166,vd195)).
+fof('ass(cond(61, 0), 0)', axiom, ![Vd87,Vd88]:(vplus(Vd88,Vd87) = vplus(Vd87,Vd88))).
+fof('ass(cond(33, 0), 0)', axiom, ![Vd49,Vd50,Vd51]:(vplus(vplus(Vd49,Vd50),Vd51) = vplus(Vd49,vplus(Vd50,Vd51)))).
+fof('qu(cond(conseq(axiom(3)), 3), and(holds(definiens(29), 47, 0), holds(definiens(29), 46, 0)))', axiom, ![Vd44,Vd45]:((vplus(Vd44,vsucc(Vd45)) = vsucc(vplus(Vd44,Vd45)))&(vplus(Vd44,v1) = vsucc(Vd44)))).
+fof('ass(cond(conseq(110), 1), 0)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((~ (Vd185 = v1))=>(rM(vsucc(vd180)))))).
+fof('ass(cond(conseq(110), 1), 1)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((~ (Vd185 = v1))=>(vplus(vplus(vd180,v1),vskolem191(Vd185)) = vplus(vsucc(vd180),vskolem191(Vd185)))))).
+fof('ass(cond(conseq(110), 1), 2)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((~ (Vd185 = v1))=>(vplus(vd180,vplus(v1,vskolem191(Vd185))) = vplus(vplus(vd180,v1),vskolem191(Vd185)))))).
+fof('ass(cond(conseq(110), 1), 3)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((~ (Vd185 = v1))=>(vd166 = vplus(vd180,vplus(v1,vskolem191(Vd185))))))).
+fof('ass(cond(conseq(110), 1), 4)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((~ (Vd185 = v1))=>(vsucc(vskolem191(Vd185)) = vplus(v1,vskolem191(Vd185)))))).
+fof('ass(cond(conseq(110), 1), 5)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((~ (Vd185 = v1))=>(Vd185 = vsucc(vskolem191(Vd185)))))).
+fof('ass(cond(conseq(110), 1), 6)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((Vd185 = v1)=>(rM(vsucc(vd180)))))).
+fof('ass(cond(conseq(110), 1), 7)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((Vd185 = v1)=>(vplus(vd180,v1) = vsucc(vd180))))).
+fof('ass(cond(conseq(110), 1), 8)', axiom, ![Vd185]:((vd166 = vplus(vd180,Vd185))=>((Vd185 = v1)=>(vd166 = vplus(vd180,v1))))).
+fof('ass(cond(43, 0), 0)', axiom, ![Vd64]:(vplus(v1,Vd64) = vsucc(Vd64))).
+fof('ass(cond(52, 0), 0)', axiom, ![Vd75,Vd76]:(vplus(vsucc(Vd75),Vd76) = vsucc(vplus(Vd75,Vd76)))).
+fof('ass(cond(20, 0), 0)', axiom, ![Vd26]:((~ (Vd26 = v1))=>(Vd26 = vsucc(vskolem28(Vd26))))).
+fof('ass(cond(conseq(110), 0), 0)', axiom, (vd166 = vd180)=>(rM(vsucc(vd180)))).
+fof('ass(cond(conseq(110), 0), 1)', axiom, (vd166 = vd180)=>(vplus(vd180,v1) = vplus(vd166,v1))).
+fof('ass(cond(conseq(110), 0), 2)', axiom, (vd166 = vd180)=>(vsucc(vd180) = vplus(vd180,v1))).
+fof('def(cond(conseq(105), 0), 1)', axiom, ![Vd167]:((rM(Vd167))<=>((vd166 = Vd167)|((?[Vd170]:(vd166 = vplus(Vd167,Vd170)))|(?[Vd172]:(Vd167 = vplus(vd166,Vd172))))))).
+fof('ass(cond(12, 0), 0)', axiom, ![Vd17]:(~ (vsucc(Vd17) = Vd17))).
+fof('ass(cond(6, 0), 0)', axiom, ![Vd7,Vd8]:((~ (Vd7 = Vd8))=>(~ (vsucc(Vd7) = vsucc(Vd8))))).
+fof('holds(110, 181, 0)', axiom, rM(vd180)).
+fof('holds(109, 179, 0)', axiom, rM(v1)).
+fof('ass(cond(conseq(105), 1), 0)', axiom, ![Vd174]:((Vd174 = v1)=>(((v1 = Vd174)&(vd166 = v1))|(?[Vd177]:((vplus(v1,Vd177) = vplus(Vd174,Vd177))&((vsucc(Vd177) = vplus(v1,Vd177))&(vd166 = vsucc(Vd177)))))))).
+fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))', axiom, ![Vd3,Vd4]:((vsucc(Vd3) = vsucc(Vd4))=>(Vd3 = Vd4))).
+fof('ass(cond(104, 0), 0)', axiom, ![Vd159,Vd160]:((~(?[Vd162]:(Vd159 = vplus(Vd160,Vd162))))|(~(?[Vd164]:(Vd160 = vplus(Vd159,Vd164)))))).
+fof('ass(cond(104, 0), 1)', axiom, ![Vd159,Vd160]:((~(Vd159 = Vd160))|(~(?[Vd164]:(Vd160 = vplus(Vd159,Vd164)))))).
+fof('ass(cond(104, 0), 2)', axiom, ![Vd159,Vd160]:((~(Vd159 = Vd160))|(~(?[Vd162]:(Vd159 = vplus(Vd160,Vd162)))))).
+fof('ass(cond(proof(97), 0), 0)', axiom, ![Vd141,Vd142]:(~(?[Vd154,Vd156]:((Vd142 = vplus(Vd141,Vd156))&(Vd141 = vplus(Vd142,Vd154)))))).
+fof('ass(cond(proof(97), 0), 1)', axiom, ![Vd141,Vd142]:(![Vd149,Vd151]:(~((Vd142 = vplus(Vd141,Vd151))&(Vd141 = vplus(Vd142,Vd149)))))).
+fof('ass(cond(proof(97), 0), 2)', axiom, ![Vd141,Vd142]:(~(?[Vd147]:((Vd142 = vplus(Vd141,Vd147))&(Vd141 = Vd142))))).
+fof('ass(cond(proof(97), 0), 3)', axiom, ![Vd141,Vd142]:(~(?[Vd144]:((Vd141 = vplus(Vd142,Vd144))&(Vd141 = Vd142))))).
+fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))', axiom, ![Vd1]:(~ (vsucc(Vd1) = v1))).
+fof('ass(cond(81, 0), 0)', axiom, ![Vd116,Vd117]:((~ (Vd116 = Vd117))=>(![Vd120]:(~ (vplus(Vd120,Vd116) = vplus(Vd120,Vd117)))))).
+fof('ass(cond(73, 0), 0)', axiom, ![Vd103,Vd104]:(~ (Vd104 = vplus(Vd103,Vd104)))).
