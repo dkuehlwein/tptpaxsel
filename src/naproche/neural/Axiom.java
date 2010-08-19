@@ -1,5 +1,9 @@
 package naproche.neural;
 
+import tptp_parser.SimpleTptpParserOutput;
+import tptp_parser.SimpleTptpParserOutput.AnnotatedFormula;
+import tptp_parser.SimpleTptpParserOutput.TopLevelItem;
+
 /**
  * The Axiom class
  *  
@@ -19,7 +23,7 @@ public class Axiom {
 	/**
 	 * The formula as string in TPTP format.
 	 */
-	public String formula;
+	public SimpleTptpParserOutput.Formula formula;
 	/**
 	 * The relevance score calculated by Aprils. A number between 0 (least relevant) 
 	 * and 1 (most relevant)
@@ -46,30 +50,70 @@ public class Axiom {
 	public Axiom() {}
 	
 	/**
-	 *	Creates a new axiom from a TPTP syntax string.
+	 * Creates a new axiom from a TPTPParser item.
 	 * 
-	 * @param fofFormula	is a string of the form fofFormula fof('Name',type,Formula,unknown,[relevance(scoreAprilsDouble)]).
+	 * @param fofFormula
 	 */
-	public Axiom(String fofFormula) {
-		String[] split = fofFormula.split("\'");
-		name = split[1];
-		if (split[2].startsWith(",conjecture,")) {
-			split = split[2].split(",conjecture,");
-		} else { 
-			split = split[2].split(",axiom,");
+	public Axiom(TopLevelItem fofFormula) {
+		name = ((SimpleTptpParserOutput.AnnotatedFormula)fofFormula).getName();
+		// Remove quotations
+		if (name.startsWith("\'")) {
+			name = name.substring(1, name.length()-1);
 		}
-		split = split[1].split(",unknown,");
-		formula = split[0];		
-		split = split[1].split("[\\(\\)]"); 
-		scoreAprilsDouble = Double.valueOf(split[1]);
+		    	
+    	formula = ((SimpleTptpParserOutput.AnnotatedFormula)fofFormula).getFormula();
+    	// Requires useful info to be [relevance(double)] !   
+    	if ( ((SimpleTptpParserOutput.AnnotatedFormula)fofFormula).getAnnotations() != null ) {
+    		String[] split = (((SimpleTptpParserOutput.AnnotatedFormula)fofFormula).getAnnotations().usefulInfo().toString()).split("[\\(\\)]");
+    		scoreAprilsDouble = Double.valueOf(split[1]);
+    	} else {
+    		scoreAprilsDouble = 0;
+    	}
+    		
+	}
+
+	/**
+	 * Basic instructor that only initializes the name and the formula.
+	 * 
+	 * @param axiomName
+	 * @param formula
+	 */
+	public Axiom(String axiomName, AnnotatedFormula formula) {
+		this.name = axiomName;
+		this.formula = formula.getFormula(); 
+	}
+
+	/**
+	 * Sets scoreFinal as 1/(weightAprils* scoreAprils + weightNaproche*scoreNaproche).
+	 * 
+	 * @param weightAprils		The APRILS weight used for calculating the final score.
+	 * @param weightNaproche	The Naproche weight used for calculating the final score.
+	 */
+	public void setScoreFinal(double weightAprils, double weightNaproche) {
+		if (weightAprils* scoreAprils + weightNaproche*scoreNaproche > 0) {
+			scoreFinal = 1/(weightAprils* scoreAprils + weightNaproche*scoreNaproche);
+		} else {
+			System.err.println("Cannot set final score: Division through zero");
+			scoreFinal = 0;
+		}
+						
 	}
 	
-	/**
-	 * Sets scoreFinal as 1/(weightAprils* scoreAprils + scoreNaproche).
-	 * 
-	 * @param weightAprils	A double > 0. The weight used for calculating the final score.
-	 */
-	public void setScoreFinal(double weightAprils) {
-		scoreFinal = 1/(weightAprils* scoreAprils + scoreNaproche);				
+	
+	@Override
+	public boolean equals(Object o) {
+	  if ((o == null) || (o.getClass() != Axiom.class)) {
+	    return false;
+	  }
+	  Axiom other = (Axiom) o;
+//	  return other.name.equals(this.name) && other.formula.equals(this.formula);
+	  return other.name.equals(this.name);
 	}
+	
+	@Override
+	public int hashCode() {
+//	  return name.hashCode() * 37 + formula.hashCode();
+	  return name.hashCode();
+	}
+
 }
