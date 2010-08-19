@@ -1,6 +1,0 @@
-fof('qu(ind(17), imp(17))',conjecture,(! [Vd24] :( vsucc(Vd24) != Vd24=> vsucc(vsucc(Vd24)) != vsucc(Vd24) ) ),unknown,[relevance(1.0)]). 
-fof('ass(cond(proof(13), 1), 0)',axiom,(! [Vd20] :( vsucc(Vd20) != Vd20=> vsucc(vsucc(Vd20)) != vsucc(Vd20) ) ),unknown,[relevance(0.6666)]). 
-fof('holds(14, 19, 0)',axiom,(vsucc(v1) != v1 ),unknown,[relevance(0.5000)]). 
-fof('ass(cond(6, 0), 0)',axiom,(! [Vd7,Vd8] :( Vd7 != Vd8=> vsucc(Vd7) != vsucc(Vd8) ) ),unknown,[relevance(0.4000)]). 
-fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.3333)]). 
-fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.2857)]). 
