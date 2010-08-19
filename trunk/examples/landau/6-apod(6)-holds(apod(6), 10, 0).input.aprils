@@ -1,6 +1,0 @@
-
-fof('holds(apod(6), 10, 0)',conjecture,(vsucc(vd7) != vsucc(vd8) ),unknown,[relevance(1.000000)]).
-fof('holds(prot(6), 9, 0)',axiom,(vd7 != vd8 ),unknown,[relevance(0.981095)]).
-fof('ass(cond(proof(7), 0), 0)',axiom,(! [Vd11,Vd12] :( ( vsucc(Vd11) = vsucc(Vd12)& Vd11 != Vd12 )=> Vd11 = Vd12 ) ),unknown,[relevance(0.981095)]).
-fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.981095)]).
-fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.948360)]).

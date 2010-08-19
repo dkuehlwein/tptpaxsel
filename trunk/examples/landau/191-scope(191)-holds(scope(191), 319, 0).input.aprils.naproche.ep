@@ -1,9 +1,0 @@
-# Problem is unsatisfiable (or provable), constructing proof object
-# SZS status Theorem
-# SZS output start CNFRefutation.
-fof(1, conjecture,vplus(vd317,vd318)=vplus(vd317,vd318),file('/home/rekzah/workspace/naproche/examples/landau/191-scope(191)-holds(scope(191), 319, 0).input.aprils.naproche', 'holds(scope(191), 319, 0)')).
-fof(33, negated_conjecture,~(vplus(vd317,vd318)=vplus(vd317,vd318)),inference(assume_negation,[status(cth)],[1])).
-fof(34, negated_conjecture,~(vplus(vd317,vd318)=vplus(vd317,vd318)),inference(fof_simplification,[status(thm)],[33,theory(equality)])).
-cnf(38,negated_conjecture,($false),inference(split_conjunct,[status(thm)],[34])).
-cnf(147,negated_conjecture,($false),38,['proof']).
-# SZS output end CNFRefutation

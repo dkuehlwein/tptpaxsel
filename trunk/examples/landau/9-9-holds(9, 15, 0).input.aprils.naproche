@@ -1,4 +1,0 @@
-fof('holds(9, 15, 0)',conjecture,(vd11 = vd12 ),unknown,[relevance(1.0)]). 
-fof('qu(cond(axiom(3), 0), imp(cond(axiom(3), 0)))',axiom,(! [Vd3,Vd4] :( vsucc(Vd3) = vsucc(Vd4)=> Vd3 = Vd4 ) ),unknown,[relevance(0.2500)]). 
-fof('and(holds(conjunct2(8), 14, 0), holds(conjunct1(8), 13, 0))',axiom,( vsucc(vd11) = vsucc(vd12)& vd11 != vd12 ),unknown,[relevance(0.1818)]). 
-fof('qu(cond(axiom(1), 0), holds(scope(axiom(1)), 2, 0))',axiom,(! [Vd1] : vsucc(Vd1) != v1 ),unknown,[relevance(0.1176)]). 
