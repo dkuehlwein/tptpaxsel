@@ -1,116 +1,217 @@
-156-apod(156)-holds(apod(156), 740, 0).input.aprils
-211-the(211)-qe(thee(the(211), 1)).input.aprils
-211-the(211)-qu(theu(the(211), 1), imp(the(211))).input.aprils
-212-the(212)-qe(thee(the(212), 1)).input.aprils
-212-the(212)-qu(theu(the(212), 1), imp(the(212))).input.aprils
-213-213-pred(213, 0).input.aprils
-214-214-qe(214).input.aprils
-215-215-holds(215, 1065, 0).input.aprils
-216-216-holds(216, 1066, 0).input.aprils
-217-conjunct1(217)-holds(conjunct1(217), 1067, 0).input.aprils
-217-conjunct2(217)-holds(conjunct2(217), 1068, 0).input.aprils
-208-208-qe(208).input.aprils
-226-226-qe(226).input.aprils
-227-the(227)-qe(thee(the(227), 1)).input.aprils
-227-the(227)-qu(theu(the(227), 1), imp(the(227))).input.aprils
-228-the(228)-qe(thee(the(228), 1)).input.aprils
-228-the(228)-qu(theu(the(228), 1), imp(the(228))).input.aprils
-229-229-qe(229).input.aprils
-230-the(230)-qe(thee(the(230), 1)).input.aprils
-230-the(230)-qu(theu(the(230), 1), imp(the(230))).input.aprils
-231-the(231)-qe(thee(the(231), 1)).input.aprils
-231-the(231)-qu(theu(the(231), 1), imp(the(231))).input.aprils
-232-232-qe(232).input.aprils
-233-233-holds(233, 1105, 0).input.aprils
-234-234-holds(234, 1106, 0).input.aprils
-235-235-holds(235, 1107, 0).input.aprils
-236-236-holds(236, 1108, 0).input.aprils
-222-222-qe(222).input.aprils
-245-245-qe(245).input.aprils
-246-246-qe(246).input.aprils
-247-neg(247)-neg(neg(247)).input.aprils
-247-neg(comma_conjunct2(247))-neg(neg(comma_conjunct2(247))).input.aprils
-248-248-qe(248).input.aprils
-249-249-holds(249, 1142, 0).input.aprils
-250-250-holds(250, 1143, 0).input.aprils
-253-253-qe(253).input.aprils
-254-neg(254)-neg(neg(254)).input.aprils
-254-neg(comma_conjunct2(254))-neg(neg(comma_conjunct2(254))).input.aprils
-255-255-qe(255).input.aprils
-256-256-holds(256, 1149, 0).input.aprils
-259-259-qe(259).input.aprils
-260-neg(260)-neg(neg(260)).input.aprils
-260-neg(comma_conjunct2(260))-neg(neg(comma_conjunct2(260))).input.aprils
-261-261-qe(261).input.aprils
-262-262-holds(262, 1155, 0).input.aprils
-242-case_distinction(conseq(242))-dis(case_distinction(conseq(242))).input.aprils
-240-240-qe(240).input.aprils
-269-269-qe(269).input.aprils
-270-neg(270)-neg(neg(270)).input.aprils
-272-272-pred(272, 0).input.aprils
-273-273-holds(273, 1215, 0).input.aprils
-274-s1(plural(274))-pred(s1(plural(274)), 0).input.aprils
-274-s2(plural(274))-pred(s2(plural(274)), 0).input.aprils
-274-s3(plural(274))-pred(s3(plural(274)), 0).input.aprils
-276-276-dis(276).input.aprils
-279-279-holds(279, 1221, 0).input.aprils
-280-280-holds(280, 1222, 0).input.aprils
-280-280-holds(280, 1222, 1).input.aprils
-281-281-holds(281, 1223, 0).input.aprils
-282-282-holds(282, 1224, 0).input.aprils
-283-283-cont(283, 0).input.aprils
-286-286-holds(286, 1226, 0).input.aprils
-287-287-holds(287, 1227, 0).input.aprils
-287-287-holds(287, 1227, 1).input.aprils
-288-288-holds(288, 1228, 0).input.aprils
-289-289-holds(289, 1229, 0).input.aprils
-290-290-cont(290, 0).input.aprils
-275-case_distinction(conseq(275))-dis(case_distinction(conseq(275))).input.aprils
-291-291-holds(291, 1230, 0).input.aprils
-292-292-holds(292, 1231, 0).input.aprils
-293-293-qe(293).input.aprils
-294-294-qe(294).input.aprils
-295-295-holds(295, 1236, 0).input.aprils
-299-299-holds(299, 1238, 0).input.aprils
-300-300-holds(300, 1239, 0).input.aprils
-301-301-holds(301, 1240, 0).input.aprils
-301-301-holds(301, 1240, 1).input.aprils
-302-302-holds(302, 1241, 0).input.aprils
-303-303-pred(303, 0).input.aprils
-304-304-cont(304, 0).input.aprils
-307-307-holds(307, 1243, 0).input.aprils
-308-308-holds(308, 1244, 0).input.aprils
-309-309-holds(309, 1245, 0).input.aprils
-309-309-holds(309, 1245, 1).input.aprils
-310-310-holds(310, 1246, 0).input.aprils
-311-311-pred(311, 0).input.aprils
-312-312-cont(312, 0).input.aprils
-296-case_distinction(conseq(296))-dis(case_distinction(conseq(296))).input.aprils
-313-313-pred(313, 0).input.aprils
-314-314-holds(314, 1247, 0).input.aprils
-315-s1(plural(315))-pred(s1(plural(315)), 0).input.aprils
-315-s2(plural(315))-pred(s2(plural(315)), 0).input.aprils
-315-s3(plural(315))-pred(s3(plural(315)), 0).input.aprils
-317-neg(317)-neg(neg(317)).input.aprils
-318-318-cont(318, 0).input.aprils
-319-neg(319)-neg(neg(319)).input.aprils
-321-321-dis(321).input.aprils
-324-324-holds(324, 1255, 0).input.aprils
-325-325-holds(325, 1256, 0).input.aprils
-325-325-holds(325, 1256, 1).input.aprils
-326-326-holds(326, 1257, 0).input.aprils
-327-327-holds(327, 1258, 0).input.aprils
-328-328-cont(328, 0).input.aprils
-331-331-holds(331, 1260, 0).input.aprils
-332-332-holds(332, 1261, 0).input.aprils
-332-332-holds(332, 1261, 1).input.aprils
-333-333-holds(333, 1262, 0).input.aprils
-334-334-holds(334, 1263, 0).input.aprils
-335-335-cont(335, 0).input.aprils
-320-case_distinction(conseq(320))-dis(case_distinction(conseq(320))).input.aprils
-336-336-holds(336, 1264, 0).input.aprils
-337-conjunct1(337)-holds(conjunct1(337), 1265, 0).input.aprils
-337-conjunct1(conjunct2(337))-holds(conjunct1(conjunct2(337)), 1266, 0).input.aprils
-337-conjunct2(conjunct2(337))-holds(conjunct2(conjunct2(337)), 1267, 0).input.aprils
-338-conjunct1(338)-holds(conjunct1(338), 1268, 0).input.aprils
-338-conjunct1(conjunct2(338))-holds(conjunct1(conjunct2(338)), 1269, 0).input.aprils
+156-apod(156)-holds(apod(156), 737, 0).input
+211-the(211)-qe(thee(the(211), 1)).input
+211-the(211)-qu(theu(the(211), 1), imp(the(211))).input
+212-the(212)-qe(thee(the(212), 1)).input
+212-the(212)-qu(theu(the(212), 1), imp(the(212))).input
+213-conseq_conjunct1(213)-pred(conseq_conjunct1(213), 0).input
+213-conseq_conjunct2(213)-qe(conseq_conjunct2(213)).input
+214-214-holds(214, 1062, 0).input
+215-215-holds(215, 1063, 0).input
+216-conjunct1(216)-holds(conjunct1(216), 1064, 0).input
+216-conjunct2(216)-holds(conjunct2(216), 1065, 0).input
+208-208-qe(208).input
+225-225-qe(225).input
+226-the(226)-qe(thee(the(226), 1)).input
+226-the(226)-qu(theu(the(226), 1), imp(the(226))).input
+227-the(227)-qe(thee(the(227), 1)).input
+227-the(227)-qu(theu(the(227), 1), imp(the(227))).input
+228-228-qe(228).input
+229-the(229)-qe(thee(the(229), 1)).input
+229-the(229)-qu(theu(the(229), 1), imp(the(229))).input
+230-the(230)-qe(thee(the(230), 1)).input
+230-the(230)-qu(theu(the(230), 1), imp(the(230))).input
+231-231-qe(231).input
+232-232-holds(232, 1102, 0).input
+233-233-holds(233, 1103, 0).input
+234-234-holds(234, 1104, 0).input
+235-235-holds(235, 1105, 0).input
+221-221-qe(221).input
+244-244-qe(244).input
+245-245-qe(245).input
+246-neg(246)-neg(neg(246)).input
+246-neg(comma_conjunct2(246))-neg(neg(comma_conjunct2(246))).input
+247-247-qe(247).input
+248-248-holds(248, 1139, 0).input
+249-249-holds(249, 1140, 0).input
+252-252-qe(252).input
+253-neg(253)-neg(neg(253)).input
+253-neg(comma_conjunct2(253))-neg(neg(comma_conjunct2(253))).input
+254-254-qe(254).input
+255-255-holds(255, 1146, 0).input
+258-258-qe(258).input
+259-neg(259)-neg(neg(259)).input
+259-neg(comma_conjunct2(259))-neg(neg(comma_conjunct2(259))).input
+260-260-qe(260).input
+261-261-holds(261, 1152, 0).input
+241-case_distinction(conseq(241))-dis(case_distinction(conseq(241))).input
+239-239-qe(239).input
+268-268-qe(268).input
+269-neg(269)-neg(neg(269)).input
+271-271-pred(271, 0).input
+272-272-holds(272, 1212, 0).input
+273-s1(plural(273))-pred(s1(plural(273)), 0).input
+273-s2(plural(273))-pred(s2(plural(273)), 0).input
+273-s3(plural(273))-pred(s3(plural(273)), 0).input
+275-275-dis(275).input
+278-278-holds(278, 1218, 0).input
+279-279-holds(279, 1219, 0).input
+279-279-holds(279, 1219, 1).input
+280-280-holds(280, 1220, 0).input
+281-281-holds(281, 1221, 0).input
+282-282-cont(282, 0).input
+285-285-holds(285, 1223, 0).input
+286-286-holds(286, 1224, 0).input
+286-286-holds(286, 1224, 1).input
+287-287-holds(287, 1225, 0).input
+288-288-holds(288, 1226, 0).input
+289-289-cont(289, 0).input
+274-case_distinction(conseq(274))-dis(case_distinction(conseq(274))).input
+290-290-holds(290, 1227, 0).input
+291-291-holds(291, 1228, 0).input
+292-292-qe(292).input
+293-293-qe(293).input
+294-294-pred(294, 1).input
+298-298-holds(298, 1235, 0).input
+299-299-holds(299, 1236, 0).input
+300-300-holds(300, 1237, 0).input
+300-300-holds(300, 1237, 1).input
+301-301-holds(301, 1238, 0).input
+302-302-pred(302, 0).input
+303-303-cont(303, 0).input
+306-306-holds(306, 1240, 0).input
+307-307-holds(307, 1241, 0).input
+308-308-holds(308, 1242, 0).input
+308-308-holds(308, 1242, 1).input
+309-309-holds(309, 1243, 0).input
+310-310-pred(310, 0).input
+311-311-cont(311, 0).input
+295-case_distinction(conseq(295))-dis(case_distinction(conseq(295))).input
+312-312-pred(312, 0).input
+313-313-holds(313, 1244, 0).input
+314-s1(plural(314))-pred(s1(plural(314)), 0).input
+314-s2(plural(314))-pred(s2(plural(314)), 0).input
+314-s3(plural(314))-pred(s3(plural(314)), 0).input
+316-neg(316)-neg(neg(316)).input
+317-317-cont(317, 0).input
+318-neg(318)-neg(neg(318)).input
+320-320-dis(320).input
+323-323-holds(323, 1253, 0).input
+324-324-holds(324, 1254, 0).input
+324-324-holds(324, 1254, 1).input
+325-325-holds(325, 1255, 0).input
+326-326-holds(326, 1256, 0).input
+327-327-cont(327, 0).input
+330-330-holds(330, 1258, 0).input
+331-331-holds(331, 1259, 0).input
+331-331-holds(331, 1259, 1).input
+332-332-holds(332, 1260, 0).input
+333-333-holds(333, 1261, 0).input
+334-334-cont(334, 0).input
+319-case_distinction(conseq(319))-dis(case_distinction(conseq(319))).input
+335-335-holds(335, 1262, 0).input
+336-conjunct1(336)-holds(conjunct1(336), 1263, 0).input
+336-conjunct1(conjunct2(336))-holds(conjunct1(conjunct2(336)), 1264, 0).input
+336-conjunct2(conjunct2(336))-holds(conjunct2(conjunct2(336)), 1265, 0).input
+337-conjunct1(337)-holds(conjunct1(337), 1266, 0).input
+337-conjunct1(conjunct2(337))-holds(conjunct1(conjunct2(337)), 1267, 0).input
+337-conjunct2(conjunct2(337))-holds(conjunct2(conjunct2(337)), 1268, 0).input
+265-conjunct1(265)-holds(conjunct1(265), 1172, 0).input
+265-conjunct1(conjunct2(265))-holds(conjunct1(conjunct2(265)), 1173, 0).input
+265-conjunct2(conjunct2(265))-holds(conjunct2(conjunct2(265)), 1174, 0).input
+345-345-qe(345).input
+346-346-qe(346).input
+348-conjunct1(348)-pred(conjunct1(348), 0).input
+348-conjunct2(348)-pred(conjunct2(348), 0).input
+351-351-qe(351).input
+352-conjunct1(352)-pred(conjunct1(352), 0).input
+352-conjunct1(conjunct2(352))-holds(conjunct1(conjunct2(352)), 1307, 0).input
+352-conjunct1(conjunct2(conjunct2(352)))-holds(conjunct1(conjunct2(conjunct2(352))), 1308, 0).input
+352-conjunct2(conjunct2(conjunct2(352)))-holds(conjunct2(conjunct2(conjunct2(352))), 1309, 0).input
+353-conjunct1(353)-pred(conjunct1(353), 0).input
+353-conjunct1(conjunct2(353))-pred(conjunct1(conjunct2(353)), 0).input
+353-conjunct1(conjunct2(conjunct2(353)))-pred(conjunct1(conjunct2(conjunct2(353))), 0).input
+353-conjunct1(conjunct2(conjunct2(conjunct2(353))))-pred(conjunct1(conjunct2(conjunct2(conjunct2(353)))), 0).input
+353-conjunct1(conjunct2(conjunct2(conjunct2(conjunct2(353)))))-pred(conjunct1(conjunct2(conjunct2(conjunct2(conjunct2(353))))), 0).input
+353-conjunct2(conjunct2(conjunct2(conjunct2(conjunct2(353)))))-pred(conjunct2(conjunct2(conjunct2(conjunct2(conjunct2(353))))), 0).input
+354-conjunct1(354)-holds(conjunct1(354), 1310, 0).input
+354-conjunct1(conjunct2(354))-holds(conjunct1(conjunct2(354)), 1311, 0).input
+354-conjunct1(conjunct2(conjunct2(354)))-holds(conjunct1(conjunct2(conjunct2(354))), 1309, 0).input
+354-conjunct2(conjunct2(conjunct2(354)))-holds(conjunct2(conjunct2(conjunct2(354))), 1307, 0).input
+355-neg(355)-neg(neg(355)).input
+355-neg(conjunct2(355))-neg(neg(conjunct2(355))).input
+356-356-holds(356, 1314, 0).input
+357-357-holds(357, 1315, 0).input
+358-conjunct1(358)-holds(conjunct1(358), 1316, 0).input
+358-conjunct1(conjunct2(358))-holds(conjunct1(conjunct2(358)), 1317, 0).input
+358-conjunct2(conjunct2(358))-holds(conjunct2(conjunct2(358)), 1318, 0).input
+359-conjunct1(359)-holds(conjunct1(359), 1319, 0).input
+359-conjunct2(359)-holds(conjunct2(359), 1320, 0).input
+360-360-holds(360, 1321, 0).input
+361-conjunct1(361)-holds(conjunct1(361), 1322, 0).input
+361-conjunct2(361)-holds(conjunct2(361), 1323, 0).input
+362-362-holds(362, 1324, 0).input
+363-363-holds(363, 1325, 0).input
+366-366-qe(366).input
+367-conjunct1(367)-pred(conjunct1(367), 0).input
+367-conjunct1(conjunct2(367))-holds(conjunct1(conjunct2(367)), 1330, 0).input
+367-conjunct1(conjunct2(conjunct2(367)))-holds(conjunct1(conjunct2(conjunct2(367))), 1331, 0).input
+367-conjunct2(conjunct2(conjunct2(367)))-holds(conjunct2(conjunct2(conjunct2(367))), 1332, 0).input
+368-s1(plural(368))-pred(s1(plural(368)), 0).input
+368-s2(plural(368))-pred(s2(plural(368)), 0).input
+368-conjunct2(368)-pred(conjunct2(368), 0).input
+369-s1(plural(369))-pred(s1(plural(369)), 0).input
+369-s2(plural(369))-pred(s2(plural(369)), 0).input
+369-s3(plural(369))-pred(s3(plural(369)), 0).input
+370-conjunct1(370)-holds(conjunct1(370), 1335, 0).input
+370-conjunct1(conjunct2(370))-holds(conjunct1(conjunct2(370)), 1336, 0).input
+370-conjunct1(conjunct2(conjunct2(370)))-holds(conjunct1(conjunct2(conjunct2(370))), 1332, 0).input
+370-conjunct2(conjunct2(conjunct2(370)))-holds(conjunct2(conjunct2(conjunct2(370))), 1330, 0).input
+371-neg(371)-neg(neg(371)).input
+371-neg(conjunct2(371))-neg(neg(conjunct2(371))).input
+372-372-holds(372, 1339, 0).input
+373-373-holds(373, 1340, 0).input
+374-conjunct1(374)-holds(conjunct1(374), 1341, 0).input
+374-conjunct1(conjunct2(374))-holds(conjunct1(conjunct2(374)), 1342, 0).input
+374-conjunct2(conjunct2(374))-holds(conjunct2(conjunct2(374)), 1343, 0).input
+375-conjunct1(375)-holds(conjunct1(375), 1341, 0).input
+375-conjunct2(375)-holds(conjunct2(375), 1344, 0).input
+376-376-holds(376, 1345, 0).input
+377-conjunct1(377)-holds(conjunct1(377), 1346, 0).input
+377-conjunct2(377)-holds(conjunct2(377), 1347, 0).input
+378-378-holds(378, 1348, 0).input
+379-379-holds(379, 1349, 0).input
+347-case_distinction(conseq(347))-dis(case_distinction(conseq(347))).input
+342-conjunct1(342)-holds(conjunct1(342), 1283, 0).input
+342-conjunct2(342)-holds(conjunct2(342), 1284, 0).input
+389-389-qe(389).input
+390-conjunct1(390)-holds(conjunct1(390), 1372, 0).input
+390-conjunct2(390)-holds(conjunct2(390), 1373, 0).input
+391-391-holds(391, 1374, 0).input
+392-392-cont(392, 0).input
+395-395-qe(395).input
+396-conjunct1(396)-holds(conjunct1(396), 1379, 0).input
+396-conjunct2(396)-holds(conjunct2(396), 1380, 0).input
+397-397-holds(397, 1381, 0).input
+398-398-cont(398, 0).input
+386-case_distinction(conseq(386))-dis(case_distinction(conseq(386))).input
+383-383-holds(383, 1358, 0).input
+406-406-holds(406, 1412, 0).input
+407-the(407)-qe(thee(the(407), 1)).input
+407-the(407)-qu(theu(the(407), 1), imp(the(407))).input
+408-the(408)-qe(thee(the(408), 1)).input
+408-the(408)-qu(theu(the(408), 1), imp(the(408))).input
+409-409-holds(409, 1419, 0).input
+410-410-holds(410, 1420, 0).input
+411-411-cont(411, 0).input
+402-neg(402)-neg(neg(402)).input
+420-conseq_conjunct1(420)-holds(conseq_conjunct1(420), 1470, 0).input
+420-conseq_conjunct2(420)-holds(conseq_conjunct2(420), 1471, 0).input
+421-conseq_conjunct1(421)-holds(conseq_conjunct1(421), 1472, 0).input
+421-s1(plural(conseq_conjunct2(421)))-qe(s1(plural(conseq_conjunct2(421)))).input
+421-s2(plural(conseq_conjunct2(421)))-qe(s2(plural(conseq_conjunct2(421)))).input
+421-s3(plural(conseq_conjunct2(421)))-qe(s3(plural(conseq_conjunct2(421)))).input
+422-conseq_conjunct1(422)-holds(conseq_conjunct1(422), 1477, 0).input
+422-conseq_conjunct2(422)-holds(conseq_conjunct2(422), 1478, 0).input
+423-423-holds(423, 1479, 0).input
+424-424-holds(424, 1480, 0).input
+415-415-holds(415, 1438, 0).input
