@@ -1,5 +1,6 @@
 package test.naproche.neural;
 
+import java.io.File;
 import java.io.IOException;
 
 import junit.framework.TestCase;
@@ -10,7 +11,7 @@ import naproche.neural.Obligation;
 import org.junit.Test;
 
 public class ObligationTest extends TestCase{
-	public String testLocation = "/home/rekzah/workspace/naproche/examples/landau/6-apod(6)-holds(apod(6), 10, 0).input.aprils";
+	public File testLocation = new File("/home/rekzah/workspace/naproche/examples/landau/6-apod(6)-holds(apod(6), 10, 0).input.aprils");
 	public Obligation obligation;
 	
 	@Test

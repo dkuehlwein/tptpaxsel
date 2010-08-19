@@ -2,6 +2,7 @@ package naproche.neural;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,9 +22,13 @@ import org.jgrapht.graph.DefaultWeightedEdge;
  */
 public class Obligations {
 	/**
-	 * Weight used in calculating the final relevance of a premise.
+	 * Weight used for weighting the APRILS score in the final relevance of a premise.
 	 */
 	double weightAPRILS;
+	/**
+	 * Weight used for weighting the Naproche Score in the final relevance of a premise.
+	 */
+	double weightNaproche;
 	/**
 	 * Weight used for edges in the obligations graph.
 	 */
@@ -51,13 +56,17 @@ public class Obligations {
 	/**
 	 * Gives a measure on how good a checkObligation call was.
 	 */
-	double checkScore;	
-	
+	double checkScore;
+	/**
+	 * Specifies the working directory
+	 */
+	public String workingDir;	
+
 	/**
 	 * The obligations in the order in which they were created.
 	 */
-	private Vector<Obligation> obligations = new Vector<Obligation>();
-	
+	public Vector<Obligation> obligations = new Vector<Obligation>();
+
 	/**
 	 * Creates a new obligations class.
 	 * 
@@ -67,21 +76,32 @@ public class Obligations {
 	public Obligations(String[] obligationOrder, String location) {
 		// Set default values for the weights and proof checker settings
 		weightAPRILS = 1;
+		weightNaproche = 1;
 		weightObligationGraph = 1;
 		weightUsedGraph =1;
-		// maxTime in milliseconds
-		maxTime = 5 * 1000;
+		// maxTime in seconds
+		maxTime = 5;
 		obligationCounter = obligationOrder.length;
 		theoremCounter = 0;
 		checkScore = 0;
-		// Read the problem files and create the obligations.
-		// We expect Aprils relevance information in the files.
-		for (int i = 0; i < obligationOrder.length; i++) {
-			try {
-				obligations.add(new Obligation("/home/rekzah/workspace/naproche/examples/"+location+"/"+obligationOrder[i]));
-			} catch (IOException e) {
-				System.out.println("File examples/"+location+"/"+obligationOrder[i]+" does not exist" );				
-			}
+		// Read the problem files and create the obligations.			
+		for (int i = 0; i < obligationOrder.length; i++) {	
+			File file = new File(location+obligationOrder[i]);
+			File fileAprils = new File(location+obligationOrder[i]);
+			/* If possible, we try to get relevance information from APRILS */
+			if (fileAprils.exists()) {
+				try {
+					obligations.add(new Obligation(fileAprils));
+				} catch (IOException e) {
+					System.out.println("Cannot find .aprils file. Run APRILS if you want to use the APRILS selection");
+				}
+			} else if (file.exists()) {
+				try {
+					obligations.add(new Obligation(file));
+				} catch (IOException e) {
+					System.out.println("Cannot find input file. Check the path variables");
+				}
+			}			
 		}		
 	}
 
@@ -91,164 +111,237 @@ public class Obligations {
 	public void checkObligations() {
 		createObligationEdges();
 		String fileName = new String();
-		String line;
-		DefaultWeightedEdge edge = new DefaultWeightedEdge();
 		String conjecture;
-		String axiom;
-		int usedAxiomCounter ;
+		int usedAxiomCounter;
+		int usedAxiomCounterSum = 0;
+		double givenAxiomCounter;
+		double givenAxiomCounterSum = 0;
+		int premisesSum = 0;
 		boolean checkResult;
 		double premiseRatio;
 		double timePerObligation;
-		double systemTime;
+		double systemTime;		
+		int maxRelevance = 0;
+		int maxObRelevance;
+		int localRelevance;		
+		theoremCounter = 0;
 		checkScore = 0;
-		
-		for (Obligation obligation : obligations) {
-			usedAxiomCounter = 0;
-			checkResult = false;
-			timePerObligation = maxTime;
+
+		for (Obligation obligation : obligations) {			
 			// Output
 			System.out.print(obligation.file+" Result:");
 			
+			/* Preparations */
+			usedAxiomCounter = 0;
+			givenAxiomCounter = 0;
+			maxObRelevance = 0;
+			checkResult = false;
 			systemTime = System.currentTimeMillis();
-			// ----------------- Preparations ---------------------------
 			conjecture = obligation.conjecture.name;
 			obligation.setNaprocheScore(graph);
-			obligation.setFinalRelevance(weightAPRILS);
+			obligation.setFinalRelevance(weightAPRILS,weightNaproche);
 			Collections.sort(obligation.premises, new AxiomFinalComparator());
-			try {
-				fileName = createTPTPProblem(obligation);
-			} catch (IOException e) {
-				System.out.println("Could not create TPTP Problem File");
-				e.printStackTrace();
-			}
 			
-			// --------------- Start Running EP ------------------------						
-			try {
-				// Build the process
-				Process runEP = new ProcessBuilder(
-						"/home/rekzah/Programming/Naproche/Naproche-Due/naproche_core/www/cgi-bin/TPTP/Systems/EP---1.0/eproof",
+			/* 	Proof Loop	*/
+			for (CheckSetting checkSetting : obligation.checkSettings) {
+				if (checkSetting.numOfPrem == -1) {
+					givenAxiomCounter = obligation.premises.size(); 
+				} else {
+					givenAxiomCounter = checkSetting.numOfPrem;
+				}
+				/* Select the right premises */				
+				try {
+					fileName = createTPTPProblem(obligation, givenAxiomCounter);
+				} catch (IOException e) {
+					System.out.println("Could not create TPTP Problem File");
+					e.printStackTrace();
+				}				
+				
+				/* Create the proof process */
+				ProcessBuilder proverProcess;
+				if (checkSetting.prover.equals("V")) {
+					proverProcess = new ProcessBuilder(							
+							"lib/VAMPIRE/vampire_lin32",
+							"-t",Integer.toString(checkSetting.time), 							
+							"--proof","tptp", 
+							"--memory_limit","1500", 
+							"--output_axiom_names","on",
+							"--mode","casc", 
+							"--input_file",fileName); 								
+				} else if (checkSetting.prover.equals("E10")) { 
+					proverProcess = new ProcessBuilder(
+							"/home/rekzah/Programming/Naproche/Naproche-Due/naproche_core/www/cgi-bin/TPTP/Systems/EP---1.0/eproof",							
+							"-xAuto",
+							"-tAuto",
+							"--cpu-limit="+checkSetting.time,
+							"--proof-time-unlimited",
+							"--memory-limit=Auto",
+							"--tstp-in",
+							"--tstp-out",
+							fileName);						
+				} else { 
+					proverProcess = new ProcessBuilder(						
+						"eproof",
 						"-xAuto",
 						"-tAuto",
-						"--cpu-limit="+maxTime,
+						"--cpu-limit="+checkSetting.time,
 						"--proof-time-unlimited",
 						"--memory-limit=Auto",
 						"--tstp-in",
 						"--tstp-out",
-						fileName).start();
-				// Set up the in and output streams
-				InputStream is = runEP.getInputStream();
-				InputStreamReader isr = new InputStreamReader(is);
-				BufferedReader br = new BufferedReader(isr);
-				FileWriter fstream = new FileWriter(fileName+".ep");
-				BufferedWriter out = new BufferedWriter(fstream);
-				// Parse the stream for results
-				line = br.readLine();
-				// If we have a proof we can analyze it				
-				if ( line.equals("# Problem is unsatisfiable (or provable), constructing proof object") ) {
-					checkResult = true;
-					theoremCounter++;
-					out.write(line);
-		    		out.write("\r\n");
-		    		// -------------------- Add the used graph ------------------------
-		    		// formulaCounter counts the formulas. 
-	    			int formulaCounter = 1;    			
-		    		while ((line = br.readLine()) != null) {	    				    			   			
-						out.write(line);
-			    		out.write("\r\n");
-			    		// Update proof graph
-			    		if ( line.startsWith("fof(1, conjecture,")) {
-			    			// When there are proofs by contradiction, we might not need the conjecture.
-			    			formulaCounter++;
-			    		}
-			    		if ( line.startsWith("fof("+formulaCounter+", axiom,")) {
-			    			String[] split = line.split("\'");
-			    			axiom = split[split.length -2];
-			    			edge = new DefaultWeightedEdge();
-			    			graph.addEdge(conjecture, axiom, edge);
-			    			graph.setEdgeWeight(edge, weightUsedGraph);
-			    			formulaCounter++;
-			    			usedAxiomCounter++;
-			    		}		    		
-		    	    }
-					out.close();
-					// Time update
-					timePerObligation = timePerObligation - (System.currentTimeMillis() - systemTime);
-					systemTime = System.currentTimeMillis();
-				} else {
-					out.close();				
+						fileName);
 				}
-				//Output
-				System.out.println(checkResult);
-		} catch (IOException e) {
-			System.out.println("Could not run prover");
-			e.printStackTrace();
+				
+				/* Run the Prover */						
+				try {					
+					Process runProver = proverProcess.start();
+					// Set up the in and output streams				
+					InputStream is = runProver.getInputStream();
+					InputStreamReader isr = new InputStreamReader(is);
+					BufferedReader br = new BufferedReader(isr);
+					FileWriter fstream = new FileWriter(fileName+".proof");
+					BufferedWriter out = new BufferedWriter(fstream);
+					ATPOutputParser ATPParser = new ATPOutputParser(br, out);
+					// Parse the stream for results		
+					checkResult = ATPParser.parse(graph, conjecture, weightUsedGraph);
+					is.close();
+					out.close();
+					runProver.destroy();
+					System.out.print(" "+checkResult+"("+checkSetting.prover+")");
+					/* If we found a proof, we can stop */
+					if (checkResult) {
+						/* Statistics Start */
+						usedAxiomCounter = ATPParser.usedAxioms.size();
+						for (int i = 0; i < usedAxiomCounter; i++) {
+							Axiom axiom = ATPParser.usedAxioms.elementAt(i);
+							localRelevance = obligation.premises.indexOf(axiom)+1;							
+							maxObRelevance = Math.max(localRelevance, maxObRelevance);							
+						}
+						/* Statistics End */
+						break;
+					} else {
+						usedAxiomCounter = 0;
+					}										
+				} catch (IOException e) {
+					System.out.println("Could not run prover");
+					e.printStackTrace();
+				}
+			}
+			System.out.println();			
+			System.out.println(
+					"% PSA Stats: maxObRelevance = "+maxObRelevance+
+					". Used Axioms: "+usedAxiomCounter+
+					". Given Axioms: "+givenAxiomCounter+
+					". Total Axioms: "+obligation.premises.size());
+			/* Statistics Start */
+			maxRelevance = Math.max(maxRelevance, maxObRelevance);
+			usedAxiomCounterSum = usedAxiomCounterSum+usedAxiomCounter;
+			givenAxiomCounterSum = givenAxiomCounterSum + givenAxiomCounter;
+			premisesSum = premisesSum + obligation.premises.size();
+			/* Statistics End */
+			
+			// ----------------------------- Calculate Score ---------------------------------
+			if (checkResult == true) {
+				theoremCounter++;
+				checkScore = checkScore+75;			
+			}
+			if (obligation.premises.size() != 0) {
+				premiseRatio = (double)usedAxiomCounter / givenAxiomCounter;
+			} else {
+				premiseRatio = 0;
+			}
+			// Time update
+			timePerObligation = (System.currentTimeMillis() - systemTime)/1000;
+			checkScore = checkScore + premiseRatio * 25;
+			checkScore = checkScore - timePerObligation;
 		}
-		// ----------------------------- Calculate Score ---------------------------------
-		if (checkResult == true) {
-			checkScore = checkScore+50;			
-		}
-		if (obligation.premises.size() != 0) {
-			premiseRatio = (double)usedAxiomCounter / (double)obligation.premises.size();
-		} else {
-			premiseRatio = 0;
-		}		
-		checkScore = checkScore+premiseRatio * 25;
-		checkScore = checkScore+ timePerObligation / maxTime * 25;
-		}
-		System.out.println(theoremCounter+" out of "+obligationCounter+" obligations were discharged");
-		System.out.println("The final score is "+checkScore);
-	}
-	
+		/* Round the final score to two digits */
+		BigDecimal checkScoreRounded = new BigDecimal(checkScore);
+		checkScoreRounded = checkScoreRounded.setScale(2, BigDecimal.ROUND_HALF_UP);	    
 
-/**
- * Takes a proof obligation and creates the corresponding TPTP problem file.
- * Axioms are annotated with their relevance value.
- * 
- * @param obligation	The obligation which should be translated into a TPTP problem.
- * @return	The filename of the newly created problem file.
- * @throws IOException	If the file cannot be written.
- */
-private String createTPTPProblem(Obligation obligation) throws IOException {
+		System.out.println(
+				"% Final PSA Stats: maxRelevance = "+maxRelevance+
+				". Used Axioms Sum: "+usedAxiomCounterSum+
+				". Given Axioms Sum: "+givenAxiomCounterSum+
+				". Total Axioms Sum: "+premisesSum);
+		System.out.println("% Final Result: "+theoremCounter+" out of "+obligationCounter+" obligations were discharged");
+		System.out.println("% Final score: "+checkScoreRounded);
+	}
+
+
+	/**
+	 * Takes a proof obligation and creates the corresponding TPTP problem file.
+	 * Axioms are annotated with their relevance value.
+	 * 
+	 * @param obligation	The obligation which should be translated into a TPTP problem.
+	 * @param numberOfPremises Only take the first numberOfPremises Premises 
+	 * @return	The filename of the newly created problem file.
+	 * @throws IOException	If the file cannot be written.
+	 */
+	private String createTPTPProblem(Obligation obligation, double numberOfPremises) throws IOException {
+		int i = 0;
 		String fileName = obligation.file+".naproche";
 		FileWriter fstream = new FileWriter(fileName);
 		BufferedWriter out = new BufferedWriter(fstream);
 		BigDecimal bd;
 		out.write("fof('"+obligation.conjecture.name+"'," +
 				"conjecture," +
-				obligation.conjecture.formula+","+
-				"unknown,[relevance(1.0)]). \n");
+				obligation.conjecture.formula.toString().replaceAll("\n", "")+"). \n");
 		for (Axiom a : obligation.premises) {
+			if (i >= numberOfPremises) { break; }
+			i++;
 			bd = new BigDecimal(a.scoreFinal);
 			bd = bd.setScale(4, BigDecimal.ROUND_DOWN); 
 			out.write("fof('"+a.name+"'," +
 					"axiom," +
-					a.formula+","+
-					"unknown,[relevance("+bd+")]). \n");
+					a.formula.toString().replaceAll("\n", "")+"). \n");
 		}
 		out.close();
 		return fileName;
 	}
 
-/**
- * Adds the obligation graph to the poof graph.
- * For each obligation, compares the premises to the premises of the previous obligation and creates edges with weight "weightAPRILS"
- * from all new premises to the obligation.
- */
-private void createObligationEdges() {
+	/**
+	 * Adds the obligation graph to the poof graph.
+	 * For each obligation, compares the premises to the premises of the previous obligation and creates edges with weight "weightAPRILS"
+	 * from all new premises to the obligation.
+	 */
+	private void createObligationEdges() {
 		String Vertice1 = obligations.get(0).conjecture.name;
+		DefaultWeightedEdge edge = new DefaultWeightedEdge();
 		Vector<Axiom> premises1 = obligations.get(0).premises;
+		/**
+		 * Initial Graph Setup
+		 */
+		if (!graph.containsVertex(Vertice1)) {
+			graph.addVertex(Vertice1);
+		}		
+		for (Axiom a : premises1) {
+			edge = new DefaultWeightedEdge();
+			if (!graph.containsVertex(a.name)) {
+				graph.addVertex(a.name);
+			}
+			graph.addEdge(Vertice1, a.name, edge);
+			graph.setEdgeWeight(edge, weightObligationGraph);			
+		}
 		String Vertice2 = new String();
 		Vector<Axiom> premises2;
-		DefaultWeightedEdge edge = new DefaultWeightedEdge();		
+		/**
+		 * Iterative Graph Setup
+		 */
 		for (int i = 1; i < obligations.size(); i++) {
 			Vertice2 = obligations.get(i).conjecture.name;
-			edge = new DefaultWeightedEdge();
+			if (!graph.containsVertex(Vertice2)) {
+				graph.addVertex(Vertice2);
+			}
 			graph.addEdge(Vertice2, Vertice1, edge);
 			graph.setEdgeWeight(edge, weightObligationGraph);
 			premises2 = obligations.get(i).premises;
 			for (Axiom a : premises2) {
 				if (!premises1.contains(a)) {
 					edge = new DefaultWeightedEdge();
+					if (!graph.containsVertex(a.name)) {
+						graph.addVertex(a.name);
+					}
 					graph.addEdge(Vertice2, a.name, edge);
 					graph.setEdgeWeight(edge, weightObligationGraph);
 				}
@@ -257,5 +350,5 @@ private void createObligationEdges() {
 			Vertice1 = obligations.get(i).conjecture.name;
 		}
 	}
-	
+
 }

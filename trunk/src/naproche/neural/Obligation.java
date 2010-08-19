@@ -1,7 +1,9 @@
 package naproche.neural;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Vector;
@@ -9,6 +11,10 @@ import java.util.Vector;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
+
+import tptp_parser.SimpleTptpParserOutput;
+import tptp_parser.TptpLexer;
+import tptp_parser.TptpParser;
 
 /**
  * A obligation consists of the conjecture and its premises.
@@ -21,7 +27,7 @@ public class Obligation {
 	/**
 	 * The location of the original problem file in TPTP format.
 	 */
-	public String file;
+	public File file;
 	/**
 	 * The conjecture of the obligation.
 	 */
@@ -29,7 +35,12 @@ public class Obligation {
 	/**
 	 * The premises of the conjecture.
 	 */
-	public Vector<Axiom> premises = new Vector<Axiom>();
+	public Vector<Axiom> premises; 
+	/**
+	 * When the Obligation gets discharged, these settings will be used. 
+	 * Contains the number of ATP tries as well as the time, prover and premise settings for each try. 
+	 */
+	public Vector<CheckSetting> checkSettings;
 	
 	/**
 	 * Creates a new obligation from a problem file.
@@ -37,26 +48,46 @@ public class Obligation {
 	 * @param fileLocation 	The location of the file. 
 	 * @throws IOException
 	 */
-	public Obligation(String fileLocation) throws IOException {
-		file = fileLocation;
-		BufferedReader inputStream = null;
-		String input;		
-		try {
-			inputStream = new BufferedReader(new FileReader(fileLocation));
-			//First Line is empty, second is the conjecture;
-			inputStream.readLine();
-			input = inputStream.readLine();
-			conjecture = new Axiom(input);
-            while ((input = inputStream.readLine()) != null) {
-            	premises.add(new Axiom(input));
-            } 
-            setAPRILSScore();
-		} finally {
-            if (inputStream != null) {
-                inputStream.close();
-            }
-        }
+	public Obligation(File file) throws IOException {
+		this.file = file;
+		premises = new Vector<Axiom>();
+		checkSettings = new Vector<CheckSetting>();
+		checkSettings.add(new CheckSetting());
 		
+		/* Open input stream */
+		DataInputStream inputStream;
+		try {
+			inputStream = new DataInputStream(new FileInputStream(file));
+		TptpLexer lexer = new TptpLexer(inputStream);
+		TptpParser parser = new TptpParser(lexer);
+		SimpleTptpParserOutput parserOutput = new SimpleTptpParserOutput();
+		String role;
+		try {
+		    for (SimpleTptpParserOutput.TopLevelItem formula = 
+		           (SimpleTptpParserOutput.TopLevelItem)parser.topLevelItem(parserOutput);
+		         formula != null;
+		         formula = (SimpleTptpParserOutput.TopLevelItem)parser.topLevelItem(parserOutput))
+		    {
+		    
+		    role = ((SimpleTptpParserOutput.AnnotatedFormula)formula).getRole().toString(); 
+		    if ( role.equalsIgnoreCase("conjecture")) {
+		    	conjecture = new Axiom(formula);
+		    } else {
+		    	premises.add(new Axiom(formula));
+		    }
+	 
+		    };
+		    setAPRILSScore();
+		}
+		// General ANTLR exception, provides diagnostics.
+		catch (antlr.ANTLRException e) {
+		    System.err.println("Syntax error in " + "test" + ": " + e);
+		}
+		} catch (FileNotFoundException e1) {
+			System.err.println("Trying to create a proof obligation from nonexisting file!");
+			e1.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -65,9 +96,9 @@ public class Obligation {
 	 * @param weight A double > 0. Used for the weighting the two different relevance scores.
 	 * 
 	 */
-	public void setFinalRelevance(double weight) {
+	public void setFinalRelevance(double weightAPRILS, double weightNaproche) {
 		for (Axiom a : premises) {
-			a.setScoreFinal(weight);
+			a.setScoreFinal(weightAPRILS, weightNaproche);
 		}
 	}
 	
