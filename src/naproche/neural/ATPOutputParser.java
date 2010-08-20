@@ -16,7 +16,7 @@ import tptp_parser.TptpParser;
 /**
  * Provides the means to parse the output of the ATPs EP 1.0, EP 1.2 and Vampire 1.0
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class ATPOutputParser {

@@ -17,7 +17,7 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 /**
  * A class for all the proof obligations of an example.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class Obligations {
@@ -211,6 +211,7 @@ public class Obligations {
 					/* If we found a proof, we can stop */
 					if (checkResult) {
 						/* Statistics Start */
+						obligation.checkResult = checkResult;
 						usedAxiomCounter = ATPParser.usedAxioms.size();
 						for (int i = 0; i < usedAxiomCounter; i++) {
 							Axiom axiom = ATPParser.usedAxioms.elementAt(i);

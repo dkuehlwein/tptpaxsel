@@ -20,7 +20,7 @@ import tptp_parser.TptpParser;
  * A obligation consists of the conjecture and its premises.
  * We want to prove that the premises imply the conjecture.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class Obligation {
@@ -41,6 +41,10 @@ public class Obligation {
 	 * Contains the number of ATP tries as well as the time, prover and premise settings for each try. 
 	 */
 	public Vector<CheckSetting> checkSettings;
+	/**
+	 * If the obligation was checked successfully, checkResult = true
+	 */
+	public boolean checkResult;
 	
 	/**
 	 * Creates a new obligation from a problem file.
@@ -53,6 +57,7 @@ public class Obligation {
 		premises = new Vector<Axiom>();
 		checkSettings = new Vector<CheckSetting>();
 		checkSettings.add(new CheckSetting());
+		checkResult = false;
 		
 		/* Open input stream */
 		DataInputStream inputStream;

@@ -6,7 +6,7 @@ package naproche.neural;
  * Namely the Time, the Prover(s) and the Number of Premises
  * Default values are Time = 5, Prover = E, NumOfPrem = -1.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class CheckSetting {	

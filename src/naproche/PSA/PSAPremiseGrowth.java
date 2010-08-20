@@ -9,7 +9,7 @@ import naproche.neural.Obligations;
 /**
  * PSAPremiseGrowth is a PSA that creates several proof tries with an increasing number of premises.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class PSAPremiseGrowth implements PremiseSelectionAlgorithm{
