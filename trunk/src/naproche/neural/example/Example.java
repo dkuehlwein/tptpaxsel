@@ -18,7 +18,7 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 /**
  * Class used for loading an example set of problems.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class Example {

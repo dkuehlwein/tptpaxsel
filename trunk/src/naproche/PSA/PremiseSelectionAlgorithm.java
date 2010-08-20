@@ -8,7 +8,7 @@ import naproche.neural.Obligations;
 /**
  * Each Premise Selection Algorithm must implement this interface.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public interface PremiseSelectionAlgorithm {

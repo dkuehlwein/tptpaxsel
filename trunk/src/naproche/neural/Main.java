@@ -14,7 +14,7 @@ import naproche.neural.example.Example;
 
 
 /**
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class Main {
@@ -49,10 +49,10 @@ public class Main {
 //		PSAExistential ex = new PSAExistential();
 //		PSASimple two = new PSASimple("E",30);
 		one.changeCheckSettings(obligations);
-		premiseGrowth.addCheckSettings(obligations);
-		setLog("landauPremiseGrowthEx5.log");
+//		premiseGrowth.addCheckSettings(obligations);
+//		setLog("landauPremiseGrowthEx5.log");
 		one.logInfo();
-		premiseGrowth.logInfo();		
+//		premiseGrowth.logInfo();		
 		obligations.checkObligations();
 				
 		/*

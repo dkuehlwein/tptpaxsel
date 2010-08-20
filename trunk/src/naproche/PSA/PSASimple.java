@@ -9,7 +9,7 @@ import naproche.neural.Obligations;
  * Simple Premise Selection Algorithm (PSA):
  * One Prover, running for Time seconds.
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class PSASimple implements PremiseSelectionAlgorithm{

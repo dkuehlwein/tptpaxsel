@@ -21,7 +21,7 @@ import naproche.neural.Obligations;
  * is_existential(type~logical_symbol..name~'=>'..args~[_Ante,Succ]) :-
  *  is_existential(Succ).
  *  
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 public class PSAExistential implements PremiseSelectionAlgorithm{

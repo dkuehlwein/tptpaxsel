@@ -11,7 +11,7 @@ import tptp_parser.SimpleTptpParserOutput.TopLevelItem;
  * obligation. E.g. scoreAprils denotes the score compared to the other premises of an 
  * obligation. 
  * 
- * @author rekzah
+ * @author Daniel Kühlwein
  *
  */
 
