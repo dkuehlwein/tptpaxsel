@@ -1,10 +1,10 @@
-package test.naproche.neural.example;
+package test.tptpaxsel.example;
 
 import java.io.IOException;
 
 import junit.framework.TestCase;
 
-import naproche.neural.example.Example;
+import tptpaxsel.example.Example;
 
 import org.junit.Test;
 

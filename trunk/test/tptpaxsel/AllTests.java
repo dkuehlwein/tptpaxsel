@@ -1,4 +1,4 @@
-package test.naproche.neural;
+package test.tptpaxsel;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

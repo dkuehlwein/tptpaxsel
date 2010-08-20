@@ -1,14 +1,15 @@
-package test.naproche.neural;
+package test.tptpaxsel;
 
 import java.io.File;
 import java.io.IOException;
 
 import junit.framework.TestCase;
 
-import naproche.neural.Axiom;
-import naproche.neural.Obligation;
 
 import org.junit.Test;
+
+import tptpaxsel.Axiom;
+import tptpaxsel.Obligation;
 
 public class ObligationTest extends TestCase{
 	public File testLocation = new File("/home/rekzah/workspace/naproche/examples/landau/6-apod(6)-holds(apod(6), 10, 0).input.aprils");
