@@ -32,7 +32,7 @@ tptpaxsel uses the ATPs E and Vampire. You need to install at least one of them.
 = Using tptpaxsel =
 Now that all the preliminaries are done with, we can start using tptpaxsel.
 
-  * Open Eclipse and open the file Main.java in src/naproche.neural
+  * Open Eclipse and open the file Main.java in src/tptpaxsel
   * Copy and paste the following code in the main method:
 {{{
 Example example = new Example("Landau");
