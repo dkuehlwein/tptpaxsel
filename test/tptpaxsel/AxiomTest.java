@@ -1,9 +1,10 @@
-package test.naproche.neural;
+package test.tptpaxsel;
 
 import org.junit.Test;
 
+import tptpaxsel.Axiom;
+
 import junit.framework.TestCase;
-import naproche.neural.Axiom;
 
 public class AxiomTest extends TestCase {
 	Axiom axiom1 = new Axiom();
