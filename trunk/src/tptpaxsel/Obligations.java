@@ -121,6 +121,7 @@ public class Obligations {
 		double premiseRatio;
 		double timePerObligation;
 		double systemTime;		
+		double totalTime = System.currentTimeMillis();
 		int maxRelevance = 0;
 		int maxObRelevance;
 		int localRelevance;		
@@ -228,12 +229,6 @@ public class Obligations {
 					e.printStackTrace();
 				}
 			}
-			System.out.println();			
-			System.out.println(
-					"% PSA Stats: maxObRelevance = "+maxObRelevance+
-					". Used Axioms: "+usedAxiomCounter+
-					". Given Axioms: "+givenAxiomCounter+
-					". Total Axioms: "+obligation.premises.size());
 			/* Statistics Start */
 			maxRelevance = Math.max(maxRelevance, maxObRelevance);
 			usedAxiomCounterSum = usedAxiomCounterSum+usedAxiomCounter;
@@ -255,13 +250,27 @@ public class Obligations {
 			timePerObligation = (System.currentTimeMillis() - systemTime)/1000;
 			checkScore = checkScore + premiseRatio * 25;
 			checkScore = checkScore - timePerObligation;
+			
+			/* Output Start */
+			System.out.println();			
+			System.out.println(
+					"% PSA Stats: " +
+					"Used Time: "+timePerObligation+
+					". maxObRelevance: "+maxObRelevance+
+					". Used Axioms: "+usedAxiomCounter+
+					". Given Axioms: "+givenAxiomCounter+
+					". Total Axioms: "+obligation.premises.size());
+			/* Output End */
 		}
 		/* Round the final score to two digits */
 		BigDecimal checkScoreRounded = new BigDecimal(checkScore);
-		checkScoreRounded = checkScoreRounded.setScale(2, BigDecimal.ROUND_HALF_UP);	    
-
+		checkScoreRounded = checkScoreRounded.setScale(2, BigDecimal.ROUND_HALF_UP);	 
+		
+		totalTime = (System.currentTimeMillis() - totalTime)/1000;
 		System.out.println(
-				"% Final PSA Stats: maxRelevance = "+maxRelevance+
+				"% Final PSA Stats: " +
+				"Used Time: "+totalTime+
+				". maxRelevance: "+maxRelevance+
 				". Used Axioms Sum: "+usedAxiomCounterSum+
 				". Given Axioms Sum: "+givenAxiomCounterSum+
 				". Total Axioms Sum: "+premisesSum);
@@ -295,7 +304,9 @@ public class Obligations {
 			bd = bd.setScale(4, BigDecimal.ROUND_DOWN); 
 			out.write("fof('"+a.name+"'," +
 					"axiom," +
-					a.formula.toString().replaceAll("\n", "")+"). \n");
+					a.formula.toString().replaceAll("\n", "")+
+//					",[relevance("+a.scoreFinal+")]" +
+					"). \n");
 		}
 		out.close();
 		return fileName;
