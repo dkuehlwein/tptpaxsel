@@ -21,7 +21,7 @@ public class Axiom {
 	 */
 	public String name;
 	/**
-	 * The formula as string in TPTP format.
+	 * The formula in TPTP format.
 	 */
 	public SimpleTptpParserOutput.Formula formula;
 	/**
@@ -73,7 +73,7 @@ public class Axiom {
 	}
 
 	/**
-	 * Basic instructor that only initializes the name and the formula.
+	 * Basic constructor that only initializes the name and the formula.
 	 * 
 	 * @param axiomName
 	 * @param formula
