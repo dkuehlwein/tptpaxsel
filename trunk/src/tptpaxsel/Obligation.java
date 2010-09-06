@@ -45,6 +45,10 @@ public class Obligation {
 	 * If the obligation was checked successfully, checkResult = true
 	 */
 	public boolean checkResult;
+	/**
+	 * Contains all the statistics of this obligations
+	 */
+	public ObligationStatistics stats;
 	
 	/**
 	 * Creates a new obligation from a problem file.
@@ -92,6 +96,9 @@ public class Obligation {
 			System.err.println("Trying to create a proof obligation from nonexisting file!");
 			e1.printStackTrace();
 		}
+		
+		stats = new ObligationStatistics();
+		stats.setTotalAxioms(premises.size());		
 
 	}
 

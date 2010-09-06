@@ -34,7 +34,7 @@ public class Main {
 	 */	
 	public static void main(String[] args) {
 		/* Start tests */
-        Example example = new Example("Landau");
+        Example example = new Example("Euclid");
 		//example.runAprils();
 		Obligations obligations = example.obligations;		
 		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
@@ -54,6 +54,32 @@ public class Main {
 		System.out.println("Example: "+example.name);
 		one.changeCheckSettings(obligations);
 		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		try {
+			int[] timeStats = new int[300];
+			for (int i : timeStats) {
+				timeStats[i] = 0;
+			}
+			PrintStream out = new PrintStream(new FileOutputStream("test.log"));
+			ObligationStatistics stats = new ObligationStatistics();
+			stats.printHeader(out);
+			for (Obligation o : obligations.obligations) {
+				for (int i=0; i < timeStats.length; i++) {					
+					if (o.stats.getProofTime() < i && o.stats.getResult()) {
+						timeStats[i] = timeStats[i]+1;
+					}
+				}
+				o.stats.printMachine(out);
+			}
+			for (int i : timeStats) {
+				System.out.println(timeStats[i]);
+			}
+			
+		} catch (FileNotFoundException e) {			
+			e.printStackTrace();
+		}
+		/* Write machine readable stats End */
+		
 		//Set CheckSettings
 		//ex.changeCheckSettings(obligations);
 		//ex.deleteExistentialPremises(obligations);
