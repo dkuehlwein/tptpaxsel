@@ -112,18 +112,17 @@ public class Obligations {
 		createObligationEdges();
 		String fileName = new String();
 		String conjecture;
-		int usedAxiomCounter;
+		ObligationStatistics stats;		
 		int usedAxiomCounterSum = 0;
-		double givenAxiomCounter;
-		double givenAxiomCounterSum = 0;
+		int givenAxiomCounter;
+		int givenAxiomCounterSum = 0;
 		int premisesSum = 0;
 		boolean checkResult;
 		double premiseRatio;
-		double timePerObligation;
+		double checkTryTime;
 		double systemTime;		
 		double totalTime = System.currentTimeMillis();
-		int maxRelevance = 0;
-		int maxObRelevance;
+		int maxRelevance = 0;		
 		int localRelevance;		
 		theoremCounter = 0;
 		checkScore = 0;
@@ -133,9 +132,8 @@ public class Obligations {
 			System.out.print(obligation.file+" Result:");
 			
 			/* Preparations */
-			usedAxiomCounter = 0;
-			givenAxiomCounter = 0;
-			maxObRelevance = 0;
+			stats = obligation.stats;			
+			givenAxiomCounter = 0;			
 			checkResult = false;
 			systemTime = System.currentTimeMillis();
 			conjecture = obligation.conjecture.name;
@@ -145,10 +143,15 @@ public class Obligations {
 			
 			/* 	Proof Loop	*/
 			for (CheckSetting checkSetting : obligation.checkSettings) {
+				/* Statistics Start */
+				checkTryTime = System.currentTimeMillis();
+				stats.setProofTries(stats.getProofTries()+1);
+				stats.addProver(checkSetting.prover);
+				/* Statistics End */
 				if (checkSetting.numOfPrem == -1) {
 					givenAxiomCounter = obligation.premises.size(); 
 				} else {
-					givenAxiomCounter = checkSetting.numOfPrem;
+					givenAxiomCounter = (int)Math.floor(checkSetting.numOfPrem+0.5d);
 				}
 				/* Select the right premises */				
 				try {
@@ -213,25 +216,29 @@ public class Obligations {
 					if (checkResult) {
 						/* Statistics Start */
 						obligation.checkResult = checkResult;
-						usedAxiomCounter = ATPParser.usedAxioms.size();
-						for (int i = 0; i < usedAxiomCounter; i++) {
+						stats.setUsedAxiomsNumber(ATPParser.usedAxioms.size());
+						stats.setUsedAxioms(ATPParser.usedAxioms);
+						stats.setProofTime((System.currentTimeMillis() - checkTryTime)/1000);
+						stats.setProver(checkSetting.prover);
+						for (int i = 0; i < stats.getUsedAxiomsNumber(); i++) {
 							Axiom axiom = ATPParser.usedAxioms.elementAt(i);
 							localRelevance = obligation.premises.indexOf(axiom)+1;							
-							maxObRelevance = Math.max(localRelevance, maxObRelevance);							
+							stats.setMaxDistance(Math.max(localRelevance, stats.getMaxDistance()));							
 						}
 						/* Statistics End */
 						break;
-					} else {
-						usedAxiomCounter = 0;
-					}										
+					} 										
 				} catch (IOException e) {
 					System.out.println("Could not run prover");
 					e.printStackTrace();
 				}
 			}
 			/* Statistics Start */
-			maxRelevance = Math.max(maxRelevance, maxObRelevance);
-			usedAxiomCounterSum = usedAxiomCounterSum+usedAxiomCounter;
+			stats.setResult(checkResult);
+			stats.setGivenAxioms(givenAxiomCounter);
+			stats.setTotalTime((System.currentTimeMillis() - systemTime)/1000);
+			maxRelevance = Math.max(maxRelevance, stats.getMaxDistance());
+			usedAxiomCounterSum = usedAxiomCounterSum+stats.getUsedAxiomsNumber();
 			givenAxiomCounterSum = givenAxiomCounterSum + givenAxiomCounter;
 			premisesSum = premisesSum + obligation.premises.size();
 			/* Statistics End */
@@ -242,24 +249,16 @@ public class Obligations {
 				checkScore = checkScore+75;			
 			}
 			if (obligation.premises.size() != 0) {
-				premiseRatio = (double)usedAxiomCounter / givenAxiomCounter;
+				premiseRatio = (double)stats.getUsedAxiomsNumber() / stats.getGivenAxioms();
 			} else {
 				premiseRatio = 0;
 			}
-			// Time update
-			timePerObligation = (System.currentTimeMillis() - systemTime)/1000;
+			// Score update			
 			checkScore = checkScore + premiseRatio * 25;
-			checkScore = checkScore - timePerObligation;
+			checkScore = checkScore - stats.getTotalTime();
 			
 			/* Output Start */
-			System.out.println();			
-			System.out.println(
-					"% PSA Stats: " +
-					"Used Time: "+timePerObligation+
-					". maxObRelevance: "+maxObRelevance+
-					". Used Axioms: "+usedAxiomCounter+
-					". Given Axioms: "+givenAxiomCounter+
-					". Total Axioms: "+obligation.premises.size());
+			stats.print();
 			/* Output End */
 		}
 		/* Round the final score to two digits */
