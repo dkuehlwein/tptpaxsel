@@ -34,7 +34,7 @@ public class Main {
 	 */	
 	public static void main(String[] args) {
 		/* Start tests */
-        Example example = new Example("Euclid");
+        Example example = new Example("Landau");
 		//example.runAprils();
 		Obligations obligations = example.obligations;		
 		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
@@ -47,7 +47,7 @@ public class Main {
 		provers[0] = "V";
 		provers[1] = "E";
 		PSAPremiseGrowth premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);
-		PSASimple one = new PSASimple("V",5);
+		PSASimple one = new PSASimple("V",30);
 		PSASimple two = new PSASimple("E",5);
 		PSAExistential ex = new PSAExistential();
 		// Log
@@ -56,23 +56,23 @@ public class Main {
 		obligations.checkObligations();
 		/* Write machine readable stats Start */
 		try {
-			int[] timeStats = new int[300];
+			int[] timeStats = new int[30];
 			for (int i : timeStats) {
-				timeStats[i] = 0;
+				i = 0;
 			}
 			PrintStream out = new PrintStream(new FileOutputStream("test.log"));
 			ObligationStatistics stats = new ObligationStatistics();
 			stats.printHeader(out);
 			for (Obligation o : obligations.obligations) {
 				for (int i=0; i < timeStats.length; i++) {					
-					if (o.stats.getProofTime() < i && o.stats.getResult()) {
-						timeStats[i] = timeStats[i]+1;
+					if (o.stats.getProofTime() < i && o.stats.getResult()) {	
+						timeStats[i] = timeStats[i]+1;						
 					}
 				}
 				o.stats.printMachine(out);
 			}
 			for (int i : timeStats) {
-				System.out.println(timeStats[i]);
+				System.out.println(i);
 			}
 			
 		} catch (FileNotFoundException e) {			
