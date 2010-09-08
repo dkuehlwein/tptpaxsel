@@ -129,7 +129,7 @@ public class Obligations {
 
 		for (Obligation obligation : obligations) {			
 			// Output
-			System.out.print(obligation.file+" Result:");
+			System.out.print(obligation.problemFile+" Result:");
 			
 			/* Preparations */
 			stats = obligation.stats;			
@@ -289,7 +289,7 @@ public class Obligations {
 	 */
 	private String createTPTPProblem(Obligation obligation, double numberOfPremises) throws IOException {
 		int i = 0;
-		String fileName = obligation.file+".naproche";
+		String fileName = obligation.problemFile+".naproche";
 		FileWriter fstream = new FileWriter(fileName);
 		BufferedWriter out = new BufferedWriter(fstream);
 		BigDecimal bd;
