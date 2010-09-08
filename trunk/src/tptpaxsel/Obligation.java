@@ -27,7 +27,15 @@ public class Obligation {
 	/**
 	 * The location of the original problem file in TPTP format.
 	 */
-	public File file;
+	public File problemFile;
+	/**
+	 * The location of the ATP Input file
+	 */
+	public File ATPInput;
+	/**
+	 * The location of the ATP Output file
+	 */
+	public File ATPOutput;
 	/**
 	 * The conjecture of the obligation.
 	 */
@@ -57,7 +65,7 @@ public class Obligation {
 	 * @throws IOException
 	 */
 	public Obligation(File file) throws IOException {
-		this.file = file;
+		problemFile = file;		
 		premises = new Vector<Axiom>();
 		checkSettings = new Vector<CheckSetting>();
 		checkSettings.add(new CheckSetting());

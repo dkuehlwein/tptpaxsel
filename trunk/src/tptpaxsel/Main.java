@@ -55,29 +55,8 @@ public class Main {
 		one.changeCheckSettings(obligations);
 		obligations.checkObligations();
 		/* Write machine readable stats Start */
-		try {
-			int[] timeStats = new int[30];
-			for (int i : timeStats) {
-				i = 0;
-			}
-			PrintStream out = new PrintStream(new FileOutputStream("test.log"));
-			ObligationStatistics stats = new ObligationStatistics();
-			stats.printHeader(out);
-			for (Obligation o : obligations.obligations) {
-				for (int i=0; i < timeStats.length; i++) {					
-					if (o.stats.getProofTime() < i && o.stats.getResult()) {	
-						timeStats[i] = timeStats[i]+1;						
-					}
-				}
-				o.stats.printMachine(out);
-			}
-			for (int i : timeStats) {
-				System.out.println(i);
-			}
-			
-		} catch (FileNotFoundException e) {			
-			e.printStackTrace();
-		}
+		Statistics.printMachineStats(obligations, "testoutput");
+		Statistics.printProcessTimeline(obligations, 30, "timeline");
 		/* Write machine readable stats End */
 		
 		//Set CheckSettings
