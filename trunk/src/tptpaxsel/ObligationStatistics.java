@@ -59,10 +59,15 @@ public class ObligationStatistics {
 	 * E.g. PSAPremiseGrowth uses several proof tries.
 	 */
 	private int proofTries;
+	/**
+	 * True if the conjecture was not used in the proof
+	 */
+	private boolean inconsistencyWarning;
 	
 	/* Constructors */
-	public ObligationStatistics() {
+	public ObligationStatistics() {		
 		result = false;		
+		inconsistencyWarning = false;
 		maxDistance = 0;
 		proofTime = 0;
 		proofTries = 0;		
@@ -135,6 +140,12 @@ public class ObligationStatistics {
 	public void setProofTries(int proofTries) {
 		this.proofTries = proofTries;
 	}
+	public boolean isInconsistencyWarning() {
+		return inconsistencyWarning;
+	}
+	public void setInconsistencyWarning(boolean inconsistencyWarning) {
+		this.inconsistencyWarning = inconsistencyWarning;
+	}
 
 	/**
 	 * If prover2 is not an element of provers, adds prover2 to the provers array
@@ -173,6 +184,7 @@ public class ObligationStatistics {
 		System.out.println(
 				"% PSA Stats: \n% " +
 				"Result: "+result+"\t"+
+				"InconsistencyWarning: "+inconsistencyWarning+"\t"+
 				"Prover: "+prover+"\n% "+
 				"TotalAxioms: "+totalAxioms+"\t"+
 				"GivenAxioms: "+givenAxioms+"\t"+
@@ -193,6 +205,7 @@ public class ObligationStatistics {
 	public void printHeader(PrintStream out) {
 		out.println(
 				"Result\t" +
+				"InconsistencyWarning\t"+
 				"Prover\t"+
 				"TotalAxioms\t"+
 				"GivenAxioms\t"+
@@ -219,6 +232,7 @@ public class ObligationStatistics {
 		
 		out.println(
 				result+"\t"+
+				inconsistencyWarning+"\t"+
 				prover+"\t"+
 				totalAxioms+"\t"+
 				givenAxioms+"\t"+

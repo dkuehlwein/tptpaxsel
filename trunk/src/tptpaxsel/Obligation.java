@@ -54,6 +54,10 @@ public class Obligation {
 	 */
 	public boolean checkResult;
 	/**
+	 * True if a proof could be found without using the conjecture.
+	 */
+	public boolean inconsistencyWarning;
+	/**
 	 * Contains all the statistics of this obligations
 	 */
 	public ObligationStatistics stats;
@@ -66,9 +70,12 @@ public class Obligation {
 	 */
 	public Obligation(File file) throws IOException {
 		problemFile = file;		
+		ATPInput = new File(file.toString()+".naproche");
+		ATPOutput = new File(file.toString()+".output");
 		premises = new Vector<Axiom>();
 		checkSettings = new Vector<CheckSetting>();
 		checkSettings.add(new CheckSetting());
+		inconsistencyWarning = false;
 		checkResult = false;
 		
 		/* Open input stream */
@@ -106,8 +113,7 @@ public class Obligation {
 		}
 		
 		stats = new ObligationStatistics();
-		stats.setTotalAxioms(premises.size());		
-
+		stats.setTotalAxioms(premises.size());	
 	}
 
 	/**
