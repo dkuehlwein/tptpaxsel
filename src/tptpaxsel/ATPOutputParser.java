@@ -24,6 +24,7 @@ public class ATPOutputParser {
 	public BufferedReader in;
 	public BufferedWriter out;		
 	public Vector<Axiom> usedAxioms;
+	public boolean inconsistencyWarning;
 	
 	public ATPOutputParser(BufferedReader in, BufferedWriter out) {		
 		this.in = in;
@@ -36,12 +37,14 @@ public class ATPOutputParser {
 	 * with the tptp parser. Best way I found so far to parse E and Vampire output.	 
 	 * 
 	 * @param graph The proof Graph
+	 * @param inconsistencyWarning 
 	 * @param conjecture The name of the conjecture. Used to add edges to the graph.
 	 * @param weightUsedGraph The weight of the edges added to the graph
 	 * @return
 	 */
 	public boolean parse(DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph, String conjectureName, double weightUsedGraph) {
 		boolean checkResult = false;
+		inconsistencyWarning = true;
 		String axiomName;
 		String line;
 		String nextline;
@@ -102,6 +105,8 @@ public class ATPOutputParser {
 										graph.addEdge(conjectureName, axiomName, edge);
 										graph.setEdgeWeight(edge, weightUsedGraph);								
 										usedAxioms.add(new Axiom(axiomName, (SimpleTptpParserOutput.AnnotatedFormula)formula));
+									} else if (role.equals("negated_conjecture")) {
+										inconsistencyWarning = false;
 									}
 								}		 
 							}

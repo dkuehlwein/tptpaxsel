@@ -47,7 +47,7 @@ public class Main {
 		provers[0] = "V";
 		provers[1] = "E";
 		PSAPremiseGrowth premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);
-		PSASimple one = new PSASimple("V",30);
+		PSASimple one = new PSASimple("V",5);
 		PSASimple two = new PSASimple("E",5);
 		PSAExistential ex = new PSAExistential();
 		// Log

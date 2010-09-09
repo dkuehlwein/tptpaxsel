@@ -87,7 +87,7 @@ public class Obligations {
 		// Read the problem files and create the obligations.			
 		for (int i = 0; i < obligationOrder.length; i++) {	
 			File file = new File(location+obligationOrder[i]);
-			File fileAprils = new File(location+obligationOrder[i]);
+			File fileAprils = new File(location+obligationOrder[i]+".aprils");
 			/* If possible, we try to get relevance information from APRILS */
 			if (fileAprils.exists()) {
 				try {
@@ -109,8 +109,7 @@ public class Obligations {
 	 * Tries to discharge the obligations.
 	 */
 	public void checkObligations() {
-		createObligationEdges();
-		String fileName = new String();
+		createObligationEdges();		
 		String conjecture;
 		ObligationStatistics stats;		
 		int usedAxiomCounterSum = 0;
@@ -154,8 +153,8 @@ public class Obligations {
 					givenAxiomCounter = (int)Math.floor(checkSetting.numOfPrem+0.5d);
 				}
 				/* Select the right premises */				
-				try {
-					fileName = createTPTPProblem(obligation, givenAxiomCounter);
+				try {					
+					createTPTPProblem(obligation, givenAxiomCounter);
 				} catch (IOException e) {
 					System.out.println("Could not create TPTP Problem File");
 					e.printStackTrace();
@@ -171,7 +170,8 @@ public class Obligations {
 							"--memory_limit","1500", 
 							"--output_axiom_names","on",
 							"--mode","casc", 
-							"--input_file",fileName); 								
+							"--input_file",
+							obligation.ATPInput.toString()); 								
 				} else if (checkSetting.prover.equals("E10")) { 
 					proverProcess = new ProcessBuilder(
 							"/home/rekzah/Programming/Naproche/Naproche-Due/naproche_core/www/cgi-bin/TPTP/Systems/EP---1.0/eproof",							
@@ -182,7 +182,7 @@ public class Obligations {
 							"--memory-limit=Auto",
 							"--tstp-in",
 							"--tstp-out",
-							fileName);						
+							obligation.ATPInput.toString());						
 				} else { 
 					proverProcess = new ProcessBuilder(						
 						"eproof",
@@ -193,7 +193,7 @@ public class Obligations {
 						"--memory-limit=Auto",
 						"--tstp-in",
 						"--tstp-out",
-						fileName);
+						obligation.ATPInput.toString());
 				}
 				
 				/* Run the Prover */						
@@ -203,7 +203,7 @@ public class Obligations {
 					InputStream is = runProver.getInputStream();
 					InputStreamReader isr = new InputStreamReader(is);
 					BufferedReader br = new BufferedReader(isr);
-					FileWriter fstream = new FileWriter(fileName+".proof");
+					FileWriter fstream = new FileWriter(obligation.ATPOutput);
 					BufferedWriter out = new BufferedWriter(fstream);
 					ATPOutputParser ATPParser = new ATPOutputParser(br, out);
 					// Parse the stream for results		
@@ -220,6 +220,8 @@ public class Obligations {
 						stats.setUsedAxioms(ATPParser.usedAxioms);
 						stats.setProofTime((System.currentTimeMillis() - checkTryTime)/1000);
 						stats.setProver(checkSetting.prover);
+						stats.setInconsistencyWarning(ATPParser.inconsistencyWarning);
+						obligation.inconsistencyWarning = ATPParser.inconsistencyWarning;
 						for (int i = 0; i < stats.getUsedAxiomsNumber(); i++) {
 							Axiom axiom = ATPParser.usedAxioms.elementAt(i);
 							localRelevance = obligation.premises.indexOf(axiom)+1;							
@@ -287,10 +289,9 @@ public class Obligations {
 	 * @return	The filename of the newly created problem file.
 	 * @throws IOException	If the file cannot be written.
 	 */
-	private String createTPTPProblem(Obligation obligation, double numberOfPremises) throws IOException {
-		int i = 0;
-		String fileName = obligation.problemFile+".naproche";
-		FileWriter fstream = new FileWriter(fileName);
+	private void createTPTPProblem(Obligation obligation, double numberOfPremises) throws IOException {
+		int i = 0;		
+		FileWriter fstream = new FileWriter(obligation.ATPInput);
 		BufferedWriter out = new BufferedWriter(fstream);
 		BigDecimal bd;
 		out.write("fof('"+obligation.conjecture.name+"'," +
@@ -308,7 +309,7 @@ public class Obligations {
 					"). \n");
 		}
 		out.close();
-		return fileName;
+		return;
 	}
 
 	/**
