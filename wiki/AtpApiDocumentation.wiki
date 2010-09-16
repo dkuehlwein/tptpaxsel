@@ -9,7 +9,7 @@ To achieve this, the API presents itself as an abstraction-layer on a single dir
 Once set up the API may be run on all or a single file(s) in the directory and print out its findings in real-time through a PrintStream Object which may be configured independently (default is System.out). Afterwards (or during, which may lead to unexpected behavior) the configuration may be changed and everything may be rerun.
 
 = Setup =
-tptpaxsel needs to be set up according to the installationGuide, especially $PROJECTROOT/lib needs to be in the java-classpath and must contain the APRILS and Vampire binaries (if one wishes to use APRILS and/or Vampire), additionaly the E prover needs to be in the systems PATH (if one wishes to use E).
+tptpaxsel needs to be set up according to the InstallationGuide, especially $PROJECTROOT/lib needs to be in the java-classpath and must contain the APRILS and Vampire binaries (if one wishes to use APRILS and/or Vampire), additionaly the E prover needs to be in the systems PATH (if one wishes to use E).
 
 = Parameters =
  * PrintStream outStream - Every output will be written to outStream.
