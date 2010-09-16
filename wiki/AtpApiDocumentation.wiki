@@ -27,7 +27,7 @@ Note: When technique is "simple" all premises are selected at once.
 All these parameters are marked private and may only be accessed by their respective get/set methods.
 
 = Methods =
- * *Constructor* !AtpApi(location) - initalises the API into the directory at location, in relativity to project root. (i.e. when project root is "/home/user/tptp" and location is "files/input" the API will use the directory "/home/user/tptp/files/input" and will be able to run every .input or .tptp file in this path.
+ * *Constructor* !AtpApi(location) - initalises the API into the directory at location, in relativity to project root. (i.e. when project root is "/home/user/tptp" and location is "files/input" the API will use the directory "/home/user/tptp/files/input" and will be able to run every .input or .tptp file in this directory.
  * public void setAll(double weightObligationEdges, double weightAPRILS, double, weightNaproche,	String technique, String prover, String growthMethod, int growthStartValue, int growthIncrValue, int time, boolean changeExistential, boolean deleteExistential) - Sets all parameters at once.
  * public !HashMap<String,String> getConfig - returns all Parameters (non-string will be converted to strings) as Hashmap (indexed by their name).
  * public void setSimple(double weightObligationEdges, double weightAPRILS, double weightNaproche, String prover, int time) - quickly configure the API for use with "simple"-PSA.
