@@ -64,6 +64,10 @@ public class ObligationStatistics {
 	 */
 	private boolean inconsistencyWarning;
 	
+	private PrintStream outStream = System.out;
+	
+	private String name;
+	
 	/* Constructors */
 	public ObligationStatistics() {		
 		result = false;		
@@ -79,6 +83,12 @@ public class ObligationStatistics {
 	}
 	public void setResult(boolean result) {
 		this.result = result;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public double getTotalTime() {
 		return totalTime;
@@ -134,6 +144,15 @@ public class ObligationStatistics {
 	public void setProvers(String[] provers) {
 		this.provers = provers;
 	}
+	
+	public void setOutStream(PrintStream outStream) {
+		this.outStream = outStream;
+	}
+	
+	public PrintStream getOutStream() {
+		return this.outStream;
+	}
+	
 	public int getProofTries() {
 		return proofTries;
 	}
@@ -180,8 +199,8 @@ public class ObligationStatistics {
 			sprovers = s+"\t"+sprovers;
 		}
 		
-		System.out.println();
-		System.out.println(
+		outStream.println();
+		outStream.println(
 				"% PSA Stats: \n% " +
 				"Result: "+result+"\t"+
 				"InconsistencyWarning: "+inconsistencyWarning+"\t"+
@@ -204,6 +223,7 @@ public class ObligationStatistics {
 	 */
 	public void printHeader(PrintStream out) {
 		out.println(
+				"Name\t" +
 				"Result\t" +
 				"InconsistencyWarning\t"+
 				"Prover\t"+
@@ -214,6 +234,29 @@ public class ObligationStatistics {
 				"ProofTime\t"+
 				"TotalTime\t"+
 				"ProofTries\t"+
+				"Provers"
+		);		
+	}
+	
+	/**
+	 * Print the header of a machine readable output.
+	 * 
+	 * @param out
+	 * @param delimiter
+	 */
+	public void printHeader(PrintStream out, String delimiter) {
+		out.println(
+				"Name"+ delimiter +
+				"Result"+ delimiter +
+				"InconsistencyWarning"+delimiter+
+				"Prover"+delimiter+
+				"TotalAxioms"+delimiter+
+				"GivenAxioms"+delimiter+
+				"UsedAxioms"+delimiter+
+				"maxDistance"+delimiter+
+				"ProofTime"+delimiter+
+				"TotalTime"+delimiter+
+				"ProofTries"+delimiter+
 				"Provers"
 		);		
 	}
@@ -231,6 +274,7 @@ public class ObligationStatistics {
 		}		
 		
 		out.println(
+				name+"\t"+
 				result+"\t"+
 				inconsistencyWarning+"\t"+
 				prover+"\t"+
@@ -241,6 +285,34 @@ public class ObligationStatistics {
 				proofTime+"\t"+
 				totalTime+"\t"+
 				proofTries+"\t"+
+				sprovers
+		);	
+		
+	}
+	
+/**
+ * Print the statistics in machine readable output (values seperated by delimiter)
+ * @param out
+ * @param delimiter
+ */
+	public void printMachine(PrintStream out, String delimiter) {
+		String sprovers = new String();
+		for (String s : provers) {
+			sprovers = s+delimiter+sprovers;
+		}		
+		
+		out.println(
+				name+delimiter+
+				result+delimiter+
+				inconsistencyWarning+delimiter+
+				prover+delimiter+
+				totalAxioms+delimiter+
+				givenAxioms+delimiter+
+				usedAxiomsNumber+delimiter+
+				maxDistance+delimiter+
+				proofTime+delimiter+
+				totalTime+delimiter+
+				proofTries+delimiter+
 				sprovers
 		);	
 		
