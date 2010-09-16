@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Vector;
 
+import java.io.PrintStream;
+
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
@@ -61,11 +63,14 @@ public class Obligations {
 	 * Specifies the working directory
 	 */
 	public String workingDir;	
+	public String location;	
 
 	/**
 	 * The obligations in the order in which they were created.
 	 */
 	public Vector<Obligation> obligations = new Vector<Obligation>();
+	
+	public PrintStream outStream = System.out;
 
 	/**
 	 * Creates a new obligations class.
@@ -73,7 +78,7 @@ public class Obligations {
 	 * @param obligationOrder	A String[] which contains the filenames of the proof obligations in the order in which they are created.
 	 * @param location	The location of the files in the examples folder.
 	 */
-	public Obligations(String[] obligationOrder, String location) {
+	public Obligations(String[] obligationOrder, String location, PrintStream outStream) {
 		// Set default values for the weights and proof checker settings
 		weightAPRILS = 1;
 		weightNaproche = 1;
@@ -84,6 +89,7 @@ public class Obligations {
 		obligationCounter = obligationOrder.length;
 		theoremCounter = 0;
 		checkScore = 0;
+		this.location = location;
 		// Read the problem files and create the obligations.			
 		for (int i = 0; i < obligationOrder.length; i++) {	
 			File file = new File(location+obligationOrder[i]);
@@ -91,24 +97,166 @@ public class Obligations {
 			/* If possible, we try to get relevance information from APRILS */
 			if (fileAprils.exists()) {
 				try {
-					obligations.add(new Obligation(fileAprils));
+					obligations.add(new Obligation(fileAprils,outStream));
 				} catch (IOException e) {
-					System.out.println("Cannot find .aprils file. Run APRILS if you want to use the APRILS selection");
+					outStream.println("Cannot find .aprils file. Run APRILS if you want to use the APRILS selection");
 				}
 			} else if (file.exists()) {
 				try {
-					obligations.add(new Obligation(file));
+					obligations.add(new Obligation(file,outStream));
 				} catch (IOException e) {
-					System.out.println("Cannot find input file. Check the path variables");
+					outStream.println("Cannot find input file. Check the path variables");
 				}
 			}			
 		}		
+	}
+	
+	public ObligationStatistics checkSingleObligation(String filename, String outputType) {
+		createObligationEdges();		
+		String conjecture;
+		ObligationStatistics stats;		
+		int usedAxiomCounterSum = 0;
+		int givenAxiomCounter;
+		int givenAxiomCounterSum = 0;
+		int premisesSum = 0;
+		boolean checkResult;
+		double checkTryTime;
+		double systemTime;		
+		int maxRelevance = 0;		
+		int localRelevance;		
+		
+		Obligation obligation=null;
+		for (Obligation ob : obligations)
+			if (ob.problemFile.toString().equals(filename))
+				obligation = ob;
+		
+		if (obligation==null){
+			outStream.print("Obligation "+filename+" not found.");
+			return null;
+		}
+
+		// Output
+		outStream.print(obligation.problemFile+" Result:");
+		
+		/* Preparations */
+		stats = obligation.stats;			
+		givenAxiomCounter = 0;			
+		checkResult = false;
+		systemTime = System.currentTimeMillis();
+		conjecture = obligation.conjecture.name;
+		obligation.setNaprocheScore(graph);
+		obligation.setFinalRelevance(weightAPRILS,weightNaproche);
+		Collections.sort(obligation.premises, new AxiomFinalComparator());
+		
+		/* 	Proof Loop	*/
+		for (CheckSetting checkSetting : obligation.checkSettings) {
+			/* Statistics Start */
+			checkTryTime = System.currentTimeMillis();
+			stats.setProofTries(stats.getProofTries()+1);
+			stats.addProver(checkSetting.prover);
+			/* Statistics End */
+			if (checkSetting.numOfPrem == -1) {
+				givenAxiomCounter = obligation.premises.size(); 
+			} else {
+				givenAxiomCounter = (int)Math.floor(checkSetting.numOfPrem+0.5d);
+			}
+			/* Select the right premises */				
+			try {					
+				createTPTPProblem(obligation, givenAxiomCounter);
+			} catch (IOException e) {
+				outStream.println("Could not create TPTP Problem File");
+				e.printStackTrace();
+			}				
+			
+			/* Create the proof process */
+			ProcessBuilder proverProcess;
+			if (checkSetting.prover.equals("V")) {
+				proverProcess = new ProcessBuilder(							
+						"lib/VAMPIRE/vampire_lin32",
+						"-t",Integer.toString(checkSetting.time), 							
+						"--proof","tptp", 
+						"--memory_limit","1500", 
+						"--output_axiom_names","on",
+						"--mode","casc", 
+						"--input_file",
+						obligation.ATPInput.toString()); 								
+			} else{ 
+				proverProcess = new ProcessBuilder(						
+					"eproof",
+					"-xAuto",
+					"-tAuto",
+					"--cpu-limit="+checkSetting.time,
+					"--proof-time-unlimited",
+					"--memory-limit=Auto",
+					"--tstp-in",
+					"--tstp-out",
+					obligation.ATPInput.toString());
+			}
+			
+			/* Run the Prover */						
+			try {					
+				Process runProver = proverProcess.start();
+				// Set up the in and output streams				
+				InputStream is = runProver.getInputStream();
+				InputStreamReader isr = new InputStreamReader(is);
+				BufferedReader br = new BufferedReader(isr);
+				FileWriter fstream = new FileWriter(obligation.ATPOutput);
+				BufferedWriter out = new BufferedWriter(fstream);
+				ATPOutputParser ATPParser = new ATPOutputParser(br, out);
+				// Parse the stream for results		
+				checkResult = ATPParser.parse(graph, conjecture, weightUsedGraph);
+				is.close();
+				out.close();
+				runProver.destroy();
+				outStream.print(" "+checkResult+"("+checkSetting.prover+")");
+				/* If we found a proof, we can stop */
+				if (checkResult) {
+					/* Statistics Start */
+					obligation.checkResult = checkResult;
+					stats.setUsedAxiomsNumber(ATPParser.usedAxioms.size());
+					stats.setUsedAxioms(ATPParser.usedAxioms);
+					stats.setProofTime((System.currentTimeMillis() - checkTryTime)/1000);
+					stats.setProver(checkSetting.prover);
+					stats.setInconsistencyWarning(ATPParser.inconsistencyWarning);
+					obligation.inconsistencyWarning = ATPParser.inconsistencyWarning;
+					for (int i = 0; i < stats.getUsedAxiomsNumber(); i++) {
+						Axiom axiom = ATPParser.usedAxioms.elementAt(i);
+						localRelevance = obligation.premises.indexOf(axiom)+1;							
+						stats.setMaxDistance(Math.max(localRelevance, stats.getMaxDistance()));							
+					}
+					/* Statistics End */
+					break;
+				} 										
+			} catch (IOException e) {
+				outStream.println("Could not run prover");
+				e.printStackTrace();
+			}
+		}
+		/* Statistics Start */
+		stats.setResult(checkResult);
+		stats.setGivenAxioms(givenAxiomCounter);
+		stats.setTotalTime((System.currentTimeMillis() - systemTime)/1000);
+		maxRelevance = Math.max(maxRelevance, stats.getMaxDistance());
+		usedAxiomCounterSum = usedAxiomCounterSum+stats.getUsedAxiomsNumber();
+		givenAxiomCounterSum = givenAxiomCounterSum + givenAxiomCounter;
+		premisesSum = premisesSum + obligation.premises.size();
+		/* Statistics End */
+		
+		/* Output*/
+		if (outputType.equals("human"))
+			stats.print();
+		else if (outputType.equals("both")){
+			stats.print();
+			stats.printMachine(outStream);
+		}
+		else stats.printMachine(outStream);
+		return stats;
 	}
 
 	/**
 	 * Tries to discharge the obligations.
 	 */
-	public void checkObligations() {
+	public void checkObligations(String outputType) {
 		createObligationEdges();		
 		String conjecture;
 		ObligationStatistics stats;		
@@ -128,7 +276,7 @@ public class Obligations {
 
 		for (Obligation obligation : obligations) {			
 			// Output
-			System.out.print(obligation.problemFile+" Result:");
+			outStream.print(obligation.problemFile+" Result:");
 			
 			/* Preparations */
 			stats = obligation.stats;			
@@ -156,7 +304,7 @@ public class Obligations {
 				try {					
 					createTPTPProblem(obligation, givenAxiomCounter);
 				} catch (IOException e) {
-					System.out.println("Could not create TPTP Problem File");
+					outStream.println("Could not create TPTP Problem File");
 					e.printStackTrace();
 				}				
 				
@@ -211,7 +359,7 @@ public class Obligations {
 					is.close();
 					out.close();
 					runProver.destroy();
-					System.out.print(" "+checkResult+"("+checkSetting.prover+")");
+					outStream.print(" "+checkResult+"("+checkSetting.prover+")");
 					/* If we found a proof, we can stop */
 					if (checkResult) {
 						/* Statistics Start */
@@ -231,7 +379,7 @@ public class Obligations {
 						break;
 					} 										
 				} catch (IOException e) {
-					System.out.println("Could not run prover");
+					outStream.println("Could not run prover");
 					e.printStackTrace();
 				}
 			}
@@ -259,8 +407,14 @@ public class Obligations {
 			checkScore = checkScore + premiseRatio * 25;
 			checkScore = checkScore - stats.getTotalTime();
 			
-			/* Output Start */
-			stats.print();
+			/* Output*/
+			if (outputType.equals("human"))
+				stats.print();
+			else if (outputType.equals("both")){
+				stats.print();
+				stats.printMachine(outStream);
+			}
+			else stats.printMachine(outStream);
 			/* Output End */
 		}
 		/* Round the final score to two digits */
@@ -268,15 +422,15 @@ public class Obligations {
 		checkScoreRounded = checkScoreRounded.setScale(2, BigDecimal.ROUND_HALF_UP);	 
 		
 		totalTime = (System.currentTimeMillis() - totalTime)/1000;
-		System.out.println(
+		outStream.println(
 				"% Final PSA Stats: " +
 				"Used Time: "+totalTime+
 				". maxRelevance: "+maxRelevance+
 				". Used Axioms Sum: "+usedAxiomCounterSum+
 				". Given Axioms Sum: "+givenAxiomCounterSum+
 				". Total Axioms Sum: "+premisesSum);
-		System.out.println("% Final Result: "+theoremCounter+" out of "+obligationCounter+" obligations were discharged");
-		System.out.println("% Final score: "+checkScoreRounded);
+		outStream.println("% Final Result: "+theoremCounter+" out of "+obligationCounter+" obligations were discharged");
+		outStream.println("% Final score: "+checkScoreRounded);
 	}
 
 
@@ -361,6 +515,11 @@ public class Obligations {
 			premises1 = obligations.get(i).premises;
 			Vertice1 = obligations.get(i).conjecture.name;
 		}
+	}
+
+	public void runAprils() {
+		for(Obligation obligation : obligations)
+			obligation.runAprils();
 	}
 
 }

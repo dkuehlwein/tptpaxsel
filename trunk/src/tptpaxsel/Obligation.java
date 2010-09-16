@@ -16,11 +16,19 @@ import tptp_parser.SimpleTptpParserOutput;
 import tptp_parser.TptpLexer;
 import tptp_parser.TptpParser;
 
+import java.io.PrintStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+
 /**
  * A obligation consists of the conjecture and its premises.
  * We want to prove that the premises imply the conjecture.
  * 
  * @author Daniel Kühlwein
+ * @author Julian Schlöder
  *
  */
 public class Obligation {
@@ -62,13 +70,15 @@ public class Obligation {
 	 */
 	public ObligationStatistics stats;
 	
+	public PrintStream outStream;
+	
 	/**
 	 * Creates a new obligation from a problem file.
 	 * 
 	 * @param fileLocation 	The location of the file. 
 	 * @throws IOException
 	 */
-	public Obligation(File file) throws IOException {
+	public Obligation(File file, PrintStream outStream) throws IOException {
 		problemFile = file;		
 		ATPInput = new File(file.toString()+".naproche");
 		ATPOutput = new File(file.toString()+".output");
@@ -77,6 +87,7 @@ public class Obligation {
 		checkSettings.add(new CheckSetting());
 		inconsistencyWarning = false;
 		checkResult = false;
+		this.outStream = outStream;
 		
 		/* Open input stream */
 		DataInputStream inputStream;
@@ -114,6 +125,8 @@ public class Obligation {
 		
 		stats = new ObligationStatistics();
 		stats.setTotalAxioms(premises.size());	
+		stats.setOutStream(outStream);
+		stats.setName(file.toString());
 	}
 
 	/**
@@ -163,10 +176,10 @@ public class Obligation {
 		while (!missingPremises.isEmpty()) {
 			newNodes = getNewNodes(graph);
 			if (newNodes.size() == 0) {
-				System.out.println("No new nodes for "+ conjecture.name +" at depth" + depth);
-				System.out.println("Missing Premises are:");
+				outStream.println("No new nodes for "+ conjecture.name +" at depth" + depth);
+				outStream.println("Missing Premises are:");
 				for (Axiom a : missingPremises) {
-					System.out.println(a.name);
+					outStream.println(a.name);
 				}
 				break;
 			}
@@ -203,4 +216,50 @@ public class Obligation {
 		}
 		
 	}
+	
+	/**
+	 * Runs Aprils on the specific .tptp and .input files in the examples location.
+	 * @param location
+	 */
+	public void runAprils() {
+		File aprilsFile = new File(problemFile.toString()+".aprils");
+		if(aprilsFile.exists())
+			return;
+		else {
+			String fileName = problemFile.toString();
+			String workingDir="user.dir"; // set to current directory
+			String line;
+			try {
+				workingDir=new File(System.getProperty(workingDir)).getCanonicalPath();			 
+			}
+			catch (IOException e1) { outStream.println("Could not specify the working directory"); }
+			try {
+				if (fileName.endsWith(".tptp") || fileName.endsWith(".input")) {					
+					Process aprils = new ProcessBuilder(
+							workingDir+"/lib/APRILS/aprils",
+							fileName).start();
+					InputStream is = aprils.getInputStream();
+					InputStreamReader isr = new InputStreamReader(is);
+					BufferedReader br = new BufferedReader(isr);
+					FileWriter fstream = new FileWriter(fileName+".aprils");
+					BufferedWriter out = new BufferedWriter(fstream);
+	
+					while ((line = br.readLine()) != null) {
+						if (line.startsWith("%")) {}
+						else if (line.startsWith("fof")) {
+							out.write("\r\n");
+							out.write(line.trim());
+						} else {
+							out.write(line.trim());
+						}        	    	
+					}
+					out.close();
+				}
+			}
+			catch (IOException e) {
+				outStream.println("Could not run APRILS.");            
+			}
+		}
+	}
+	
 }
