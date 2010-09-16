@@ -38,11 +38,13 @@ All these parameters are marked private and may only be accessed by their respec
 The output of all three run-Methods will be in a machine-readable format (including header for easy import in any spreadsheet-application).
 
 = Example =
-{{{import tptpaxsel.!AtpApi;
+{{{
+import tptpaxsel.!AtpApi;
 [..]
 !AtpApi api = new !AtpApi("/examples/landau"); //initialise API for proofchecking the example files created from Landaus book
 api.setSimple(0.0,0.0,1.0, "V", 3); //use 100% Naproche-weight, the Vampire-prover (fastest) and give it 3 seconds (empirically shown to be a good time. with more time better results are achieved rarely)
-api.runAll(); //Starts proving all included theorems by Landau, and printing them in a machine-readable format (tabulator-seperated) to stdout.}}}
+api.runAll(); //Starts proving all included theorems by Landau, and printing them in a machine-readable format (tabulator-seperated) to stdout.
+}}}
 
 Please Note: Deeper in the framework a switch exists to make the output human-readable, but currently the API is restricted to delimiter-seperated values.
 For testing purposes one may edit the source and set "machine" to "human" in every call to checkSingleObligation or checkObligations.
