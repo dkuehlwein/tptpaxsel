@@ -292,6 +292,7 @@ public class ObligationStatistics {
 	
 /**
  * Print the statistics in machine readable output (values seperated by delimiter)
+ * 
  * @param out
  * @param delimiter
  */
