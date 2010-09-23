@@ -69,13 +69,26 @@ public class Obligation {
 	 * Contains all the statistics of this obligations
 	 */
 	public ObligationStatistics stats;
-	
+	/**
+	 * The output stream
+	 */
 	public PrintStream outStream;
 	
 	/**
 	 * Creates a new obligation from a problem file.
 	 * 
-	 * @param fileLocation 	The location of the file. 
+	 * @param file	A TPTP problem file
+	 * @throws IOException 
+	 */
+	public Obligation(File file) throws IOException {
+		this(file,System.out);
+	}
+	
+	/**
+	 * Creates a new obligation from a problem file.
+	 * Output is written on outStream.
+	 * 
+	 * @param file 	A TPTP problem file 
 	 * @throws IOException
 	 */
 	public Obligation(File file, PrintStream outStream) throws IOException {

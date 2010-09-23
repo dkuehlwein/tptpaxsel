@@ -33,128 +33,84 @@ public class Main {
 	 * @param args
 	 */	
 	public static void main(String[] args) {
-		/* Start tests */
-        Example example = new Example("Landau");
-		//example.runAprils();
-		Obligations obligations = example.obligations;		
-		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
-		obligations.weightAPRILS = weightAPRILS;
-		obligations.weightNaproche = weightNaproche;
-		obligations.weightObligationGraph = weightObligationEdges;
-		obligations.maxTime = maxTime;
-		//PSA Settings
+		Example example;
+		Obligations obligations;
+		PSASimple one;
+		PSASimple two;
+		PSAPremiseGrowth premiseGrowth;
+		PSAExistential ex = new PSAExistential();
+		
+		/* Copy pasteable foobar */
 		String[] provers = new String[2];
 		provers[0] = "V";
 		provers[1] = "E";
-		PSAPremiseGrowth premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);
-		PSASimple one = new PSASimple("V",5);
-		PSASimple two = new PSASimple("E",5);
-		PSAExistential ex = new PSAExistential();
+		premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);		
+		two = new PSASimple("E",5);
+		/* End Copy pasteable foobar */
+		
+		
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		ex.deleteExistentialPremises(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 0.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		one = new PSASimple("E",300);		
 		// Log
 		System.out.println("Example: "+example.name);
 		one.changeCheckSettings(obligations);
 		obligations.checkObligations();
 		/* Write machine readable stats Start */
-		Statistics.printMachineStats(obligations, "testoutput");
-		Statistics.printProcessTimeline(obligations, 30, "timeline");
+		Statistics.printMachineStats(obligations, "EuclidE300N1A0ExDel.stats");
+		Statistics.printProcessTimeline(obligations, 300, "EuclidE300N1A0ExDel.timeline");
 		/* Write machine readable stats End */
 		
-		//Set CheckSettings
-		//ex.changeCheckSettings(obligations);
-		//ex.deleteExistentialPremises(obligations);
-		/*
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		one = new PSASimple("E",300);		
+		// Log
+		System.out.println("Example: "+example.name);
 		one.changeCheckSettings(obligations);
-		two.addCheckSettings(obligations);
-		//premiseGrowth.addCheckSettings(obligations);
-		setLog("landau55ExEV5.log");
-		System.out.println("----------------------------Test Start-----------------------------------");
-		ex.logInfo();
-		one.logInfo();
-		two.logInfo();
-		//premiseGrowth.logInfo();		
 		obligations.checkObligations();
-		System.out.println("----------------------------Test End-----------------------------------");
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "EuclidE300N1A1.stats");
+		Statistics.printProcessTimeline(obligations, 300, "EuclidE300N1A1.timeline");
+		/* Write machine readable stats End */
 		
-		one = new PSASimple("V",10);
-		two = new PSASimple("E", 10);
-		//premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 10, 0, provers);
-		//Set CheckSettings
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		ex.deleteExistentialPremises(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		one = new PSASimple("E",300);		
+		// Log
+		System.out.println("Example: "+example.name);
 		one.changeCheckSettings(obligations);
-		two.addCheckSettings(obligations);
-		//premiseGrowth.addCheckSettings(obligations);
-		setLog("landau55ExEV10.log");
-		System.out.println("----------------------------Test Start-----------------------------------");
-		ex.logInfo();
-		one.logInfo();
-		two.logInfo();
-		//premiseGrowth.logInfo();		
-		obligations.checkObligations();		
-		System.out.println("----------------------------Test End-----------------------------------");
-		
-		one = new PSASimple("V",30);
-		two = new PSASimple("E", 30);
-		//premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 30, 0, provers);
-		//Set CheckSettings
-		one.changeCheckSettings(obligations);
-		two.addCheckSettings(obligations);
-		//premiseGrowth.addCheckSettings(obligations);
-		setLog("landau55ExEV30.log");
-		System.out.println("----------------------------Test Start-----------------------------------");
-		ex.logInfo();
-		one.logInfo();
-		two.logInfo();
-		//premiseGrowth.logInfo();		
-		obligations.checkObligations();		
-		System.out.println("----------------------------Test End-----------------------------------");
-		
-		one = new PSASimple("V",60);
-		two = new PSASimple("E", 60);
-		//premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 60, 0, provers);
-		//Set CheckSettings
-		one.changeCheckSettings(obligations);
-		//two.addCheckSettings(obligations);
-		//premiseGrowth.addCheckSettings(obligations);
-		setLog("test.log");
-		System.out.println("----------------------------Test Start-----------------------------------");
-		ex.logInfo();
-		one.logInfo();
-		two.logInfo();
-		//premiseGrowth.logInfo();		
-		obligations.checkObligations();		
-		System.out.println("----------------------------Test End-----------------------------------");
-		
-		one = new PSASimple("V",120);
-		two = new PSASimple("E", 120);
-		//premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 120, 0, provers);
-		//Set CheckSettings
-		one.changeCheckSettings(obligations);
-		two.addCheckSettings(obligations);
-		//premiseGrowth.addCheckSettings(obligations);
-		setLog("landau55ExEV120.log");
-		System.out.println("----------------------------Test Start-----------------------------------");
-		ex.logInfo();
-		one.logInfo();
-		two.logInfo();
-		//premiseGrowth.logInfo();		
-		obligations.checkObligations();		
-		System.out.println("----------------------------Test End-----------------------------------");
-				
-		one = new PSASimple("V",300);
-		two = new PSASimple("E", 300);
-		//premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 300, 0, provers);
-		//Set CheckSettings
-		one.changeCheckSettings(obligations);
-		two.addCheckSettings(obligations);
-		//premiseGrowth.addCheckSettings(obligations);
-		setLog("landau55ExEV300.log");
-		System.out.println("----------------------------Test Start-----------------------------------");
-		ex.logInfo();
-		one.logInfo();
-		two.logInfo();
-		//premiseGrowth.logInfo();		
-		obligations.checkObligations();		
-		System.out.println("----------------------------Test End-----------------------------------");
-		*/
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "EuclidE300N1A1ExDel.stats");
+		Statistics.printProcessTimeline(obligations, 300, "EuclidE300N1A1ExDel.timeline");
+		/* Write machine readable stats End */
+
 	}
 	
 	/* Redirect output stream to file */

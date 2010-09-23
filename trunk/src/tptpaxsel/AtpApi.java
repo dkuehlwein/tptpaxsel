@@ -8,11 +8,6 @@ package tptpaxsel;
 import java.io.PrintStream;
 import java.util.HashMap;
 
-import PSA.PSAExistential;
-import PSA.PSAPremiseGrowth;
-import PSA.PSASimple;
-import PSA.PremiseSelectionAlgorithm;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,6 +17,11 @@ import java.util.Vector;
 
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
+
+import tptpaxsel.PSA.PSAExistential;
+import tptpaxsel.PSA.PSAPremiseGrowth;
+import tptpaxsel.PSA.PSASimple;
+import tptpaxsel.PSA.PremiseSelectionAlgorithm;
 
 class AtpApi {
 	//initialise fields with "empty values"
@@ -236,6 +236,7 @@ class AtpApi {
 	}
 /** 
  * 	Runs a single obligation in obligations, chosen by filename (in directory location)
+ * 
  * @param filename
  * @return obligation Statistics
  */
@@ -245,7 +246,8 @@ class AtpApi {
 		return obligations.checkSingleObligation(location+filename,"machine");
 	}
 /**
- * Runs a single obligation in obligations, chosen by absolute path (in the filesystem).	
+ * Runs a single obligation in obligations, chosen by absolute path (in the filesystem).
+ * 	
  * @param path
  * @return obligation Statistics
  */

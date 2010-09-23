@@ -63,13 +63,17 @@ public class Obligations {
 	 * Specifies the working directory
 	 */
 	public String workingDir;	
-	public String location;	
-
+	/**
+	 * The location of the files in the examples folder.
+	 */
+	public String location;
 	/**
 	 * The obligations in the order in which they were created.
 	 */
 	public Vector<Obligation> obligations = new Vector<Obligation>();
-	
+	/**
+	 * The output string
+	 */
 	public PrintStream outStream = System.out;
 
 	/**
@@ -77,6 +81,17 @@ public class Obligations {
 	 * 
 	 * @param obligationOrder	A String[] which contains the filenames of the proof obligations in the order in which they are created.
 	 * @param location	The location of the files in the examples folder.
+	 */
+	public Obligations(String[] obligationOrder, String location) {
+		this(obligationOrder, location, System.out);
+	}
+	
+	/**
+	 * Creates a new obligations class.
+	 * 
+	 * @param obligationOrder A String[] which contains the filenames of the proof obligations in the order in which they are created.
+	 * @param location 	The location of the files in the examples folder.
+	 * @param outStream	The output is written onto this stream
 	 */
 	public Obligations(String[] obligationOrder, String location, PrintStream outStream) {
 		// Set default values for the weights and proof checker settings
@@ -255,6 +270,15 @@ public class Obligations {
 
 	/**
 	 * Tries to discharge the obligations.
+	 */
+	public void checkObligations() {
+		this.checkObligations("human");
+	}
+	
+	/**
+	 * Tries to discharge the obligations.
+	 * 
+	 * @param outputType can be "human", "machine" or "both"
 	 */
 	public void checkObligations(String outputType) {
 		createObligationEdges();		
