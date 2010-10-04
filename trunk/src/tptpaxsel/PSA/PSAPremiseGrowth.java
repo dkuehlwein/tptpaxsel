@@ -15,12 +15,12 @@ import tptpaxsel.Obligations;
  */
 public class PSAPremiseGrowth implements PremiseSelectionAlgorithm{
 	
-	int premisesStart;
-	String premisesOperation;
-	double premisesGrowth;
-	int timeStart;
-	int timeGrowth;
-	String[] provers;	
+	private int premisesStart;
+	private String premisesOperation;
+	private double premisesGrowth;
+	private int timeStart;
+	private int timeGrowth;
+	private String[] provers;	
 
 	/**
 	 * Standard Constructor
@@ -30,7 +30,7 @@ public class PSAPremiseGrowth implements PremiseSelectionAlgorithm{
 	 * @param premisesGrowth		Determines how many premises will are added in each iteration. Must be > 1.
 	 * @param timeStart				The time (in seconds) for the first proof try.
 	 * @param timeGrowth			Determines how many seconds will are added in each iteration. 
-	 * @param provers				The provers which will be used in the proof tries.
+	 * @param provers				The provers which will be used in the proof tries. Must be E,V or both.
 	 */
 	public PSAPremiseGrowth(int premisesStart, String premisesOperation,
 			double premisesGrowth, int timeStart, int timeGrowth,
