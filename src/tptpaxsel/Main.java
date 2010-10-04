@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+import tptpaxsel.PSA.PSADivvy;
 import tptpaxsel.PSA.PSAExistential;
 import tptpaxsel.PSA.PSAPremiseGrowth;
 import tptpaxsel.PSA.PSASimple;
@@ -38,13 +39,16 @@ public class Main {
 		PSASimple one;
 		PSASimple two;
 		PSAPremiseGrowth premiseGrowth;
+		PSADivvy divvy;
 		PSAExistential ex = new PSAExistential();
 		
 		/* Copy pasteable foobar */
 		String[] provers = new String[2];
 		provers[0] = "V";
 		provers[1] = "E";
-		premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);		
+		premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);
+		divvy = new PSADivvy(2, 5, provers, true);
+		one = new PSASimple("V",300);
 		two = new PSASimple("E",5);
 		/* End Copy pasteable foobar */
 		
@@ -60,56 +64,16 @@ public class Main {
 		obligations.weightObligationGraph = 1.0;
 		obligations.maxTime = maxTime;
 		//PSA Settings
-		one = new PSASimple("E",300);		
+		divvy = new PSADivvy(2, 5, provers, true);		
 		// Log
 		System.out.println("Example: "+example.name);
-		one.changeCheckSettings(obligations);
+		divvy.changeCheckSettings(obligations);
 		obligations.checkObligations();
 		/* Write machine readable stats Start */
-		Statistics.printMachineStats(obligations, "EuclidE300N1A0ExDel.stats");
-		Statistics.printProcessTimeline(obligations, 300, "EuclidE300N1A0ExDel.timeline");
+		Statistics.printMachineStats(obligations, "EuclidDivvyEV5N1A0.stats");
+		Statistics.printProcessTimeline(obligations, 300, "EuclidDivvyEV5N1A0.timeline");
 		/* Write machine readable stats End */
-		
-		/* Start tests */
-        example = new Example("Euclid");
-		//example.runAprils();
-		obligations = example.obligations;		
-		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
-		obligations.weightAPRILS = 1.0;
-		obligations.weightNaproche = 1.0;
-		obligations.weightObligationGraph = 1.0;
-		obligations.maxTime = maxTime;
-		//PSA Settings
-		one = new PSASimple("E",300);		
-		// Log
-		System.out.println("Example: "+example.name);
-		one.changeCheckSettings(obligations);
-		obligations.checkObligations();
-		/* Write machine readable stats Start */
-		Statistics.printMachineStats(obligations, "EuclidE300N1A1.stats");
-		Statistics.printProcessTimeline(obligations, 300, "EuclidE300N1A1.timeline");
-		/* Write machine readable stats End */
-		
-		/* Start tests */
-        example = new Example("Euclid");
-		//example.runAprils();
-		obligations = example.obligations;		
-		ex.deleteExistentialPremises(obligations);
-		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
-		obligations.weightAPRILS = 1.0;
-		obligations.weightNaproche = 1.0;
-		obligations.weightObligationGraph = 1.0;
-		obligations.maxTime = maxTime;
-		//PSA Settings
-		one = new PSASimple("E",300);		
-		// Log
-		System.out.println("Example: "+example.name);
-		one.changeCheckSettings(obligations);
-		obligations.checkObligations();
-		/* Write machine readable stats Start */
-		Statistics.printMachineStats(obligations, "EuclidE300N1A1ExDel.stats");
-		Statistics.printProcessTimeline(obligations, 300, "EuclidE300N1A1ExDel.timeline");
-		/* Write machine readable stats End */
+
 
 	}
 	

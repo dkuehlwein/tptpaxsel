@@ -89,6 +89,7 @@ class AtpApi {
 
 /**
  * Returns complete Configuration.
+ * 
  * @return HashMap<String,String>
  */
 	public HashMap<String,String> getConfig(){
@@ -109,6 +110,7 @@ class AtpApi {
 
 	/** 
 	 * Configures for use with Simple PSA
+	 * 
 	 * @param weightObligationEdges
 	 * @param weightAPRILS
 	 * @param weightNaproche
@@ -132,6 +134,7 @@ class AtpApi {
 
 	/**
 	 * Configures for use with PremiseGrowth PSA
+	 * 
 	 * @param weightObligationEdges
 	 * @param weightAPRILS
 	 * @param weightNaproche
@@ -204,6 +207,7 @@ class AtpApi {
 
 	/**
 	 * Simple Constructor, only sets location
+	 * 
 	 * @param location
 	 */
 	public AtpApi(String location){
@@ -213,6 +217,7 @@ class AtpApi {
 
 	/**
 	 * Complete Constructor. Sets location and all other parameters.
+	 * 
 	 * @param outStream
 	 * @param weightObligationEdges
 	 * @param weightAPRILS
