@@ -1,12 +1,9 @@
 package tptpaxsel;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Vector;
@@ -75,6 +72,11 @@ public class Obligations {
 	 * The output string
 	 */
 	public PrintStream outStream = System.out;
+	
+	/**
+	 * Number of threads for multithreaded discharging
+	 */
+	public int threads=1;
 
 	/**
 	 * Creates a new obligations class.
@@ -128,17 +130,8 @@ public class Obligations {
 	
 	public ObligationStatistics checkSingleObligation(String filename, String outputType) {
 		createObligationEdges();		
-		String conjecture;
 		ObligationStatistics stats;		
-		int usedAxiomCounterSum = 0;
-		int givenAxiomCounter;
-		int givenAxiomCounterSum = 0;
-		int premisesSum = 0;
 		boolean checkResult;
-		double checkTryTime;
-		double systemTime;		
-		int maxRelevance = 0;		
-		int localRelevance;		
 		
 		Obligation obligation=null;
 		for (Obligation ob : obligations)
@@ -155,107 +148,11 @@ public class Obligations {
 		
 		/* Preparations */
 		stats = obligation.stats;			
-		givenAxiomCounter = 0;			
-		checkResult = false;
-		systemTime = System.currentTimeMillis();
-		conjecture = obligation.conjecture.name;
 		obligation.setNaprocheScore(graph);
 		obligation.setFinalRelevance(weightAPRILS,weightNaproche);
 		Collections.sort(obligation.premises, new AxiomFinalComparator());
 		
-		/* 	Proof Loop	*/
-		for (CheckSetting checkSetting : obligation.checkSettings) {
-			/* Statistics Start */
-			checkTryTime = System.currentTimeMillis();
-			stats.setProofTries(stats.getProofTries()+1);
-			stats.addProver(checkSetting.prover);
-			/* Statistics End */
-			if (checkSetting.numOfPrem == -1) {
-				givenAxiomCounter = obligation.premises.size(); 
-			} else {
-				givenAxiomCounter = (int)Math.floor(checkSetting.numOfPrem+0.5d);
-			}
-			/* Select the right premises */				
-			try {					
-				createTPTPProblem(obligation, givenAxiomCounter);
-			} catch (IOException e) {
-				outStream.println("Could not create TPTP Problem File");
-				e.printStackTrace();
-			}				
-			
-			/* Create the proof process */
-			ProcessBuilder proverProcess;
-			if (checkSetting.prover.equals("V")) {
-				proverProcess = new ProcessBuilder(							
-						"lib/VAMPIRE/vampire_lin32",
-						"-t",Integer.toString(checkSetting.time), 							
-						"--proof","tptp", 
-						"--memory_limit","1500", 
-						"--output_axiom_names","on",
-						"--mode","casc", 
-						"--input_file",
-						obligation.ATPInput.toString()); 								
-			} else{ 
-				proverProcess = new ProcessBuilder(						
-					"eproof",
-					"-xAuto",
-					"-tAuto",
-					"--cpu-limit="+checkSetting.time,
-					"--proof-time-unlimited",
-					"--memory-limit=Auto",
-					"--tstp-in",
-					"--tstp-out",
-					obligation.ATPInput.toString());
-			}
-			
-			/* Run the Prover */						
-			try {					
-				Process runProver = proverProcess.start();
-				// Set up the in and output streams				
-				InputStream is = runProver.getInputStream();
-				InputStreamReader isr = new InputStreamReader(is);
-				BufferedReader br = new BufferedReader(isr);
-				FileWriter fstream = new FileWriter(obligation.ATPOutput);
-				BufferedWriter out = new BufferedWriter(fstream);
-				ATPOutputParser ATPParser = new ATPOutputParser(br, out);
-				// Parse the stream for results		
-				checkResult = ATPParser.parse(graph, conjecture, weightUsedGraph);
-				is.close();
-				out.close();
-				runProver.destroy();
-				outStream.print(" "+checkResult+"("+checkSetting.prover+")");
-				/* If we found a proof, we can stop */
-				if (checkResult) {
-					/* Statistics Start */
-					obligation.checkResult = checkResult;
-					stats.setUsedAxiomsNumber(ATPParser.usedAxioms.size());
-					stats.setUsedAxioms(ATPParser.usedAxioms);
-					stats.setProofTime((System.currentTimeMillis() - checkTryTime)/1000);
-					stats.setProver(checkSetting.prover);
-					stats.setInconsistencyWarning(ATPParser.inconsistencyWarning);
-					obligation.inconsistencyWarning = ATPParser.inconsistencyWarning;
-					for (int i = 0; i < stats.getUsedAxiomsNumber(); i++) {
-						Axiom axiom = ATPParser.usedAxioms.elementAt(i);
-						localRelevance = obligation.premises.indexOf(axiom)+1;							
-						stats.setMaxDistance(Math.max(localRelevance, stats.getMaxDistance()));							
-					}
-					/* Statistics End */
-					break;
-				} 										
-			} catch (IOException e) {
-				outStream.println("Could not run prover");
-				e.printStackTrace();
-			}
-		}
-		/* Statistics Start */
-		stats.setResult(checkResult);
-		stats.setGivenAxioms(givenAxiomCounter);
-		stats.setTotalTime((System.currentTimeMillis() - systemTime)/1000);
-		maxRelevance = Math.max(maxRelevance, stats.getMaxDistance());
-		usedAxiomCounterSum = usedAxiomCounterSum+stats.getUsedAxiomsNumber();
-		givenAxiomCounterSum = givenAxiomCounterSum + givenAxiomCounter;
-		premisesSum = premisesSum + obligation.premises.size();
-		/* Statistics End */
+		checkResult = CheckThread.checkLoop(obligation, threads, weightUsedGraph,outStream,graph);
 		
 		/* Output*/
 		if (outputType.equals("human"))
@@ -282,19 +179,15 @@ public class Obligations {
 	 */
 	public void checkObligations(String outputType) {
 		createObligationEdges();		
-		String conjecture;
 		ObligationStatistics stats;		
 		int usedAxiomCounterSum = 0;
-		int givenAxiomCounter;
 		int givenAxiomCounterSum = 0;
 		int premisesSum = 0;
 		boolean checkResult;
 		double premiseRatio;
-		double checkTryTime;
 		double systemTime;		
 		double totalTime = System.currentTimeMillis();
 		int maxRelevance = 0;		
-		int localRelevance;		
 		theoremCounter = 0;
 		checkScore = 0;
 
@@ -304,116 +197,21 @@ public class Obligations {
 			
 			/* Preparations */
 			stats = obligation.stats;			
-			givenAxiomCounter = 0;			
 			checkResult = false;
 			systemTime = System.currentTimeMillis();
-			conjecture = obligation.conjecture.name;
 			obligation.setNaprocheScore(graph);
 			obligation.setFinalRelevance(weightAPRILS,weightNaproche);
 			Collections.sort(obligation.premises, new AxiomFinalComparator());
 			
-			/* 	Proof Loop	*/
-			for (CheckSetting checkSetting : obligation.checkSettings) {
-				/* Statistics Start */
-				checkTryTime = System.currentTimeMillis();
-				stats.setProofTries(stats.getProofTries()+1);
-				stats.addProver(checkSetting.prover);
-				/* Statistics End */
-				if (checkSetting.numOfPrem == -1) {
-					givenAxiomCounter = obligation.premises.size(); 
-				} else {
-					givenAxiomCounter = (int)Math.floor(checkSetting.numOfPrem+0.5d);
-				}
-				/* Select the right premises */				
-				try {					
-					createTPTPProblem(obligation, givenAxiomCounter);
-				} catch (IOException e) {
-					outStream.println("Could not create TPTP Problem File");
-					e.printStackTrace();
-				}				
-				
-				/* Create the proof process */
-				ProcessBuilder proverProcess;
-				if (checkSetting.prover.equals("V")) {
-					proverProcess = new ProcessBuilder(							
-							"lib/VAMPIRE/vampire_lin32",
-							"-t",Integer.toString(checkSetting.time), 							
-							"--proof","tptp", 
-							"--memory_limit","1500", 
-							"--output_axiom_names","on",
-							"--mode","casc", 
-							"--input_file",
-							obligation.ATPInput.toString()); 								
-				} else if (checkSetting.prover.equals("E10")) { 
-					proverProcess = new ProcessBuilder(
-							"/home/rekzah/Programming/Naproche/Naproche-Due/naproche_core/www/cgi-bin/TPTP/Systems/EP---1.0/eproof",							
-							"-xAuto",
-							"-tAuto",
-							"--cpu-limit="+checkSetting.time,
-							"--proof-time-unlimited",
-							"--memory-limit=Auto",
-							"--tstp-in",
-							"--tstp-out",
-							obligation.ATPInput.toString());						
-				} else { 
-					proverProcess = new ProcessBuilder(						
-						"eproof",
-						"-xAuto",
-						"-tAuto",
-						"--cpu-limit="+checkSetting.time,
-						"--proof-time-unlimited",
-						"--memory-limit=Auto",
-						"--tstp-in",
-						"--tstp-out",
-						obligation.ATPInput.toString());
-				}
-				
-				/* Run the Prover */						
-				try {					
-					Process runProver = proverProcess.start();
-					// Set up the in and output streams				
-					InputStream is = runProver.getInputStream();
-					InputStreamReader isr = new InputStreamReader(is);
-					BufferedReader br = new BufferedReader(isr);
-					FileWriter fstream = new FileWriter(obligation.ATPOutput);
-					BufferedWriter out = new BufferedWriter(fstream);
-					ATPOutputParser ATPParser = new ATPOutputParser(br, out);
-					// Parse the stream for results		
-					checkResult = ATPParser.parse(graph, conjecture, weightUsedGraph);
-					is.close();
-					out.close();
-					runProver.destroy();
-					outStream.print(" "+checkResult+"("+checkSetting.prover+")");
-					/* If we found a proof, we can stop */
-					if (checkResult) {
-						/* Statistics Start */
-						obligation.checkResult = checkResult;
-						stats.setUsedAxiomsNumber(ATPParser.usedAxioms.size());
-						stats.setUsedAxioms(ATPParser.usedAxioms);
-						stats.setProofTime((System.currentTimeMillis() - checkTryTime)/1000);
-						stats.setProver(checkSetting.prover);
-						stats.setInconsistencyWarning(ATPParser.inconsistencyWarning);
-						obligation.inconsistencyWarning = ATPParser.inconsistencyWarning;
-						for (int i = 0; i < stats.getUsedAxiomsNumber(); i++) {
-							Axiom axiom = ATPParser.usedAxioms.elementAt(i);
-							localRelevance = obligation.premises.indexOf(axiom)+1;							
-							stats.setMaxDistance(Math.max(localRelevance, stats.getMaxDistance()));							
-						}
-						/* Statistics End */
-						break;
-					} 										
-				} catch (IOException e) {
-					outStream.println("Could not run prover");
-					e.printStackTrace();
-				}
-			}
+			checkResult = CheckThread.checkLoop(obligation, threads, weightUsedGraph,outStream,graph);
+
 			/* Statistics Start */
 			stats.setResult(checkResult);
-			stats.setGivenAxioms(givenAxiomCounter);
+			stats.setGivenAxioms(CheckThread.gAxiomCounter);
 			stats.setTotalTime((System.currentTimeMillis() - systemTime)/1000);
 			maxRelevance = Math.max(maxRelevance, stats.getMaxDistance());
 			usedAxiomCounterSum = usedAxiomCounterSum+stats.getUsedAxiomsNumber();
-			givenAxiomCounterSum = givenAxiomCounterSum + givenAxiomCounter;
+			givenAxiomCounterSum = givenAxiomCounterSum + CheckThread.gAxiomCounter;
 			premisesSum = premisesSum + obligation.premises.size();
 			/* Statistics End */
 			
@@ -422,6 +220,8 @@ public class Obligations {
 				theoremCounter++;
 				checkScore = checkScore+75;			
 			}
+			if (stats.getGivenAxioms()==0)
+					stats.setGivenAxioms( obligation.premises.size());
 			if (obligation.premises.size() != 0) {
 				premiseRatio = (double)stats.getUsedAxiomsNumber() / stats.getGivenAxioms();
 			} else {
@@ -467,7 +267,7 @@ public class Obligations {
 	 * @return	The filename of the newly created problem file.
 	 * @throws IOException	If the file cannot be written.
 	 */
-	private void createTPTPProblem(Obligation obligation, double numberOfPremises) throws IOException {
+	public static void createTPTPProblem(Obligation obligation, double numberOfPremises) throws IOException {
 		int i = 0;		
 		FileWriter fstream = new FileWriter(obligation.ATPInput);
 		BufferedWriter out = new BufferedWriter(fstream);
