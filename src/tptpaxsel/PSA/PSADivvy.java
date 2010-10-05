@@ -10,7 +10,7 @@ import tptpaxsel.Obligations;
  * PSADivvy tries a binary search on the premises. First proof try is with half of all available premises, second with 1/4, third with 3/4 etc. 
  * It's a simplified implementation of Geoff Sutcliffe's Divvy.
  * 
- * @author daniel
+ * @author Daniel Kühlwein
  *
  */
 public class PSADivvy implements PremiseSelectionAlgorithm{
@@ -19,6 +19,7 @@ public class PSADivvy implements PremiseSelectionAlgorithm{
 	private int timePerTry;
 	private String[] provers;
 	private boolean initialCheck;
+	private int initialTime;
 
 	/**
 	 * Basic constructur.
@@ -35,10 +36,11 @@ public class PSADivvy implements PremiseSelectionAlgorithm{
 		this.timePerTry = timePerTry;
 		this.provers = provers;
 		initialCheck = false;
+		initialTime = 0;
 	}
 	
 	/**
-	 * If initialCheck = true, each obligation is checked with all premises first.
+	 * If initialCheck = true, each obligation is checked with all premises with timePerTry seconds first.
 	 * 
 	 * @param divides Number of divides. There will be 2^divides proof tries. Must be > 0.
 	 * @param timePerTry Time in seconds for each proof try.
@@ -53,6 +55,26 @@ public class PSADivvy implements PremiseSelectionAlgorithm{
 		this.timePerTry = timePerTry;
 		this.provers = provers;
 		this.initialCheck = initialCheck;
+		this.initialTime = timePerTry;
+	}
+	
+	/**
+	 * If initialCheck = true, each obligation is checked with all premises with initialTime seconds first.
+	 * 
+	 * @param divides Number of divides. There will be 2^divides proof tries. Must be > 0.
+	 * @param timePerTry Time in seconds for each proof try.
+	 * @param provers The provers which will be used in the proof tries. Must be E,V or both.
+	 * @param initialCheck If initialCheck = true, each obligation is checked with all premises first.
+	 */
+	public PSADivvy(int divides, int timePerTry,String[] provers, boolean initialCheck, int initialTime) {
+		if (divides < 1) {
+			System.err.println("Divides must be a positive integer > 0");			
+		}
+		this.divides = divides;
+		this.timePerTry = timePerTry;
+		this.provers = provers;
+		this.initialCheck = initialCheck;
+		this.initialTime = initialTime;
 	}
 		
 	@Override
@@ -70,7 +92,7 @@ public class PSADivvy implements PremiseSelectionAlgorithm{
 			Obligation obligation = obligations.obligations.elementAt(i);
 			if (initialCheck) {
 				for (String prover : provers) {
-					CheckSetting CS = new CheckSetting(prover, timePerTry);			
+					CheckSetting CS = new CheckSetting(prover, initialTime);			
 					CSs.add(CS);
 				}
 			}
