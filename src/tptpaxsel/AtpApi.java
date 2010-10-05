@@ -40,6 +40,8 @@ class AtpApi {
 	private int growthIncrValue=0;
 
 	private int time=0;
+	
+	private int threads=1;
 
 	private String location="";
 	
@@ -50,7 +52,7 @@ class AtpApi {
  */
 	public void setFast(){
 		outStream = System.out;
-		setSimple(1.0,0.0,1.0,"V",3);
+		setSimple(1.0,0.0,1.0,"V",3,2);
 	}
 
 	//Global Get/Set Methods
@@ -66,12 +68,15 @@ class AtpApi {
 	 * @param growthStartValue
 	 * @param growthIncrValue
 	 * @param time
+	 * @param threads
+	 * @param changeExistential
+	 * @param deleteExistential
  */
 	public void setAll(	double weightObligationEdges,
 						double weightAPRILS, double weightNaproche,
 						String technique, String prover,
 						String growthMethod, int growthStartValue,
-						int growthIncrValue, int time,
+						int growthIncrValue, int time, int threads,
 						boolean changeExistential, boolean deleteExistential){
 
 		this.weightObligationEdges=weightObligationEdges;
@@ -83,6 +88,7 @@ class AtpApi {
 		this.growthStartValue=growthStartValue;
 		this.growthIncrValue=growthIncrValue;
 		this.time=time;
+		this.time=threads;
 		this.changeExistential = changeExistential;
 		this.deleteExistential = deleteExistential;
 	}
@@ -103,6 +109,7 @@ class AtpApi {
 		retVal.put("growthStartValue",Integer.toString(growthStartValue));
 		retVal.put("growthIncrValue",Integer.toString(growthIncrValue));
 		retVal.put("time",Integer.toString(time));
+		retVal.put("threads",Integer.toString(threads));
 		retVal.put("changeExistential",Boolean.toString(changeExistential));
 		retVal.put("deleteExistential",Boolean.toString(deleteExistential));
 		return retVal;
@@ -116,10 +123,11 @@ class AtpApi {
 	 * @param weightNaproche
 	 * @param prover
 	 * @param time
+	 * @param threads
 	 */
 	public void setSimple(	double weightObligationEdges,
 							double weightAPRILS, double weightNaproche,
-							String prover, int time){
+							String prover, int time, int threads){
 
 		this.weightObligationEdges=weightObligationEdges;
 		this.weightAPRILS=weightAPRILS;
@@ -130,6 +138,7 @@ class AtpApi {
 		else
 			outStream.println("Invalid Prover selected, must be 'V' or 'E'");
 		this.time=time;
+		this.threads=threads;
 	}
 
 	/**
@@ -143,12 +152,13 @@ class AtpApi {
 	 * @param growthStartValue
 	 * @param growthIncrValue
 	 * @param time
+	 * @param threads
 	 */
 	public void setPremiseGrowth(	double weightObligationEdges,
 									double weightAPRILS, double weightNaproche,
 									String prover,
 									String growthMethod, int growthStartValue,
-									int growthIncrValue, int time){
+									int growthIncrValue, int time, int threads){
 
 		this.weightObligationEdges=weightObligationEdges;
 		this.weightAPRILS=weightAPRILS;
@@ -162,6 +172,7 @@ class AtpApi {
 		this.growthStartValue=growthStartValue;
 		this.growthIncrValue=growthIncrValue;
 		this.time=time;
+		this.threads=threads;
 	}
 	
 	//Get/Set Methods for fine-grained configuration
@@ -196,6 +207,9 @@ class AtpApi {
 
 	public void setTime(int time){ this.time=time;}
 	public int getTime(){ return this.time;}
+	
+	public void setThreads(int threads){ this.threads=threads;}
+	public int getThreads(){ return this.threads;}
 	
 	public void setChangeExistential(boolean changeExistential){ this.changeExistential=changeExistential;}
 	public boolean getChangeExistential(){ return this.changeExistential;}
@@ -233,10 +247,10 @@ class AtpApi {
 					double weightAPRILS, double weightNaproche,
 					String technique, String prover,
 					String growthMethod, int growthStartValue,
-					int growthIncrValue, int time,
+					int growthIncrValue, int time, int threads,
 					boolean changeExistential, boolean deleteExistential){
 		this.outStream=outStream;
-		setAll(weightObligationEdges,weightAPRILS,weightNaproche,technique,prover,growthMethod,growthStartValue,growthIncrValue,time,changeExistential,deleteExistential);
+		setAll(weightObligationEdges,weightAPRILS,weightNaproche,technique,prover,growthMethod,growthStartValue,growthIncrValue,time,threads,changeExistential,deleteExistential);
 		setup();
 	}
 /** 
@@ -285,6 +299,7 @@ class AtpApi {
 		obligations.weightNaproche = this.weightNaproche;
 		obligations.weightObligationGraph = this.weightObligationEdges;
 		obligations.outStream=this.outStream;
+		obligations.threads=this.threads;
 	}
 	
 /**

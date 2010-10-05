@@ -34,7 +34,11 @@ public class Main {
 	 * @param args
 	 */	
 	public static void main(String[] args) {
-		Example example;
+
+		AtpApi api = new AtpApi("/examples/landau/");
+		api.setSimple(0.0,0.0,1.0, "V", 3, 2);
+		api.runAll();
+		/* Example example;
 		Obligations obligations;
 		PSASimple one;
 		PSASimple two;
@@ -42,7 +46,7 @@ public class Main {
 		PSADivvy divvy;
 		PSAExistential ex = new PSAExistential();
 		
-		/* Copy pasteable foobar */
+		/* Copy pasteable foobar 
 		String[] provers = new String[2];
 		provers[0] = "V";
 		provers[1] = "E";
@@ -53,7 +57,7 @@ public class Main {
 		/* End Copy pasteable foobar */
 		
 		
-		/* Start tests */
+		/* Start tests 
         example = new Example("Euclid");
 		//example.runAprils();
 		obligations = example.obligations;		
@@ -69,7 +73,7 @@ public class Main {
 		System.out.println("Example: "+example.name);
 		divvy.changeCheckSettings(obligations);
 		obligations.checkObligations();
-		/* Write machine readable stats Start */
+		/* Write machine readable stats Start 
 		Statistics.printMachineStats(obligations, "EuclidDivvyEV5N1A0.stats");
 		Statistics.printProcessTimeline(obligations, 300, "EuclidDivvyEV5N1A0.timeline");
 		/* Write machine readable stats End */
