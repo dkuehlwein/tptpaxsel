@@ -22,13 +22,13 @@ import tptp_parser.TptpParser;
 public class ATPOutputParser {
 
 	public BufferedReader in;
-	public BufferedWriter out;		
+	public String out;		
 	public Vector<Axiom> usedAxioms;
 	public boolean inconsistencyWarning;
 	
-	public ATPOutputParser(BufferedReader in, BufferedWriter out) {		
+	public ATPOutputParser(BufferedReader in) {		
 		this.in = in;
-		this.out = out;		
+		this.out = new String();		
 		usedAxioms = new Vector<Axiom>();
 	}
 	
@@ -55,8 +55,8 @@ public class ATPOutputParser {
 		try {
 			// -------------------- Add the used graph ------------------------				
 			while ((line = in.readLine()) != null) {	    				    			   			
-				out.write(line);
-				out.write("\r\n");
+				out = out.concat(line);
+				out = out.concat("\r\n");
 				/* If we have a proof, start a second loop and parse the proof */
 				if ( line.startsWith("# SZS status Theorem") | line.startsWith("% SZS status Theorem")) {
 					checkResult = true;	
@@ -65,21 +65,21 @@ public class ATPOutputParser {
 					while ( !(line.startsWith("# SZS output end") | line.startsWith("% SZS output end"))) {
 						if (getNewLine) {
 							line = in.readLine();
-							out.write(line);
-							out.write("\r\n");
+							out = out.concat(line);
+							out = out.concat("\r\n");
 						}
 						getNewLine = true;
 						/* We might have multiline formulas */
 						if (line.startsWith("fof")) {
 							getNewLine = false;
 							nextline = in.readLine();
-							out.write(nextline);
-							out.write("\r\n");
+							out = out.concat(nextline);
+							out = out.concat("\r\n");
 							while ( !(nextline.startsWith("fof") | nextline.startsWith("cnf") | nextline.startsWith("#") | nextline.startsWith("%")) ) {
 								line = line+nextline;
 								nextline = in.readLine();
-								out.write(nextline);
-								out.write("\r\n");
+								out = out.concat(nextline);
+								out = out.concat("\r\n");
 							} 
 							/* At this point, line is a fof formula in string form that can be parser with the tptp parser which is what we do */
 							TptpLexer lexer = new TptpLexer(new StringReader(line));
@@ -120,13 +120,22 @@ public class ATPOutputParser {
 						}
 						
 					}
-					out.write(line);
-					out.write("\r\n");
+					out = out.concat(line);
+					out = out.concat("\r\n");
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("Cannot parse prover output");
-			e.printStackTrace();
+			/*
+			 * This is expected to happen when using the multithreaded interface.
+			 * More often than not the parser is in the middle of analyzing/running a
+			 * prover-process when another thread finishes and kills off the underlying prover.
+			 * This causes all kinds of IOExceptions in the connecting Streams.
+			 * 
+			 * It's brutal, but I ran some tests and it's considerably faster than waiting
+			 * for the parser to terminate.
+			 */
+			//System.out.println("Cannot parse prover output");
+			//e.printStackTrace();
 		}		
 		return checkResult;
 	}
