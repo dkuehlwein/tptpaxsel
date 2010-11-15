@@ -269,6 +269,13 @@ public class ObligationStatistics {
 	 */
 	public void printMachine(PrintStream out) {
 		String sprovers = new String();
+		String usedAxiomsNumberTmp = Integer.toString(usedAxiomsNumber);
+		String maxDistanceTmp = Integer.toString(maxDistance);
+		if (result == false) {
+			usedAxiomsNumberTmp = "";
+			maxDistanceTmp = "";
+		}
+		
 		for (String s : provers) {
 			sprovers = s+"\t"+sprovers;
 		}		
@@ -280,8 +287,8 @@ public class ObligationStatistics {
 				prover+"\t"+
 				totalAxioms+"\t"+
 				givenAxioms+"\t"+
-				usedAxiomsNumber+"\t"+
-				maxDistance+"\t"+
+				usedAxiomsNumberTmp+"\t"+
+				maxDistanceTmp+"\t"+
 				proofTime+"\t"+
 				totalTime+"\t"+
 				proofTries+"\t"+
@@ -298,6 +305,12 @@ public class ObligationStatistics {
  */
 	public void printMachine(PrintStream out, String delimiter) {
 		String sprovers = new String();
+		String usedAxiomsNumberTmp = Integer.toString(usedAxiomsNumber);
+		String maxDistanceTmp = Integer.toString(maxDistance);
+		if (result == false) {
+			usedAxiomsNumberTmp = "";
+			maxDistanceTmp = "";
+		}
 		for (String s : provers) {
 			sprovers = s+delimiter+sprovers;
 		}		
@@ -309,8 +322,8 @@ public class ObligationStatistics {
 				prover+delimiter+
 				totalAxioms+delimiter+
 				givenAxioms+delimiter+
-				usedAxiomsNumber+delimiter+
-				maxDistance+delimiter+
+				usedAxiomsNumberTmp+delimiter+
+				maxDistanceTmp+delimiter+
 				proofTime+delimiter+
 				totalTime+delimiter+
 				proofTries+delimiter+

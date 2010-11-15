@@ -294,8 +294,7 @@ class CheckThread extends Thread {
 				if (cResult) {
 					if(isInterrupted()) break; //unless we already found a proof
 					
-					/* we're finished with this obligation, so put down all Threads
-					 */
+					/* we're finished with this obligation, so put down all Threads	 */
 					CheckThread.terminateAll(this);
 					
 					/* and THEN write output */

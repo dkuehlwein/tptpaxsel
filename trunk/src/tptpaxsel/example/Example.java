@@ -51,9 +51,9 @@ public class Example {
 				obligations = new Obligations(obligationsOrderString,location);
 				obligations.graph = readDot(location);
 			}
-			else if (testName == "Landau55") {
-				name = "Landau55";
-				location = workingDir+"/examples/landau55/";
+			else if (testName == "MizarHard") {
+				name = "MizarHard";
+				location = workingDir+"/examples/mizarHard/";
 				obligationsOrderString = getObligationsOrder();
 				obligations = new Obligations(obligationsOrderString,location);
 				obligations.graph = readDot(location);
@@ -150,10 +150,17 @@ public class Example {
         String Vertice1;
         String Vertice2;
         DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
+        File file = new File(location+"Graphprs.dot");
+        
+        // Make sure that the graph file exists
+        if (!file.exists()) {
+        	System.err.println("Could not read Graphprs.dot");
+        	return graph;
+        }
         
         try {
         	try {
-        		inputStream = new BufferedReader(new FileReader(location+"Graphprs.dot"));			
+        		inputStream = new BufferedReader(new FileReader(file));			
         		while ((input = inputStream.readLine()) != null) {
         			splitInput = input.split("  ->  ");
         			if (splitInput.length == 2) { 
