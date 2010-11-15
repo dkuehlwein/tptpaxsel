@@ -23,7 +23,7 @@ import tptpaxsel.PSA.PSAPremiseGrowth;
 import tptpaxsel.PSA.PSASimple;
 import tptpaxsel.PSA.PremiseSelectionAlgorithm;
 
-class AtpApi {
+public class AtpApi {
 	//initialise fields with "empty values"
 	private PrintStream outStream=System.out;
 	private double weightObligationEdges=0.0;

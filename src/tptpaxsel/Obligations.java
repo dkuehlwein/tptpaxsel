@@ -17,7 +17,7 @@ import org.jgrapht.graph.DefaultWeightedEdge;
  * A class for all the proof obligations of an example.
  * 
  * @author Daniel Kühlwein
- *
+ * @author Julian Schlöder
  */
 public class Obligations {
 	/**
@@ -71,8 +71,7 @@ public class Obligations {
 	/**
 	 * The output string
 	 */
-	public PrintStream outStream = System.out;
-	
+	public PrintStream outStream = System.out;	
 	/**
 	 * Number of threads for multithreaded discharging
 	 */
@@ -153,6 +152,9 @@ public class Obligations {
 		Collections.sort(obligation.premises, new AxiomFinalComparator());
 		
 		checkResult = CheckThread.checkLoop(obligation, threads, weightUsedGraph,outStream,graph);
+		
+		// Basic Stats
+		stats.setResult(checkResult);
 		
 		/* Output*/
 		if (outputType.equals("human"))

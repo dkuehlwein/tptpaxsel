@@ -167,7 +167,7 @@ public class Obligation {
 		}
 	}
 
-	// Declaration for setNaprocheScore
+	// Variables for setNaprocheScore
 	private Vector<String> foundNodes;
 	private int depth;
 	private Vector<String> newNodes;
