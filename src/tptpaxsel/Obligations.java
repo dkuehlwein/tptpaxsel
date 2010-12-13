@@ -2,6 +2,7 @@ package tptpaxsel;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -127,11 +128,28 @@ public class Obligations {
 		}		
 	}
 	
+	/**
+	 * Checks a single file of the form *.input. Output is written in *.result. 
+	 * 
+	 * @param filename 
+	 * @param outputType
+	 * @return
+	 */
 	public ObligationStatistics checkSingleObligation(String filename, String outputType) {
-		createObligationEdges();		
-		ObligationStatistics stats;		
-		boolean checkResult;
+		String resultFile = filename.substring(0, filename.length()-".input".length())+".result";
+		PrintStream out;
+		try {
+			out = new PrintStream(resultFile);
+			return checkSingleObligation(filename, outputType, out);
+		} catch (FileNotFoundException e) {
+			return null;
+		}		
+	}
 		
+	public ObligationStatistics checkSingleObligation(String filename, String outputType, PrintStream outStream) {	
+		createObligationEdges();	
+		ObligationStatistics stats;		
+		boolean checkResult;		
 		Obligation obligation=null;
 		for (Obligation ob : obligations)
 			if (ob.problemFile.toString().equals(filename))
@@ -163,7 +181,8 @@ public class Obligations {
 			stats.print();
 			stats.printMachine(outStream);
 		}
-		else stats.printMachine(outStream);
+		else stats.printMachine(outStream,";");
+		
 		return stats;
 	}
 

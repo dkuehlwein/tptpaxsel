@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import tptpaxsel.PSA.PSADivvy;
 import tptpaxsel.PSA.PSAExistential;
 import tptpaxsel.PSA.PSAPremiseGrowth;
+import tptpaxsel.PSA.PSARandomize;
 import tptpaxsel.PSA.PSASimple;
 
 import tptpaxsel.example.Example;
@@ -34,44 +35,209 @@ public class Main {
 	 * @param args
 	 */	
 	public static void main(String[] args) {
-
-		/*AtpApi api = new AtpApi("/examples/landau/");
-		api.setSimple(0.0,0.0,1.0, "E", 3, 8);
-		api.runAll();*/
-		 /* Copy pasteable foobar */
-        String[] provers = new String[2];
-        provers[0] = "V";
-        provers[1] = "E";
-        PSAPremiseGrowth premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);
-        PSADivvy divvy = new PSADivvy(2, 5, provers, true);
-        PSASimple one = new PSASimple("V",300);
-        PSASimple two = new PSASimple("E",5);
-        /* End Copy pasteable foobar */
-
-
-        /* Start tests */
-		Example example = new Example("Euclid");
-        //example.runAprils();
-        Obligations obligations = example.obligations;
-        //ex.deleteExistentialPremises(obligations);
-        //Default values are weightAPRILS = 1; weightObligationGraph=1;
-		int maxTime = 5 * 1000;
-        obligations.weightAPRILS = 0.0;
-        obligations.weightNaproche = 1.0;
-        obligations.weightObligationGraph = 1.0;
-        obligations.maxTime = maxTime;
-        obligations.threads = 2;
-        //PSA Settings
-        divvy = new PSADivvy(1, 30, provers, true,5);
-        // Log
-        System.out.println("Example: "+example.name);
-        divvy.changeCheckSettings(obligations);
-        obligations.checkObligations();
-        /* Write machine readable stats Start */
-        Statistics.printMachineStats(obligations, "EuclidDivvyEV30S5N1A0.stats");
-        Statistics.printProcessTimeline(obligations, 300,
-"EuclidDivvyEV30S5N1A0.timeline");
-        /* Write machine readable stats End */	
+		
+//		AtpApi api = new AtpApi("/examples/landau/");
+//		api.setSimple(0.0,0.0,1.0, "V", 3, 2);
+//		api.setSimple(0.0,0.0,1.0, "V", 3, 2);
+//		api.runAll();
+		
+		Example example;
+		Obligations obligations;
+		PSASimple one;
+		PSASimple two;
+		PSAPremiseGrowth premiseGrowth;
+		PSADivvy divvy;
+		PSAExistential ex = new PSAExistential();
+		PSARandomize random = new PSARandomize();
+		
+		/* Copy pasteable foobar */
+		String[] provers = new String[2];
+		provers[0] = "V";
+		provers[1] = "E";
+		String[] proverV = new String[1];
+		proverV[0] = "V";		
+		premiseGrowth = new PSAPremiseGrowth(5, "plus", 10, 5, 0, provers);
+		divvy = new PSADivvy(2, 5, provers, true);
+		one = new PSASimple("V",300);
+		two = new PSASimple("E",5);
+		/* End Copy pasteable foobar */
+		
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		premiseGrowth = new PSAPremiseGrowth(10, "plus", 10, 5, 0, proverV);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		premiseGrowth.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "EuclidV10plus10time5sN1A1.stats");
+		Statistics.printProcessTimeline(obligations, 600, "EuclidV10plus10time5sN1A1.timeline");
+		/* Write machine readable stats End */
+		
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		divvy = new PSADivvy(2, 5, proverV, true);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		divvy.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "EuclidDivvyV2tries5secN1A1.stats");
+		Statistics.printProcessTimeline(obligations, 600, "EuclidDivvyV2tries5secN1A1.timeline");
+		/* Write machine readable stats End */
+		
+		
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		premiseGrowth = new PSAPremiseGrowth(10, "plus", 10, 5, 0, provers);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		premiseGrowth.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "EuclidVE10plus10time5sN1A1.stats");
+		Statistics.printProcessTimeline(obligations, 600, "EuclidVE10plus10time5sN1A1.timeline");
+		/* Write machine readable stats End */
+		
+		/* Start tests */
+        example = new Example("Euclid");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		divvy = new PSADivvy(2, 5, provers, true);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		divvy.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "EuclidDivvyVE2tries5secN1A1.stats");
+		Statistics.printProcessTimeline(obligations, 600, "EuclidDivvyVE2tries5secN1A1.timeline");
+		/* Write machine readable stats End */
+	
+		/* Start tests */
+        example = new Example("Mizar");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 0.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		premiseGrowth = new PSAPremiseGrowth(10, "plus", 10, 5, 0, proverV);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		premiseGrowth.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "MizarV10plus10time5sN1A0.stats");
+		Statistics.printProcessTimeline(obligations, 600, "MizarV10plus10time5sN1A0.timeline");
+		/* Write machine readable stats End */
+	
+		/* Start tests */
+        example = new Example("Mizar");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 0.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		premiseGrowth = new PSAPremiseGrowth(10, "plus", 10, 5, 0, proverV);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		premiseGrowth.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "MizarV10plus10time5sN0A1.stats");
+		Statistics.printProcessTimeline(obligations, 600, "MizarV10plus10time5sN0A1.timeline");
+		/* Write machine readable stats End */
+	
+		/* Start tests */
+        example = new Example("MizarHard");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 0.0;
+		obligations.weightNaproche = 1.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		premiseGrowth = new PSAPremiseGrowth(10, "plus", 10, 5, 0, proverV);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		premiseGrowth.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "MizarHardV10plus10time5sN1A0.stats");
+		Statistics.printProcessTimeline(obligations, 600, "MizarHardV10plus10time5sN1A0.timeline");
+		/* Write machine readable stats End */
+	
+		/* Start tests */
+        example = new Example("MizarHard");
+		//example.runAprils();
+		obligations = example.obligations;		
+		//ex.deleteExistentialPremises(obligations);
+		//random.changeCheckSettings(obligations);
+		//Default values are weightAPRILS = 1; weightObligationGraph=1; maxTime = 5 * 1000		
+		obligations.weightAPRILS = 1.0;
+		obligations.weightNaproche = 0.0;
+		obligations.weightObligationGraph = 1.0;
+		obligations.maxTime = maxTime;
+		//PSA Settings
+		premiseGrowth = new PSAPremiseGrowth(10, "plus", 10, 5, 0, proverV);		
+		// Log
+		System.out.println("Example: "+example.name);		
+		premiseGrowth.changeCheckSettings(obligations);
+		obligations.checkObligations();
+		/* Write machine readable stats Start */
+		Statistics.printMachineStats(obligations, "MizarHardV10plus10time5sN0A1.stats");
+		Statistics.printProcessTimeline(obligations, 600, "MizarHardV10plus10time5sN0A1.timeline");
+		/* Write machine readable stats End */
 	}
 	
 	/* Redirect output stream to file */

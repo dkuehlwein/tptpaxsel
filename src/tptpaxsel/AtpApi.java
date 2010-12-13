@@ -3,6 +3,7 @@ package tptpaxsel;
 /*
  * Represents an abstraction-layer over a single directory in order to proof any tptp-files there.
  * @author Julian Schlöder
+ * @author Daniel Kühlwein
  */
 
 import java.io.PrintStream;
@@ -400,10 +401,17 @@ public class AtpApi {
         String Vertice1;
         String Vertice2;
         DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
+        File file = new File(location+"Graphprs.dot");
+        
+        // Make sure that the graph file exists
+        if (!file.exists()) {
+        	System.err.println("Could not read Graphprs.dot. Using empty graph instead.");
+        	return graph;
+        }
         
         try {
         	try {
-        		inputStream = new BufferedReader(new FileReader(location+"Graphprs.dot"));			
+        		inputStream = new BufferedReader(new FileReader(file));			
         		while ((input = inputStream.readLine()) != null) {
         			splitInput = input.split("  ->  ");
         			if (splitInput.length == 2) { 
@@ -425,6 +433,8 @@ public class AtpApi {
 			e.printStackTrace();
 		}			
 		return graph;
-	}	
+	}
+	
+	
 
 }
