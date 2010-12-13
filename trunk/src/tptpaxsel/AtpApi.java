@@ -133,7 +133,7 @@ public class AtpApi {
 		this.weightAPRILS=weightAPRILS;
 		this.weightNaproche=weightNaproche;
 		this.technique="simple";
-		if (prover=="V" || prover=="E")
+		if (prover.equals("V") || prover.equals("E"))
 			this.prover=prover;
 		else
 			outStream.println("Invalid Prover selected, must be 'V' or 'E'");
@@ -164,7 +164,7 @@ public class AtpApi {
 		this.weightAPRILS=weightAPRILS;
 		this.weightNaproche=weightNaproche;
 		this.technique="growth";
-		if (prover=="V" || prover=="E" || prover=="VE" || prover=="EV")
+		if (prover.equals("V") || prover.equals("E") || prover.equals("VE") || prover.equals("EV"))
 			this.prover=prover;
 		else
 			outStream.println("Invalid Prover selected, must be 'V', 'E', 'VE' or 'EV'");
@@ -323,7 +323,7 @@ public class AtpApi {
 	private void setupPSA(){
 		PremiseSelectionAlgorithm psa=null;
 		if (technique=="simple"){
-			if (prover=="V" || prover=="E"){
+			if (prover.equals("V") || prover.equals("E")){
 				psa = new PSASimple(prover,time);
 				psa.changeCheckSettings(obligations);
 			}
@@ -331,14 +331,14 @@ public class AtpApi {
 				outStream.println("Prover "+prover+" not supported with Simple PSA.");
 			}
 		}
-		else if (technique=="growth"){
+		else if (technique.equals("growth")){
 			String[] provers;
 			if (prover=="V" || prover=="E"){
 				provers=new String[1];
 				provers[0]=prover;
 				psa = new PSAPremiseGrowth(time, growthMethod, growthStartValue, growthIncrValue, 0, provers);
 			}
-			else if (prover=="VE" || prover=="EV"){
+			else if (prover.equals("VE") || prover.equals("EV")){
 				provers=new String[2];
 				provers[0]="V";
 				provers[1]="E";
