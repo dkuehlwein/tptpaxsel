@@ -154,7 +154,7 @@ public class Example {
         
         // Make sure that the graph file exists
         if (!file.exists()) {
-        	System.err.println("Could not read Graphprs.dot");
+        	System.err.println("Could not read Graphprs.dot. Using empty graph instead.");
         	return graph;
         }
         
