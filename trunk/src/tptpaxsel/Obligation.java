@@ -94,12 +94,12 @@ public class Obligation {
 	public Obligation(File file, PrintStream outStream) throws IOException {
 		problemFile = file;
 		if (file.getName().endsWith(".input")) {
-			String fileName = file.getName().substring(0, file.getName().length()-".input".length());			
+			String fileName = file.getAbsolutePath().substring(0, file.getAbsolutePath().length()-".input".length());			
 			ATPInput = new File(fileName+".naproche");
 			ATPOutput = new File(fileName+".output");			
 		} else {
-			ATPInput = new File(file.toString()+".naproche");
-			ATPOutput = new File(file.toString()+".output");
+			ATPInput = new File(file.getAbsolutePath()+".naproche");
+			ATPOutput = new File(file.getAbsolutePath()+".output");
 		}
 		premises = new Vector<Axiom>();
 		checkSettings = new Vector<CheckSetting>();

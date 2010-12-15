@@ -37,8 +37,10 @@ public class AtpApi {
 	private String technique="n/a";
 	private String prover="n/a";
 	private String growthMethod="n/a";
-	private int growthStartValue=0;
-	private int growthIncrValue=0;
+	private int growthPremisesStartValue=0;
+	private int growthPremisesIncrValue=0;
+	private int growthTimeStartValue=0;
+	private int growthTimeIncrValue=0;
 
 	private int time=0;
 	
@@ -66,8 +68,8 @@ public class AtpApi {
 	 * @param technique
 	 * @param prover
 	 * @param growthMethod
-	 * @param growthStartValue
-	 * @param growthIncrValue
+	 * @param growthPremisesStartValue
+	 * @param growthPremisesIncrValue
 	 * @param time
 	 * @param threads
 	 * @param changeExistential
@@ -76,8 +78,10 @@ public class AtpApi {
 	public void setAll(	double weightObligationEdges,
 						double weightAPRILS, double weightNaproche,
 						String technique, String prover,
-						String growthMethod, int growthStartValue,
-						int growthIncrValue, int time, int threads,
+						String growthMethod, 
+						int growthTimeStartValue , int growthTimeIncrValue,
+						int growthPremisesStartValue, int growthPremisesIncrValue, 
+						int time, int threads,
 						boolean changeExistential, boolean deleteExistential){
 
 		this.weightObligationEdges=weightObligationEdges;
@@ -86,8 +90,10 @@ public class AtpApi {
 		this.technique=technique;
 		this.prover=prover;
 		this.growthMethod=growthMethod;
-		this.growthStartValue=growthStartValue;
-		this.growthIncrValue=growthIncrValue;
+		this.growthTimeStartValue=growthTimeStartValue;
+		this.growthTimeIncrValue=growthTimeIncrValue;
+		this.growthPremisesStartValue=growthPremisesStartValue;
+		this.growthPremisesIncrValue=growthPremisesIncrValue;
 		this.time=time;
 		this.time=threads;
 		this.changeExistential = changeExistential;
@@ -107,8 +113,10 @@ public class AtpApi {
 		retVal.put("technique",technique);
 		retVal.put("prover",prover);
 		retVal.put("growthMethod",growthMethod);
-		retVal.put("growthStartValue",Integer.toString(growthStartValue));
-		retVal.put("growthIncrValue",Integer.toString(growthIncrValue));
+		retVal.put("growthTimeStartValue",Integer.toString(growthTimeStartValue));
+		retVal.put("growthTimeIncrValue",Integer.toString(growthTimeIncrValue));		
+		retVal.put("growthPremisesStartValue",Integer.toString(growthPremisesStartValue));
+		retVal.put("growthPremisesIncrValue",Integer.toString(growthPremisesIncrValue));
 		retVal.put("time",Integer.toString(time));
 		retVal.put("threads",Integer.toString(threads));
 		retVal.put("changeExistential",Boolean.toString(changeExistential));
@@ -150,16 +158,19 @@ public class AtpApi {
 	 * @param weightNaproche
 	 * @param prover
 	 * @param growthMethod
-	 * @param growthStartValue
-	 * @param growthIncrValue
-	 * @param time
+	 * @param growthTimeStartValue
+	 * @param growthTimeIncrValue
+	 * @param growthPremisesStartValue
+	 * @param growthPremisesIncrValue
 	 * @param threads
 	 */
 	public void setPremiseGrowth(	double weightObligationEdges,
 									double weightAPRILS, double weightNaproche,
 									String prover,
-									String growthMethod, int growthStartValue,
-									int growthIncrValue, int time, int threads){
+									String growthMethod, 
+									int growthTimeStartValue, int growthTimeIncrValue,
+									int growthPremisesStartValue, int growthPremisesIncrValue, 
+									int threads){
 
 		this.weightObligationEdges=weightObligationEdges;
 		this.weightAPRILS=weightAPRILS;
@@ -170,56 +181,13 @@ public class AtpApi {
 		else
 			outStream.println("Invalid Prover selected, must be 'V', 'E', 'VE' or 'EV'");
 		this.growthMethod=growthMethod;
-		this.growthStartValue=growthStartValue;
-		this.growthIncrValue=growthIncrValue;
-		this.time=time;
+		this.growthTimeStartValue=growthTimeStartValue;
+		this.growthTimeIncrValue=growthTimeIncrValue;
+		this.growthPremisesStartValue=growthPremisesStartValue;
+		this.growthPremisesIncrValue=growthPremisesIncrValue;		
 		this.threads=threads;
 	}
 	
-	//Get/Set Methods for fine-grained configuration
-	public void setOutStream(PrintStream outStream){
-		this.outStream=outStream;
-	}
-	public PrintStream getOutStream(){ return this.outStream;}
-
-	public void setWeightObligationEdges(double weightObligationEdges){ this.weightObligationEdges=weightObligationEdges;}
-	public double getWeightObligationEdges(){ return this.weightObligationEdges;}
-
-	public void setWeightAPRILS(double weightAPRILS){ this.weightAPRILS=weightAPRILS;}
-	public double getWeightAPRILS(){ return this.weightAPRILS;}
-	
-	public void setWeightNaproche(double weightNaproche){ this.weightNaproche=weightNaproche;}
-	public double getWeightNaproche(){ return this.weightNaproche;}
-
-	public void setTechnique(String technique){ this.technique=technique;}
-	public String getTechnique(){ return this.technique;}
-
-	public void setProver(String prover){ this.prover=prover;}
-	public String getProver(){ return this.prover;}
-
-	public void setGrowthMethod(String growthMethod){ this.growthMethod=growthMethod;}
-	public String getGrowthMethod(){ return this.growthMethod;}
-
-	public void setGrowthStartValue(int growthStartValue){ this.growthStartValue=growthStartValue;}
-	public int getGrowthStartValue(){ return this.growthStartValue;}
-
-	public void setGrowthIncrValue(int growthIncrValue){ this.growthIncrValue=growthIncrValue;}
-	public int getGrowthIncrValue(){ return this.growthIncrValue;}
-
-	public void setTime(int time){ this.time=time;}
-	public int getTime(){ return this.time;}
-	
-	public void setThreads(int threads){ this.threads=threads;}
-	public int getThreads(){ return this.threads;}
-	
-	public void setChangeExistential(boolean changeExistential){ this.changeExistential=changeExistential;}
-	public boolean getChangeExistential(){ return this.changeExistential;}
-	
-	public void setDeleteExistential(boolean deleteExistential){ this.deleteExistential=deleteExistential;}
-	public boolean getDeleteExistential(){ return this.deleteExistential;}
-
-	public String getLocation(){ return this.location;}
-
 	/**
 	 * Simple Constructor, only sets location
 	 * 
@@ -240,18 +208,20 @@ public class AtpApi {
 	 * @param technique
 	 * @param prover
 	 * @param growthMethod
-	 * @param growthStartValue
-	 * @param growthIncrValue
+	 * @param growthPremisesStartValue
+	 * @param growthPremisesIncrValue
 	 * @param time
 	 */
 	public AtpApi(	PrintStream outStream, double weightObligationEdges,
 					double weightAPRILS, double weightNaproche,
 					String technique, String prover,
-					String growthMethod, int growthStartValue,
-					int growthIncrValue, int time, int threads,
+					String growthMethod, 
+					int growthTimeStartValue, int growthTimeIncrValue,
+					int growthPremisesStartValue, int growthPremisesIncrValue, 
+					int time, int threads,
 					boolean changeExistential, boolean deleteExistential){
 		this.outStream=outStream;
-		setAll(weightObligationEdges,weightAPRILS,weightNaproche,technique,prover,growthMethod,growthStartValue,growthIncrValue,time,threads,changeExistential,deleteExistential);
+		setAll(weightObligationEdges,weightAPRILS,weightNaproche,technique,prover,growthMethod,growthTimeStartValue, growthTimeIncrValue,growthPremisesStartValue,growthPremisesIncrValue,time,threads,changeExistential,deleteExistential);
 		setup();
 	}
 /** 
@@ -304,7 +274,7 @@ public class AtpApi {
 	}
 	
 /**
- * Constructs the absolute path to location and initialises obligations
+ * Constructs the absolute path to location and initializes obligations
  */
 	private void setup(){
 		String workingDir="user.dir";
@@ -332,18 +302,30 @@ public class AtpApi {
 				outStream.println("Prover "+prover+" not supported with Simple PSA.");
 			}
 		}
+//		PSAPremiseGrowth(int premisesStart, String premisesOperation,
+//				double premisesGrowth, int timeStart, int timeGrowth,
+//				String[] provers) {		
 		else if (technique.equals("growth")){
 			String[] provers;
-			if (prover=="V" || prover=="E"){
+			if (prover.equals("V") || prover.equals("E")){
 				provers=new String[1];
 				provers[0]=prover;
-				psa = new PSAPremiseGrowth(time, growthMethod, growthStartValue, growthIncrValue, 0, provers);
+				psa = new PSAPremiseGrowth(growthPremisesStartValue, growthMethod,  growthPremisesIncrValue, growthTimeStartValue, growthTimeIncrValue, provers);
+				psa.changeCheckSettings(obligations);
 			}
-			else if (prover.equals("VE") || prover.equals("EV")){
+			else if (prover.equals("VE")){
 				provers=new String[2];
 				provers[0]="V";
 				provers[1]="E";
-				psa = new PSAPremiseGrowth(time, growthMethod, growthStartValue, growthIncrValue, 0, provers);
+				psa = new PSAPremiseGrowth(growthPremisesStartValue, growthMethod,  growthPremisesIncrValue, growthTimeStartValue, growthTimeIncrValue, provers);
+				psa.changeCheckSettings(obligations);
+				
+			}
+			else if (prover.equals("EV")){
+				provers=new String[2];
+				provers[0]="E";
+				provers[1]="V";
+				psa = new PSAPremiseGrowth(growthPremisesStartValue, growthMethod,  growthPremisesIncrValue, growthTimeStartValue, growthTimeIncrValue, provers);
 				psa.changeCheckSettings(obligations);
 			}
 			else{
