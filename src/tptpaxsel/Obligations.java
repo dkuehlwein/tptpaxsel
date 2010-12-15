@@ -159,9 +159,6 @@ public class Obligations {
 			outStream.print("Obligation "+filename+" not found.");
 			return null;
 		}
-
-		// Output
-		outStream.print(obligation.problemFile+" Result:");
 		
 		/* Preparations */
 		stats = obligation.stats;			
@@ -175,9 +172,10 @@ public class Obligations {
 		stats.setResult(checkResult);
 		
 		/* Output*/
-		if (outputType.equals("human"))
+		if (outputType.equals("human")) {
+			outStream.print(obligation.problemFile+" Result:");
 			stats.print();
-		else if (outputType.equals("both")){
+		} else if (outputType.equals("both")){
 			stats.print();
 			stats.printMachine(outStream);
 		}

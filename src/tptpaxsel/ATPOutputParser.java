@@ -1,7 +1,6 @@
 package tptpaxsel;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Vector;
