@@ -9,15 +9,8 @@ package tptpaxsel;
 import java.io.PrintStream;
 import java.util.HashMap;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Vector;
-
-
-import org.jgrapht.graph.DefaultDirectedWeightedGraph;
-import org.jgrapht.graph.DefaultWeightedEdge;
 
 import tptpaxsel.PSA.PSAExistential;
 import tptpaxsel.PSA.PSAPremiseGrowth;
@@ -26,27 +19,29 @@ import tptpaxsel.PSA.PremiseSelectionAlgorithm;
 
 public class AtpApi {
 	//initialise fields with "empty values"
-	private PrintStream outStream=System.out;
-	private double weightObligationEdges=0.0;
-	private double weightAPRILS=0.0;
-	private double weightNaproche=0.0;
+	public PrintStream outStream=System.out;
+	public double weightObligationEdges=0.0;
+	public double weightAPRILS=0.0;
+	public double weightNaproche=0.0;
 	
 	boolean changeExistential = false;
 	boolean deleteExistential = false;
 
-	private String technique="n/a";
-	private String prover="n/a";
-	private String growthMethod="n/a";
-	private int growthPremisesStartValue=0;
-	private int growthPremisesIncrValue=0;
-	private int growthTimeStartValue=0;
-	private int growthTimeIncrValue=0;
+	public String technique="n/a";
+	public String prover="n/a";
+	public String growthMethod="n/a";
+	public int growthPremisesStartValue=0;
+	public int growthPremisesIncrValue=0;
+	public int growthTimeStartValue=0;
+	public int growthTimeIncrValue=0;
 
-	private int time=0;
+	public int time=0;
 	
-	private int threads=1;
+	public int threads=1;
 
-	private String location="";
+	public String location="";
+	public String locationObList="";
+	public String locationGraph="";
 	
 	Obligations obligations;
 	
@@ -187,17 +182,30 @@ public class AtpApi {
 		this.growthPremisesIncrValue=growthPremisesIncrValue;		
 		this.threads=threads;
 	}
-	
+		
 	/**
-	 * Simple Constructor, only sets location
+	 * Simple Constructor, only sets locations
 	 * 
 	 * @param location
 	 */
-	public AtpApi(String location){
+	public AtpApi(String location, String locationObList, String locationGraph){
 		this.location=location;
+		this.locationObList = locationObList;
+		this.locationGraph = locationGraph;
 		setup();
 	}
 
+	/**
+	 * Simple Constructor, without Graph
+	 * 
+	 * @param location
+	 */
+	public AtpApi(String location, String locationObList){
+		this.location=location;
+		this.locationObList = locationObList;		
+		setup();
+	}
+	
 	/**
 	 * Complete Constructor. Sets location and all other parameters.
 	 * 
@@ -214,12 +222,16 @@ public class AtpApi {
 	 */
 	public AtpApi(	PrintStream outStream, double weightObligationEdges,
 					double weightAPRILS, double weightNaproche,
-					String technique, String prover,
+					String location, String locationObList, String locationGraph,
+					String technique, String prover,					
 					String growthMethod, 
 					int growthTimeStartValue, int growthTimeIncrValue,
 					int growthPremisesStartValue, int growthPremisesIncrValue, 
 					int time, int threads,
 					boolean changeExistential, boolean deleteExistential){
+		this.location=location;
+		this.locationObList = locationObList;
+		this.locationGraph = locationGraph;
 		this.outStream=outStream;
 		setAll(weightObligationEdges,weightAPRILS,weightNaproche,technique,prover,growthMethod,growthTimeStartValue, growthTimeIncrValue,growthPremisesStartValue,growthPremisesIncrValue,time,threads,changeExistential,deleteExistential);
 		setup();
@@ -263,7 +275,7 @@ public class AtpApi {
  */
 	private void configureObligations(){
 		if (weightNaproche > 0)
-			obligations.graph = readDot(location);
+			obligations.graph = ReadData.readDot(locationGraph);
 		if (weightAPRILS > 0)
 			obligations.runAprils();
 		obligations.weightAPRILS = this.weightAPRILS;
@@ -284,12 +296,12 @@ public class AtpApi {
 		catch (IOException e1) {
 			outStream.println("Could not specify the working directory");
 		}
-		this.location=workingDir+this.location;
-		this.obligations = new Obligations(getObligationsOrder(location),location,outStream);
+		this.location=workingDir+"/"+this.location;
+		this.obligations = new Obligations(ReadData.getObligationsOrder(locationObList),outStream);
 	}
 
 /**
- * Initalises the Premise Selection Algorithms and configures obligations accordingly
+ * Initializes the Premise Selection Algorithms and configures obligations accordingly
  */
 	private void setupPSA(){
 		PremiseSelectionAlgorithm psa=null;
@@ -348,75 +360,6 @@ public class AtpApi {
 		}
 
 	}
-// Everything below is copied from Example.java in tptpaxsel and slightly altered
-
-	/**
-	 * Each line in obligations.txt becomes an entry in the returned String[] 
-	 * 
-	 * @return The content of obligations.txt
-	 */
-	private String[] getObligationsOrder(String location) {
-		Vector<String> obOrder = new Vector<String>();
-		String input;
-		try {
-			BufferedReader inputStream = new BufferedReader(new FileReader(location+"obligation.txt"));
-            while ((input = inputStream.readLine()) != null) {
-            	obOrder.add(input);
-            }
-		} catch (IOException e) {
-			outStream.println("Obligation file not found");
-			e.printStackTrace();
-		}		
-		return obOrder.toArray(new String[obOrder.size()]);
-	}
-	
-	/**
-	 * Reads graph.dot in location and translates it into a DirectedWeightedGraph
-	 * 
-	 * @param location the location(folder) which contains graph.dot
-	 * @return The Java representation of the graph.dot Graph as a DirectedWeightedGraph
-	 */
-	private static DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> readDot(String location){
-		BufferedReader inputStream = null;
-		String input;
-        String[] splitInput;
-        String Vertice1;
-        String Vertice2;
-        DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
-        File file = new File(location+"Graphprs.dot");
-        
-        // Make sure that the graph file exists
-        if (!file.exists()) {
-        	System.err.println("Could not read Graphprs.dot. Using empty graph instead.");
-        	return graph;
-        }
-        
-        try {
-        	try {
-        		inputStream = new BufferedReader(new FileReader(file));			
-        		while ((input = inputStream.readLine()) != null) {
-        			splitInput = input.split("  ->  ");
-        			if (splitInput.length == 2) { 
-        				// We need to delete the " around the Node names
-        				Vertice1 = splitInput[0].substring(1, splitInput[0].length()-1);
-        				Vertice2 = splitInput[1].substring(1, splitInput[1].length()-2);
-        				graph.addVertex(Vertice1);
-        				graph.addVertex(Vertice2);
-        				graph.addEdge(Vertice1, Vertice2);
-        			}
-        		}
-        	} finally {
-        		if (inputStream != null) {
-        			inputStream.close();
-        		}
-        	}
-        } catch (Exception e) {
-        	System.out.println("Graph file not found");
-			e.printStackTrace();
-		}			
-		return graph;
-	}
-	
 	
 
 }

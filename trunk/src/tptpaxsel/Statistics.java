@@ -24,7 +24,7 @@ public class Statistics {
 	static public void printProcessTimeline(Obligations obligations, int time, PrintStream out) {
 		int[] timeStats = new int[time];
 		for (int i : timeStats) {
-			i = 0;				
+			i = 0;			
 		}									
 		for (Obligation o : obligations.obligations) {
 			for (int i=0; i < timeStats.length; i++) {					
