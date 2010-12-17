@@ -10,11 +10,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Vector;
 
-
-import org.jgrapht.graph.DefaultDirectedWeightedGraph;
-import org.jgrapht.graph.DefaultWeightedEdge;
-
 import tptpaxsel.Obligations;
+import tptpaxsel.ReadData;
 
 /**
  * Class used for loading an example set of problems.
@@ -25,6 +22,8 @@ import tptpaxsel.Obligations;
 public class Example {
 	public String name;
 	public String location;
+	public String locationOb;
+	public String locationGraph;
 	public Obligations obligations;
 	private String[] obligationsOrderString;
 	
@@ -39,31 +38,35 @@ public class Example {
 			workingDir=new File(System.getProperty(workingDir)).getCanonicalPath();			 
 			if (testName == "Landau") {
 				name = "Landau";
-				location = workingDir+"/examples/landau/";
-				obligationsOrderString = getObligationsOrder();
-				obligations = new Obligations(obligationsOrderString,location);	
-				obligations.graph = readDot(location);
+				location = workingDir+"/examples/landau";				
+				locationGraph = workingDir+"/examples/landau/Graphprs.dot";
+				obligationsOrderString = getObligationsOrder(location);
+				obligations = new Obligations(obligationsOrderString);	
+				obligations.graph = ReadData.readDot(locationGraph);
 			}
 			else if (testName == "Euclid") {
 				name = "Euclid";
-				location = workingDir+"/examples/euclid/";
-				obligationsOrderString = getObligationsOrder();
-				obligations = new Obligations(obligationsOrderString,location);
-				obligations.graph = readDot(location);
+				location = workingDir+"/examples/euclid";				
+				locationGraph = workingDir+"/examples/euclid/Graphprs.dot";
+				obligationsOrderString = getObligationsOrder(location);
+				obligations = new Obligations(obligationsOrderString);
+				obligations.graph = ReadData.readDot(locationGraph);
 			}
 			else if (testName == "MizarHard") {
 				name = "MizarHard";
-				location = workingDir+"/examples/mizarHard/";
-				obligationsOrderString = getObligationsOrder();
-				obligations = new Obligations(obligationsOrderString,location);
-				obligations.graph = readDot(location);
+				location = workingDir+"/examples/mizarHard";				
+				locationGraph = workingDir+"/examples/mizarHard/Graphprs.dot";
+				obligationsOrderString = getObligationsOrder(location);
+				obligations = new Obligations(obligationsOrderString);	
+				obligations.graph = ReadData.readDot(locationGraph);
 			}
 			else if (testName == "Mizar") {
 				name = "Mizar";
-				location = workingDir+"/examples/mizar/";
-				obligationsOrderString = getObligationsOrder();
-				obligations = new Obligations(obligationsOrderString,location);
-				obligations.graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);			
+				location = workingDir+"/examples/mizar";				
+				locationGraph = workingDir+"/examples/mizarHard/Graphprs.dot";
+				obligationsOrderString = getObligationsOrder(location);
+				obligations = new Obligations(obligationsOrderString);	
+				obligations.graph = ReadData.readDot(locationGraph);	
 			}
 			else {			
 				System.out.println("No test defined for "+ name);
@@ -115,73 +118,26 @@ public class Example {
 		}
 		catch (IOException e1) { System.out.println("Could not specify the working directory"); }
 
-	}
-	
+	}	
+
 	/**
 	 * Each line in obligations.txt becomes an entry in the returned String[] 
 	 * 
 	 * @return The content of obligations.txt
 	 */
-	private String[] getObligationsOrder() {
+	public static String[] getObligationsOrder(String location) {
 		Vector<String> obOrder = new Vector<String>();
 		String input;
 		try {
-			BufferedReader inputStream = new BufferedReader(new FileReader(location+"obligation.txt"));
-            while ((input = inputStream.readLine()) != null) {
-            	obOrder.add(input);
-            }
+			BufferedReader inputStream = new BufferedReader(new FileReader(location+"/obligation.txt"));
+			while ((input = inputStream.readLine()) != null) {
+				obOrder.add(location+"/"+input);
+			}
 		} catch (IOException e) {
-			System.out.println("Obligation file not found");
+			System.err.println("Obligation file not found");
 			e.printStackTrace();
 		}		
 		return obOrder.toArray(new String[obOrder.size()]);
 	}
-	
-	/**
-	 * Reads graph.dot in location and translates it into a DirectedWeightedGraph
-	 * 
-	 * @param location the location(folder) which contains graph.dot
-	 * @return The Java representation of the graph.dot Graph as a DirectedWeightedGraph
-	 */
-	private static DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> readDot(String location){
-		BufferedReader inputStream = null;
-		String input;
-        String[] splitInput;
-        String Vertice1;
-        String Vertice2;
-        DefaultDirectedWeightedGraph<String, DefaultWeightedEdge> graph = new DefaultDirectedWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
-        File file = new File(location+"Graphprs.dot");
-        
-        // Make sure that the graph file exists
-        if (!file.exists()) {
-        	System.err.println("Could not read Graphprs.dot. Using empty graph instead.");
-        	return graph;
-        }
-        
-        try {
-        	try {
-        		inputStream = new BufferedReader(new FileReader(file));			
-        		while ((input = inputStream.readLine()) != null) {
-        			splitInput = input.split("  ->  ");
-        			if (splitInput.length == 2) { 
-        				// We need to delete the " around the Node names
-        				Vertice1 = splitInput[0].substring(1, splitInput[0].length()-1);
-        				Vertice2 = splitInput[1].substring(1, splitInput[1].length()-2);
-        				graph.addVertex(Vertice1);
-        				graph.addVertex(Vertice2);
-        				graph.addEdge(Vertice1, Vertice2);
-        			}
-        		}
-        	} finally {
-        		if (inputStream != null) {
-        			inputStream.close();
-        		}
-        	}
-        } catch (Exception e) {
-        	System.out.println("Graph file not found");
-			e.printStackTrace();
-		}			
-		return graph;
-	}	
-	
+
 }

@@ -62,12 +62,8 @@ public class Obligations {
 	 */
 	public String workingDir;	
 	/**
-	 * The location of the files in the examples folder.
-	 */
-	public String location;
-	/**
-	 * The obligations in the order in which they were created.
-	 */
+	 * The location of the directory of the files.
+	 */	
 	public Vector<Obligation> obligations = new Vector<Obligation>();
 	/**
 	 * The output string
@@ -82,21 +78,19 @@ public class Obligations {
 	 * Creates a new obligations class.
 	 * 
 	 * @param obligationOrder	A String[] which contains the filenames of the proof obligations in the order in which they are created.
-	 * @param location	The location of the files in the examples folder.
 	 */
-	public Obligations(String[] obligationOrder, String location) {
-		this(obligationOrder, location, System.out);
+	public Obligations(String[] obligationOrder) {
+		this(obligationOrder, System.out);
 	}
 	
 	/**
 	 * Creates a new obligations class.
 	 * 
-	 * @param obligationOrder A String[] which contains the filenames of the proof obligations in the order in which they are created.
-	 * @param location 	The location of the files in the examples folder.
+	 * @param obligationOrder A String[] which contains the filenames of the proof obligations in the order in which they are created. 
 	 * @param outStream	The output is written onto this stream
 	 */
-	public Obligations(String[] obligationOrder, String location, PrintStream outStream) {
-		// Set default values for the weights and proof checker settings
+	public Obligations(String[] obligationOrder, PrintStream outStream) {
+		// Set default values for the weights and proof checker settings		
 		weightAPRILS = 1;
 		weightNaproche = 1;
 		weightObligationGraph = 1;
@@ -105,12 +99,11 @@ public class Obligations {
 		maxTime = 5;
 		obligationCounter = obligationOrder.length;
 		theoremCounter = 0;
-		checkScore = 0;
-		this.location = location;
+		checkScore = 0;		
 		// Read the problem files and create the obligations.			
 		for (int i = 0; i < obligationOrder.length; i++) {	
-			File file = new File(location+obligationOrder[i]);
-			File fileAprils = new File(location+obligationOrder[i]+".aprils");
+			File file = new File(obligationOrder[i]);
+			File fileAprils = new File(obligationOrder[i]+".aprils");
 			/* If possible, we try to get relevance information from APRILS */
 			if (fileAprils.exists()) {
 				try {

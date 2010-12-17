@@ -64,19 +64,26 @@ public class PSAPremiseGrowth implements PremiseSelectionAlgorithm{
 			Vector<CheckSetting> CSs = new Vector<CheckSetting>();						
 			Obligation obligation = obligations.obligations.elementAt(i);
 			premisesMax = obligation.premises.size();
-			// premises must grow
-			while (premises <= premisesMax) {
+			if (premisesStart > premisesMax) {
 				for (String prover : provers) {
 					CheckSetting CS = new CheckSetting(prover, time, premises);			
 					CSs.add(CS);
-				}			
-				// Update the values
-				if (premisesOperation.equals("plus")) {
-					premises = premises + premisesGrowth;
-				} else {
-					premises = premises * premisesGrowth;
 				}
-				time = time + timeGrowth;
+			} else {
+				// premises must grow
+				while (premises <= premisesMax) {
+					for (String prover : provers) {
+						CheckSetting CS = new CheckSetting(prover, time, premises);			
+						CSs.add(CS);
+					}			
+					// Update the values
+					if (premisesOperation.equals("plus")) {
+						premises = premises + premisesGrowth;
+					} else {
+						premises = premises * premisesGrowth;
+					}
+					time = time + timeGrowth;
+				}
 			}
 			obligation.checkSettings = CSs;			
 		}		
