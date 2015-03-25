@@ -1,0 +1,1 @@
+tptpaxsel is an axioms selector for series of related ATP problems.
